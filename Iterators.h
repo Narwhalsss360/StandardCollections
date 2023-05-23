@@ -2,6 +2,7 @@
 #define Iterators_h
 
 #define nullref(T) *(T*)nullptr
+#define static_Iterate(type, identifier) Iterate<type, static_array_length(type, identifier)>(identifier)
 
 template <typename CollectionType, typename DereferenceType>
 class GeneralIterator
@@ -26,6 +27,11 @@ public:
 	virtual DereferenceType operator*()
 	{
 		return m_Collection[m_CurrentIndex];
+	}
+
+	virtual size_t index()
+	{
+		return m_CurrentIndex;
 	}
 
 protected:
@@ -181,5 +187,11 @@ public:
 protected:
 	Collection2Type& m_Collection2;
 };
+
+template <typename CStyleArrayType, size_t Length>
+GeneralIterable<CStyleArrayType[Length], GeneralIterator<CStyleArrayType[Length], CStyleArrayType&>> Iterate(CStyleArrayType (&array)[Length])
+{
+	return GeneralIterable<CStyleArrayType[Length], GeneralIterator<CStyleArrayType[Length], CStyleArrayType&>>(array, 0, Length);
+}
 
 #endif // !Iterators_h
