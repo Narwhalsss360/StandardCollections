@@ -4,6 +4,9 @@
     <Filter Include="Headers">
       <UniqueIdentifier>{297655e7-1a9f-46f5-bd8c-5fe6521d1bee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\CustomCollections">
+      <UniqueIdentifier>{b6050ca7-e5c0-45c1-89c4-112643d205f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Collection.h">
@@ -14,6 +17,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StandardCollections.h">
       <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Array.h">
+      <Filter>Headers\CustomCollections</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

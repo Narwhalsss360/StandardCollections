@@ -1,0 +1,8 @@
+Add wrapper for iterating through already instantiated begin and end
+Fix Collection<CollectionType> begin, end
+Fix forced copying of zip
+
+check if nullref is defined behavior and will NOT cause crash
+
+not found index = SIZE_MAX ?
+or just nullref ?
