@@ -8,6 +8,7 @@
 #include <initializer_list>
 #endif // __cpp_initializer_lists
 
+#define Array_init(type, name, ...) type Array_init_##name[] __VA_ARGS__; auto name = CStyleToArray(Array_init_##name)
 
 template <typename CollectableType, size_t Length = sizeof(CollectableType)>
 class Array : public Collection<CollectableType>
@@ -50,13 +51,15 @@ public:
 			m_Array[index] = array[index];
 	}
 
-	Array(const std::initializer_list<CollectableType> initializer)
+#if __cpp_initializer_lists
+		Array(const std::initializer_list<CollectableType> initializer)
 		: Collection<CollectableType>(), m_Array{ CollectableType() }
 	{
 		operator=(initializer);
 	}
+#endif // __cpp_initializer_lists
 
-	constexpr size_t length() const override
+	size_t length() const override
 	{
 		return Length;
 	}
@@ -88,12 +91,14 @@ public:
 		return *this;
 	}
 
+#ifdef __cpp_initializer_lists
 	Array& operator=(const std::initializer_list<CollectableType> initializer)
 	{
 		for (size_t index = 0; index < (Length < initializer.size() ? Length : initializer.size()); index++)
 			m_Array[index] = initializer.begin()[index];
 		return *this;
 	}
+#endif // __cpp_initializer_lists
 
 private:
 	CollectableType m_Array[Length];
