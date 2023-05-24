@@ -53,6 +53,18 @@ test_function(Array_GeneralIteratorTest)
 		test_expect(digit, bomb_defusal_code_digits[expectedIndex]);
 		expectedIndex++;
 	}
+
+	Array<int, 7> bomb_defusal_code_backwards = { 8, 0, 6, 5, 5, 3, 7 };
+
+	expectedIndex = 0;
+	for (auto zipping : Zip(bomb_defusal_code, bomb_defusal_code_backwards))
+	{
+		test_expect(zipping.defaulted, false);
+		test_expect(zipping.index, expectedIndex);
+		test_expect(zipping.value1, bomb_defusal_code[expectedIndex]);
+		test_expect(zipping.value2, bomb_defusal_code_backwards[expectedIndex]);
+		expectedIndex++;
+	}
 }
 
 add_test(Array_instantiation_test);

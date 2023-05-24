@@ -35,4 +35,10 @@ inline ZipIterable<CStyleArrayType1[Array1Length], CStyleArrayType1, CStyleArray
 {
 	return ZipIterable<CStyleArrayType1[Array1Length], CStyleArrayType1, CStyleArrayType2, CStyleArrayType2[Array2Length]>(array1, array2, 0, (Array1Length < Array2Length) ? Array1Length : Array2Length);
 }
+
+template <typename CollectableType, typename CollectableType2>
+ZipIterable<Collection<CollectableType>, CollectableType, CollectableType2, Collection<CollectableType2>> Zip(Collection<CollectableType>& collection1, Collection<CollectableType2>& collection2)
+{
+	return ZipIterable<Collection<CollectableType>, CollectableType, CollectableType2, Collection<CollectableType2>>(collection1, collection2, 0, (collection1.length() < collection2.length()) ? collection1.length() : collection2.length());
+}
 #pragma endregion
