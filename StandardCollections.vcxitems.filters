@@ -21,5 +21,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Array.h">
       <Filter>Headers\CustomCollections</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)IteratorWrappers.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

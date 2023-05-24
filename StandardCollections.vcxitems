@@ -16,6 +16,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Collection.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Iterators.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IteratorWrappers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StandardCollections.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Array.h" />
   </ItemGroup>

@@ -16,6 +16,11 @@ struct IndexValuePair
 	ValueType& value;
 	size_t index;
 
+	IndexValuePair()
+		: value(nullref(ValueType)), index(SIZE_MAX)
+	{
+	}
+
 	IndexValuePair(ValueType& value, size_t index)
 		: value(value), index(index)
 	{
@@ -40,24 +45,33 @@ public:
 
 	virtual inline const CollectableType& operator[](size_t) const = 0;
 
-	/* Still Pre-test:
-	virtual inline GeneralIterator<Collection<CollectableType>, CollectableType&> begin() const
+	virtual inline GeneralIterator<const Collection<CollectableType>, const CollectableType&> begin() const
+	{
+		return GeneralIterator<const Collection<CollectableType>, const CollectableType&>(*this, 0);
+	}
+
+	virtual inline GeneralIterator<const Collection<CollectableType>, const CollectableType&> end() const
+	{
+		return GeneralIterator<const Collection<CollectableType>, const CollectableType&>(*this, length());
+	}
+
+	virtual inline GeneralIterator<Collection<CollectableType>, CollectableType&> begin()
 	{
 		return GeneralIterator<Collection<CollectableType>, CollectableType&>(*this, 0);
 	}
 
-	virtual inline GeneralIterator<Collection<CollectableType>, CollectableType&> end() const
+	virtual inline GeneralIterator<Collection<CollectableType>, CollectableType&> end()
 	{
 		return GeneralIterator<Collection<CollectableType>, CollectableType&>(*this, length());
 	}
 
-	virtual inline void Fill(CollectableType& value)
+	virtual inline void Fill(const CollectableType& value)
 	{
 		for (size_t index = 0; index < this->length(); index++)
 			this->operator[](index) = value;
 	}
 
-	virtual inline void Fill(CollectableType&& value)
+	virtual inline void Fill(const CollectableType&& value)
 	{
 		for (size_t index = 0; index < this->length(); index++)
 			this->operator[](index) = value;
@@ -83,54 +97,53 @@ public:
 		return this->operator[](this->length() - 1);
 	}
 
-	virtual inline void ForEach(ForEachIteratorPointer(CollectableType, iterator))
+	virtual inline void ForEach(ForEachIteratorPointer(const CollectableType, iterator))
 	{
 		for (size_t index = 0; index < length(); ++index)
 			iterator(index, this->operator[](index));
 	}
 
-	virtual inline void ForEach(ConstForEachIteratorPointer(CollectableType, iterator)) const
+	virtual inline void ForEach(ConstForEachIteratorPointer(const CollectableType, iterator)) const
 	{
 		for (size_t index = 0; index < length(); ++index)
 			iterator(index, this->operator[](index));
 	}
 
-	virtual inline IndexValuePair<CollectableType> Find(CollectableType& value) const
+	virtual inline IndexValuePair<const CollectableType> Find(const CollectableType& value) const
 	{
 		for (size_t index = 0; index < this->length(); index++)
-			if (this->operator[](index) == value) return IndexValuePair<CollectableType>(this->operator[](index), index);
+			if (this->operator[](index) == value) return IndexValuePair<const CollectableType>(this->operator[](index), index);
 	}
 
-	virtual inline IndexValuePair<CollectableType> Find(CollectableType&& value) const
+	virtual inline IndexValuePair<const CollectableType> Find(const CollectableType&& value) const
 	{
 		for (size_t index = 0; index < this->length(); index++)
-			if (this->operator[](index) == value) IndexValuePair<CollectableType>(this->operator[](index), index);
+			if (this->operator[](index) == value) return IndexValuePair<const CollectableType>(this->operator[](index), index);
 	}
 
-	virtual inline IndexValuePair<CollectableType> Find(ComparatorFunctionPointer(CollectableType, comparator)) const
+	virtual inline IndexValuePair<const CollectableType> Find(ComparatorFunctionPointer(const CollectableType, comparator)) const
 	{
 		for (size_t index = 0; index < this->length(); index++)
-			if (comparator(this->operator[](index))) IndexValuePair<CollectableType>(this->operator[](index), index);
+			if (comparator(this->operator[](index))) return IndexValuePair<const CollectableType>(this->operator[](index), index);
 	}
 
-	virtual inline IndexValuePair<CollectableType> FindLast(CollectableType& value) const
+	virtual inline IndexValuePair<const CollectableType> FindLast(const CollectableType& value) const
 	{
 		for (size_t index = this->length() - 1; index >= 0; index--)
-			if (this->operator[](index) == value) IndexValuePair<CollectableType>(this->operator[](index), index);
+			if (this->operator[](index) == value) return IndexValuePair<const CollectableType>(this->operator[](index), index);
 	}
 
-	virtual inline IndexValuePair<CollectableType> FindLast(CollectableType&& value) const
+	virtual inline IndexValuePair<const CollectableType> FindLast(const CollectableType&& value) const
 	{
 		for (size_t index = this->length() - 1; index >= 0; index--)
-			if (this->operator[](index) == value) IndexValuePair<CollectableType>(this->operator[](index), index);
+			if (this->operator[](index) == value) return IndexValuePair<const CollectableType>(this->operator[](index), index);
 	}
 
-	virtual inline IndexValuePair<CollectableType> FindLast(ComparatorFunctionPointer(CollectableType, comparator)) const
+	virtual inline IndexValuePair<const CollectableType> FindLast(ComparatorFunctionPointer(const CollectableType, comparator)) const
 	{
 		for (size_t index = this->length() - 1; index >= 0; index--)
-			if (comparator(this->operator[](index))) IndexValuePair<CollectableType>(this->operator[](index), index);
+			if (comparator(this->operator[](index))) return IndexValuePair<const CollectableType>(this->operator[](index), index);
 	}
-	*/
 };
 
 inline size_t SafeIndex(size_t tryIndex, size_t collectionLength)
