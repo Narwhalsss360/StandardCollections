@@ -1,20 +1,14 @@
 #ifndef Iterators_h
 #define Iterators_h
 
-#define nullref(T) (*(T*)nullptr)
-#define is_nullref(expr) (&expr == nullptr)
-
-#define ForEachIterator(type, name) void name(size_t index, type& value)
-#define ConstForEachIterator(type, name) void name(size_t index, const type& value)
-#define ForEachIteratorPointer(type, name) void(*name)(size_t, type&)
-#define ConstForEachIteratorPointer(type, name) void(*name)(size_t, const type&)
+#include "CollectionDefenitions.h"
 
 #pragma region Iterators
 template <typename CollectionType, typename DereferenceType>
 class GeneralIterator
 {
 public:
-	GeneralIterator(CollectionType& collection, const size_t index)
+	GeneralIterator(CollectionType& collection, const index_t index)
 		: m_Collection(collection), m_CurrentIndex(index)
 	{
 
@@ -35,14 +29,14 @@ public:
 		return m_Collection[m_CurrentIndex];
 	}
 
-	virtual size_t index()
+	virtual index_t index()
 	{
 		return m_CurrentIndex;
 	}
 
 protected:
 	CollectionType& m_Collection;
-	size_t m_CurrentIndex;
+	index_t m_CurrentIndex;
 };
 
 struct DereferencedIteration
@@ -64,7 +58,7 @@ struct Enumeration : DereferencedIteration
 	{
 	}
 
-	Enumeration(ValueType value, size_t index)
+	Enumeration(ValueType value, index_t index)
 		: DereferencedIteration(false), value(value), index(index)
 	{
 	}
@@ -75,14 +69,14 @@ struct Enumeration : DereferencedIteration
 	}
 
 	ValueType value;
-	const size_t index;
+	const index_t index;
 };
 
 template <typename CollectionType, typename ValueType>
 class EnumerationIterator : public GeneralIterator<CollectionType, Enumeration<ValueType>>
 {
 public:
-	EnumerationIterator(CollectionType& collection, const size_t index)
+	EnumerationIterator(CollectionType& collection, const index_t index)
 		: GeneralIterator<CollectionType, Enumeration<ValueType>>(collection, index)
 	{
 	}
@@ -101,26 +95,26 @@ struct Zipping : DereferencedIteration
 	{
 	}
 
-	Zipping(Zipped1ValueType value1, Zipped2ValueType value2, const size_t index)
+	Zipping(Zipped1ValueType value1, Zipped2ValueType value2, const index_t index)
 		: DereferencedIteration(false), value1(value1), value2(value2), index(index)
 	{
 	}
 
 	Zipped1ValueType value1;
 	Zipped2ValueType value2;
-	const size_t index;
+	const index_t index;
 };
 
 template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType = Zipped1ValueType, typename Collection2Type = CollectionType>
 class ZipIterator : public GeneralIterator<CollectionType, Zipping<Zipped1ValueType, Zipped2ValueType>>
 {
 public:
-	ZipIterator(CollectionType& collection, const size_t index)
+	ZipIterator(CollectionType& collection, const index_t index)
 		: GeneralIterator<CollectionType, Zipping<Zipped1ValueType, Zipped2ValueType>>(collection, index), m_Defaulted(true), m_Collection2(nullref(Collection2Type))
 	{
 	}
 
-	ZipIterator(CollectionType& collection, Collection2Type& collection2, const size_t index)
+	ZipIterator(CollectionType& collection, Collection2Type& collection2, const index_t index)
 		: GeneralIterator<CollectionType, Zipping<Zipped1ValueType, Zipped2ValueType>>(collection, index), m_Defaulted(false), m_Collection2(collection2)
 	{
 	}
@@ -143,7 +137,7 @@ template <typename CollectionType, typename Iterator = GeneralIterator<Collectio
 class GeneralIterable
 {
 public:
-	GeneralIterable(CollectionType& collection, const size_t beginIndex, const size_t endIndex)
+	GeneralIterable(CollectionType& collection, const index_t beginIndex, const index_t endIndex)
 		: m_Collection(collection), m_BeginIndex(beginIndex), m_EndIndex(endIndex)
 	{
 	}
@@ -160,14 +154,14 @@ public:
 
 protected:
 	CollectionType& m_Collection;
-	const size_t m_BeginIndex, m_EndIndex;
+	const index_t m_BeginIndex, m_EndIndex;
 };
 
 template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType = Zipped1ValueType, typename Collection2Type = CollectionType>
 class ZipIterable : GeneralIterable<CollectionType, ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>>
 {
 public:
-	ZipIterable(CollectionType& collection, Collection2Type& collection2, const size_t beginIndex, const size_t endIndex)
+	ZipIterable(CollectionType& collection, Collection2Type& collection2, const index_t beginIndex, const index_t endIndex)
 		: GeneralIterable<CollectionType, ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>>(collection, beginIndex, endIndex), m_Collection2(collection2)
 	{
 	}

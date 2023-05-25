@@ -10,7 +10,7 @@
 
 #define Array_init(type, name, ...) type Array_init_##name[] __VA_ARGS__; auto name = CStyleToArray(Array_init_##name)
 
-template <typename CollectableType, size_t Length = sizeof(CollectableType)>
+template <typename CollectableType, index_t TemplateLength = sizeof(CollectableType)>
 class Array : public Collection<CollectableType>
 {
 public:
@@ -44,10 +44,10 @@ public:
 		operator=(other);
 	}
 
-	Array(CollectableType(&array)[Length])
+	Array(CollectableType(&array)[TemplateLength])
 		: Collection<CollectableType>(), m_Array{ CollectableType() }
 	{
-		for (size_t index = 0; index < Length; index++)
+		for (size_t index = 0; index < TemplateLength; index++)
 			m_Array[index] = array[index];
 	}
 
@@ -59,19 +59,19 @@ public:
 	}
 #endif // __cpp_initializer_lists
 
-	size_t length() const override
+	index_t Length() const override
 	{
-		return Length;
+		return TemplateLength;
 	}
 
-	CollectableType& operator[](size_t index) override
+	CollectableType& operator[](index_t index) override
 	{
-		return m_Array[SafeIndex(index, Length)];
+		return m_Array[SafeIndex(index, TemplateLength)];
 	}
 
-	const CollectableType& operator[](size_t index) const override
+	const CollectableType& operator[](index_t index) const override
 	{
-		return m_Array[SafeIndex(index, Length)];
+		return m_Array[SafeIndex(index, TemplateLength)];
 	}
 
 	operator CollectableType* ()
@@ -81,7 +81,7 @@ public:
 
 	Array& operator=(const Array& other)
 	{
-		for (size_t index = 0; index < Length; index++)
+		for (size_t index = 0; index < TemplateLength; index++)
 			m_Array[index] = other[index];
 		return *this;
 	}
@@ -94,17 +94,17 @@ public:
 #ifdef __cpp_initializer_lists
 	Array& operator=(const std::initializer_list<CollectableType> initializer)
 	{
-		for (size_t index = 0; index < (Length < initializer.size() ? Length : initializer.size()); index++)
+		for (size_t index = 0; index < (TemplateLength < initializer.size() ? TemplateLength : initializer.size()); index++)
 			m_Array[index] = initializer.begin()[index];
 		return *this;
 	}
 #endif // __cpp_initializer_lists
 
 private:
-	CollectableType m_Array[Length];
+	CollectableType m_Array[TemplateLength];
 };
 
-template <typename CStyleArrayType, size_t Length = sizeof(CStyleArrayType)>
+template <typename CStyleArrayType, index_t Length = sizeof(CStyleArrayType)>
 inline Array<CStyleArrayType, Length> CStyleToArray(CStyleArrayType(&array)[Length])
 {
 	return Array<CStyleArrayType, Length>(array);
