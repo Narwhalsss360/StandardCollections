@@ -1,7 +1,7 @@
 #ifndef StandardCollections_h
 #define StandardCollections_h
 
-#include "CollectionDefinitions.h"
+#include "CollectionDeclarations.h"
 #include "Iterators.h"
 #include "Collection.h"
 #include "IteratorWrappers.h"

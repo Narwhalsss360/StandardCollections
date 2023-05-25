@@ -1,184 +1,159 @@
 #ifndef Iterators_h
 #define Iterators_h
 
-#include "CollectionDefinitions.h"
+#include "CollectionDeclarations.h"
 
 #pragma region Iterators
+#pragma region GeneralIterator
 template <typename CollectionType, typename DereferenceType>
-class GeneralIterator
+GeneralIterator<CollectionType, DereferenceType>::GeneralIterator(CollectionType& collection, const index_t index)
+	: m_Collection(collection), m_CurrentIndex(index)
 {
-public:
-	GeneralIterator(CollectionType& collection, const index_t index)
-		: m_Collection(collection), m_CurrentIndex(index)
-	{
 
-	}
+}
 
-	virtual bool operator!=(GeneralIterator& other)
-	{
-		return m_CurrentIndex != other.m_CurrentIndex;
-	}
-
-	virtual void operator++()
-	{
-		m_CurrentIndex++;
-	}
-
-	virtual DereferenceType operator*()
-	{
-		return m_Collection[m_CurrentIndex];
-	}
-
-	virtual index_t index()
-	{
-		return m_CurrentIndex;
-	}
-
-protected:
-	CollectionType& m_Collection;
-	index_t m_CurrentIndex;
-};
-
-struct DereferencedIteration
+template <typename CollectionType, typename DereferenceType>
+bool GeneralIterator<CollectionType, DereferenceType>::operator!=(GeneralIterator& other)
 {
-	DereferencedIteration(const bool defaulted = true)
-		: defaulted(defaulted)
-	{
+	return m_CurrentIndex != other.m_CurrentIndex;
+}
 
-	}
+template <typename CollectionType, typename DereferenceType>
+void GeneralIterator<CollectionType, DereferenceType>::operator++()
+{
+	m_CurrentIndex++;
+}
 
-	const bool defaulted;
-};
+template <typename CollectionType, typename DereferenceType>
+DereferenceType GeneralIterator<CollectionType, DereferenceType>::operator*()
+{
+	return m_Collection[m_CurrentIndex];
+}
+
+template <typename CollectionType, typename DereferenceType>
+index_t GeneralIterator<CollectionType, DereferenceType>::index()
+{
+	return m_CurrentIndex;
+}
+#pragma endregion
+
+#pragma region DereferencedIteration
+DereferencedIteration::DereferencedIteration(const bool defaulted)
+	: defaulted(defaulted)
+{
+
+}
+#pragma endregion
+
+#pragma region Enumeration
+template <typename ValueType>
+Enumeration<ValueType>::Enumeration(ValueType value)
+	: DereferencedIteration(true), value(value), index(SIZE_MAX)
+{
+}
 
 template <typename ValueType>
-struct Enumeration : DereferencedIteration
+Enumeration<ValueType>::Enumeration(ValueType value, index_t index)
+	: DereferencedIteration(false), value(value), index(index)
 {
-	Enumeration(ValueType value)
-		: DereferencedIteration(true), value(value), index(SIZE_MAX)
-	{
-	}
+}
 
-	Enumeration(ValueType value, index_t index)
-		: DereferencedIteration(false), value(value), index(index)
-	{
-	}
+template <typename ValueType>
+Enumeration<ValueType>::operator ValueType&()
+{
+	return value;
+}
+#pragma endregion
 
-	operator ValueType&()
-	{
-		return value;
-	}
-
-	ValueType value;
-	const index_t index;
-};
+#pragma region EnumerationIterator
+template <typename CollectionType, typename ValueType>
+EnumerationIterator<CollectionType, ValueType>::EnumerationIterator(CollectionType& collection, const index_t index)
+	: GeneralIterator<CollectionType, Enumeration<ValueType>>(collection, index)
+{
+}
 
 template <typename CollectionType, typename ValueType>
-class EnumerationIterator : public GeneralIterator<CollectionType, Enumeration<ValueType>>
+Enumeration<ValueType> EnumerationIterator<CollectionType, ValueType>::operator*()
 {
-public:
-	EnumerationIterator(CollectionType& collection, const index_t index)
-		: GeneralIterator<CollectionType, Enumeration<ValueType>>(collection, index)
-	{
-	}
+	return Enumeration<ValueType>(this->m_Collection[this->m_CurrentIndex], this->m_CurrentIndex);
+}
+#pragma endregion
 
-	Enumeration<ValueType> operator*() override
-	{
-		return Enumeration<ValueType>(this->m_Collection[this->m_CurrentIndex], this->m_CurrentIndex);
-	}
-};
+#pragma region Zipping
+template <typename Zipped1ValueType, typename Zipped2ValueType>
+Zipping<Zipped1ValueType, Zipped2ValueType>::Zipping(Zipped1ValueType value1)
+	: DereferencedIteration(true), value1(value1), value2(nullref(Zipped2ValueType)), index(SIZE_MAX)
+{
+}
 
 template <typename Zipped1ValueType, typename Zipped2ValueType>
-struct Zipping : DereferencedIteration
+Zipping<Zipped1ValueType, Zipped2ValueType>::Zipping(Zipped1ValueType value1, Zipped2ValueType value2, const index_t index)
+	: DereferencedIteration(false), value1(value1), value2(value2), index(index)
 {
-	Zipping(Zipped1ValueType value1)
-		: DereferencedIteration(true), value1(value1), value2(nullref(Zipped2ValueType)), index(SIZE_MAX)
-	{
-	}
+}
+#pragma endregion
 
-	Zipping(Zipped1ValueType value1, Zipped2ValueType value2, const index_t index)
-		: DereferencedIteration(false), value1(value1), value2(value2), index(index)
-	{
-	}
-
-	Zipped1ValueType value1;
-	Zipped2ValueType value2;
-	const index_t index;
-};
-
-template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType = Zipped1ValueType, typename Collection2Type = CollectionType>
-class ZipIterator : public GeneralIterator<CollectionType, Zipping<Zipped1ValueType, Zipped2ValueType>>
+#pragma region ZipIterator
+template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
+ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>::ZipIterator(CollectionType& collection, const index_t index)
+	: GeneralIterator<CollectionType, Zipping<Zipped1ValueType, Zipped2ValueType>>(collection, index), m_Defaulted(true), m_Collection2(nullref(Collection2Type))
 {
-public:
-	ZipIterator(CollectionType& collection, const index_t index)
-		: GeneralIterator<CollectionType, Zipping<Zipped1ValueType, Zipped2ValueType>>(collection, index), m_Defaulted(true), m_Collection2(nullref(Collection2Type))
-	{
-	}
+}
 
-	ZipIterator(CollectionType& collection, Collection2Type& collection2, const index_t index)
-		: GeneralIterator<CollectionType, Zipping<Zipped1ValueType, Zipped2ValueType>>(collection, index), m_Defaulted(false), m_Collection2(collection2)
-	{
-	}
+template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
+ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>::ZipIterator(CollectionType& collection, Collection2Type& collection2, const index_t index)
+	: GeneralIterator<CollectionType, Zipping<Zipped1ValueType, Zipped2ValueType>>(collection, index), m_Defaulted(false), m_Collection2(collection2)
+{
+}
 
-	Zipping<Zipped1ValueType, Zipped2ValueType> operator*()
+template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
+Zipping<Zipped1ValueType, Zipped2ValueType> ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>::operator*()
 	{
 		return Zipping<Zipped1ValueType, Zipped2ValueType>(this->m_Collection[this->m_CurrentIndex], m_Collection2[this->m_CurrentIndex], this->m_CurrentIndex);
 	}
-
-public:
-	const bool m_Defaulted;
-
-protected:
-	Collection2Type& m_Collection2;
-};
+#pragma endregion
 #pragma endregion
 
 #pragma region Iterables
-template <typename CollectionType, typename Iterator = GeneralIterator<CollectionType, CollectionType&>>
-class GeneralIterable
+#pragma region GeneralIterable
+template <typename CollectionType, typename Iterator>
+GeneralIterable<CollectionType, Iterator>::GeneralIterable(CollectionType& collection, const index_t beginIndex, const index_t endIndex)
+	: m_Collection(collection), m_BeginIndex(beginIndex), m_EndIndex(endIndex)
 {
-public:
-	GeneralIterable(CollectionType& collection, const index_t beginIndex, const index_t endIndex)
-		: m_Collection(collection), m_BeginIndex(beginIndex), m_EndIndex(endIndex)
-	{
-	}
+}
 
-	virtual Iterator begin() const
-	{
-		return Iterator(m_Collection, m_BeginIndex);
-	}
+template <typename CollectionType, typename Iterator>
+Iterator GeneralIterable<CollectionType, Iterator>::begin() const
+{
+	return Iterator(m_Collection, m_BeginIndex);
+}
 
-	virtual Iterator end() const
+template <typename CollectionType, typename Iterator>
+Iterator GeneralIterable<CollectionType, Iterator>::end() const
 	{
 		return Iterator(m_Collection, m_EndIndex);
 	}
+#pragma endregion
 
-protected:
-	CollectionType& m_Collection;
-	const index_t m_BeginIndex, m_EndIndex;
-};
-
-template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType = Zipped1ValueType, typename Collection2Type = CollectionType>
-class ZipIterable : GeneralIterable<CollectionType, ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>>
+#pragma region ZipIterable
+template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
+ZipIterable<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>::ZipIterable(CollectionType& collection, Collection2Type& collection2, const index_t beginIndex, const index_t endIndex)
+	: GeneralIterable<CollectionType, ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>>(collection, beginIndex, endIndex), m_Collection2(collection2)
 {
-public:
-	ZipIterable(CollectionType& collection, Collection2Type& collection2, const index_t beginIndex, const index_t endIndex)
-		: GeneralIterable<CollectionType, ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>>(collection, beginIndex, endIndex), m_Collection2(collection2)
-	{
-	}
+}
 
-	ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> begin() const override
-	{
-		return ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>(this->m_Collection, m_Collection2, this->m_BeginIndex);
-	}
+template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
+ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> ZipIterable<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>::begin() const
+{
+	return ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>(this->m_Collection, m_Collection2, this->m_BeginIndex);
+}
 
-	ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> end() const override
+template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
+ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> ZipIterable<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>::end() const
 	{
 		return ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>(this->m_Collection, m_Collection2, this->m_EndIndex);
 	}
-
-protected:
-	Collection2Type& m_Collection2;
-};
+#pragma endregion
 #pragma endregion
 
 #endif // !Iterators_h

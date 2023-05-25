@@ -24,7 +24,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)IteratorWrappers.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CollectionDefinitions.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)CollectionDeclarations.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
