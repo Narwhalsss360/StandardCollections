@@ -1,10 +1,10 @@
 #include <iostream>
-#include "CStyleArrayTest.h"
-#include "ArrayTest.h"
+#include "TestProvider.h"
+#include "OrderedTests.h"
 
 using std::cout;
 
-int main()
+void RunTests()
 {
 	for (auto& test : tests)
 	{
@@ -13,4 +13,9 @@ int main()
 	}
 
 	test_standard_output_write("Tests done.");
+}
+
+int main()
+{
+	RunTests();
 }

@@ -132,8 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayTest.h" />
+    <ClInclude Include="CollectionToolsTest.h" />
     <ClInclude Include="Commons.h" />
     <ClInclude Include="CStyleArrayTest.h" />
+    <ClInclude Include="OrderedTests.h" />
     <ClInclude Include="TestProvider.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

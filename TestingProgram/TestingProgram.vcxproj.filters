@@ -31,5 +31,11 @@
     <ClInclude Include="Commons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CollectionToolsTest.h">
+      <Filter>Header Files\Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="OrderedTests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

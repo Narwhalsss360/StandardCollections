@@ -1,7 +1,7 @@
 #ifndef Collection_h
 #define Collection_h
 
-#include "CollectionDefenitions.h"
+#include "CollectionDefinitions.h"
 #include "Iterators.h"
 
 template <typename ValueType>
@@ -92,7 +92,7 @@ public:
 		return this->operator[](this->Length() - 1);
 	}
 
-	virtual inline void ForEach(ForEachIteratorPointer(const CollectableType, iterator))
+	virtual inline void ForEach(ForEachIteratorPointer(CollectableType, iterator))
 	{
 		for (index_t index = 0; index < Length(); ++index)
 			iterator(index, this->operator[](index));
@@ -114,7 +114,7 @@ public:
 	virtual inline IndexValuePair<const CollectableType> Find(const CollectableType&& value) const
 	{
 		for (find_index_t index = 0; index < this->Length(); index++)
-			if (this->operator[](index) == value) return IndexValuePair<const CollectableType>(this->operator[](index), index);
+			if (this->operator[](index) == value) return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
 		return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
 	}
 

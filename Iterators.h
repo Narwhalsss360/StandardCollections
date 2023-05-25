@@ -1,7 +1,7 @@
 #ifndef Iterators_h
 #define Iterators_h
 
-#include "CollectionDefenitions.h"
+#include "CollectionDefinitions.h"
 
 #pragma region Iterators
 template <typename CollectionType, typename DereferenceType>

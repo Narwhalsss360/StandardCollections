@@ -150,7 +150,3 @@ test_function(c_style_zip)
 		}
 	}
 }
-
-add_test(c_style_general_iterate);
-add_test(c_style_enumerate);
-add_test(c_style_zip);

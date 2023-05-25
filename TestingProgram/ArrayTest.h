@@ -2,7 +2,7 @@
 
 #include "Commons.h"
 
-test_function(Array_instantiation_test)
+test_function(array_instantiation)
 {
 	Array<int, 7> bomb_defusal_code = { 7, 3, 5, 5, 6, 0, 8 };
 	test_expect(bomb_defusal_code.Length(), 7);
@@ -24,7 +24,7 @@ test_function(Array_instantiation_test)
 		test_expect(array_fibonacci[index], fibonacci[index]);
 }
 
-test_function(Array_GeneralIteratorTest)
+test_function(array_General_iterator)
 {
 	Array<int, 7> bomb_defusal_code = { 7, 3, 5, 5, 6, 0, 8 };
 
@@ -65,6 +65,3 @@ test_function(Array_GeneralIteratorTest)
 		expectedIndex++;
 	}
 }
-
-add_test(Array_instantiation_test);
-add_test(Array_GeneralIteratorTest);
