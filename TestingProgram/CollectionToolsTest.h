@@ -53,3 +53,24 @@ test_function(for_each)
 	Array<int, 10> justNumbers;
 	inOrderNumbers.ForEach(SetToZero);
 }
+
+test_function(comparators)
+{
+	Array<int, 5> array1 = { 0 , 1, 2, 3, 4, };
+	Array<int, 5> array2 = { 0 , 1, 2, 3, 4, };
+	Array<int, 3> array3 = { 0 , 1, 2 };
+
+	test_expect(array1 == array1, true);
+
+	test_expect(array1 == array2, true);
+	test_expect(array1 < array2, false);
+	test_expect(array1 <= array2, true);
+	test_expect(array1 > array2, false);
+	test_expect(array1 >= array2, true);
+
+	test_expect(array1 == array3, false);
+	test_expect(array1 < array3, false);
+	test_expect(array1 <= array3, false);
+	test_expect(array1 > array3, true);
+	test_expect(array1 >= array3, true);
+}

@@ -9,7 +9,7 @@ typedef int64_t find_index_t;
 #define nullref(T) (*(T*)nullptr)
 #define is_nullref(expr) (&expr == nullptr)
 
-#define safe_index(index, Length) (index % Length)
+#define safe_index(index, Length) (Length == 0 ? 0 : (index % Length))
 #define static_array_length(type, identifier) (sizeof(identifier) / sizeof(type))
 #define static_array_fill(identifier, Length, value) for (index_t index_##identifier = 0; index_##identifier < Length; ++index_##identifier) identifier[index_##identifier] = value
 
@@ -50,6 +50,9 @@ struct IndexValuePair;
 
 template <typename CollectableType>
 class Collection;
+
+template <typename CollectableType>
+class DynamicCollection;
 
 template <typename CollectableType, index_t TemplateLength = sizeof(CollectableType)>
 class Array;
@@ -225,6 +228,68 @@ public:
 	virtual inline IndexValuePair<const CollectableType> FindLast(const CollectableType&& value) const;
 
 	virtual inline IndexValuePair<const CollectableType> FindLast(ComparatorFunctionPointer(const CollectableType, comparator)) const;
+
+	virtual inline index_t Count(const CollectableType& value) const;
+
+	virtual inline index_t Count(const CollectableType&& value) const;
+
+	virtual inline index_t Count(bool (*comparator)(const CollectableType&)) const;
+
+	virtual inline bool operator==(const Collection<CollectableType>& other) const;
+	
+	virtual inline bool operator!=(const Collection<CollectableType>& other) const;
+	
+	virtual inline bool operator<(const Collection<CollectableType>& other) const;
+	
+	virtual inline bool operator<=(const Collection<CollectableType>& other) const;
+	
+	virtual inline bool operator>(const Collection<CollectableType>& other) const;
+
+	virtual inline bool operator>=(const Collection<CollectableType>& other) const;
+};
+
+template <typename CollectableType>
+class DynamicCollection : Collection<CollectableType>
+{
+public:
+	virtual inline void Push(CollectableType&& item);
+
+	virtual inline void Push(CollectableType& item);
+
+	virtual inline void Push(Collection<CollectableType>&& collection);
+
+	virtual inline void Push(Collection<CollectableType>& collection);
+
+	virtual inline CollectableType Pop(bool shrink = false);
+
+	virtual inline void Insert(index_t index, CollectableType&& item);
+
+	virtual inline void Insert(index_t index, CollectableType& item);
+
+	virtual inline void Insert(index_t index, Collection<CollectableType>&& collection);
+
+	virtual inline void Insert(index_t index, Collection<CollectableType>& collection);
+
+	virtual inline void Unshift(CollectableType&& item);
+
+	virtual inline void Unshift(CollectableType& item);
+
+	virtual inline void Unshift(Collection<CollectableType>&& collection);
+
+	virtual inline void Unshift(Collection<CollectableType>& collection);
+
+	virtual inline CollectableType Shift(bool shrink = false);
+
+	virtual inline void Remove(index_t index, find_index_t count = -1, bool shrink = false);
+
+	virtual inline void Join(Collection<CollectableType>& collection);
+
+	virtual inline index_t Capacity() const = 0;
+
+protected:
+	virtual void SetLength(index_t newLength) = 0;
+
+	virtual void SetCapacity(index_t newCapacity) = 0;
 };
 
 template <typename CollectableType, index_t TemplateLength>
@@ -255,10 +320,6 @@ public:
 
 	operator CollectableType* ();
 
-	Array& operator=(const Array& other);
-
-	Array& operator=(const Array&& other);
-
 #ifdef __cpp_initializer_lists
 	Array& operator=(const std::initializer_list<CollectableType> initializer);
 #endif // __cpp_initializer_lists
@@ -267,6 +328,28 @@ private:
 	CollectableType m_Array[TemplateLength];
 };
 
-#pragma endregion
+template <typename CollectableType>
+class DynamicArray : public DynamicCollection<CollectableType>
+{
+public:
+	inline DynamicArray();
 
+	inline index_t Capacity() const override;
+
+	inline index_t Length() const override;
+
+	CollectableType& operator[](const index_t index);
+
+	const CollectableType& operator[](const index_t index) const;
+
+	~DynamicArray();
+private:
+	inline void SetLength(index_t newLength) override;
+	inline void SetCapacity(index_t newCapacity) override;
+
+	CollectableType* m_Array;
+	index_t m_Capacity;
+	index_t m_Length;
+};
+#pragma endregion
 #endif // !CollectionDefenitions_h

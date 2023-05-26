@@ -1,31 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Headers">
-      <UniqueIdentifier>{297655e7-1a9f-46f5-bd8c-5fe6521d1bee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headers\CustomCollections">
+    <Filter Include="CustomCollections">
       <UniqueIdentifier>{b6050ca7-e5c0-45c1-89c4-112643d205f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Collection.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Iterators.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StandardCollections.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Array.h">
-      <Filter>Headers\CustomCollections</Filter>
+      <Filter>CustomCollections</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)IteratorWrappers.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CollectionDeclarations.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Collection.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CollectionDeclarations.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DynamicArray.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DynamicCollection.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Iterators.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IteratorWrappers.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StandardCollections.h" />
   </ItemGroup>
 </Project>

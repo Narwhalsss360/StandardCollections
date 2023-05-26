@@ -9,9 +9,9 @@
 											test_standard_output_write(" of file: "); \
 											test_standard_output_write(__FILE__); \
 											test_standard_output_write(" expression: "); \
-											test_standard_output_write(##expression); \
+											test_standard_output_write(#expression); \
 											test_standard_output_write(" expected: "); \
-											test_standard_output_write(##expected); \
+											test_standard_output_write(#expected); \
 											test_standard_output_write('\n'); \
 											__debugbreak(); \
 											}

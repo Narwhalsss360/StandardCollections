@@ -12,3 +12,7 @@ add_test(array_General_iterator);
 #include "CollectionToolsTest.h"
 add_test(finding_elements);
 add_test(for_each);
+add_test(comparators);
+
+#include "DynamicArrayTest.h"
+add_test(dynamic_array);

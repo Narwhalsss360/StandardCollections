@@ -152,6 +152,73 @@ IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(Comp
 		if (comparator(this->operator[](index))) return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
 	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
 }
+
+template <typename CollectableType>
+index_t Collection<CollectableType>::Count(const CollectableType& value) const
+{
+	index_t count = 0;
+	for (index_t index = 0; index < this->Length(); index++)
+		if (this->operator[](index) == value) count++;
+	return count;
+}
+
+template <typename CollectableType>
+index_t Collection<CollectableType>::Count(const CollectableType&& value) const
+{
+	index_t count = 0;
+	for (index_t index = 0; index < this->Length(); index++)
+		if (this->operator[](index) == value) count++;
+	return count;
+}
+
+template <typename CollectableType>
+index_t Collection<CollectableType>::Count(bool (*comparator)(const CollectableType&)) const
+{
+	index_t count = 0;
+	for (index_t index = 0; index < this->Length(); index++)
+		if (comparator(this->operator[](index))) count++;
+	return count;
+}
+
+template <typename CollectableType>
+bool Collection<CollectableType>::operator==(const Collection<CollectableType>& other) const
+{
+	if (this->Length() != other.Length()) return false;
+	for (index_t index = 0; index < this->Length(); index++)
+		if (this->operator[](index) != other.operator[](index))
+			return false;
+	return true;
+}
+
+template <typename CollectableType>
+bool Collection<CollectableType>::operator!=(const Collection<CollectableType>& other) const
+{
+	return !this->operator==(other);
+}
+
+template <typename CollectableType>
+bool Collection<CollectableType>::operator<(const Collection<CollectableType>& other) const
+{
+	return this->Length() < other.Length();
+}
+
+template <typename CollectableType>
+bool Collection<CollectableType>::operator<=(const Collection<CollectableType>& other) const
+{
+	return this->Length() <= other.Length();
+}
+
+template <typename CollectableType>
+bool Collection<CollectableType>::operator>(const Collection<CollectableType>& other) const
+{
+	return this->Length() > other.Length();
+}
+
+template <typename CollectableType>
+bool Collection<CollectableType>::operator>=(const Collection<CollectableType>& other) const
+{
+	return this->Length() >= other.Length();
+}
 #pragma endregion
 
 inline index_t SafeIndex(index_t tryIndex, index_t collectionLength)

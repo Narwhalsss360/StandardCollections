@@ -2,7 +2,6 @@
 #define Array_h
 
 #include "Collection.h"
-#include "Iterators.h"
 #include <stdarg.h>
 #ifdef __cpp_initializer_lists
 #include <initializer_list>
@@ -86,20 +85,6 @@ Array<CollectableType, TemplateLength>::operator CollectableType* ()
 {
 	return m_Array;
 }
-
-template <typename CollectableType, index_t TemplateLength>
-Array<CollectableType, TemplateLength>& Array<CollectableType, TemplateLength>::operator=(const Array<CollectableType, TemplateLength>& other)
-{
-	for (size_t index = 0; index < TemplateLength; index++)
-		m_Array[index] = other[index];
-	return *this;
-}
-
-template <typename CollectableType, index_t TemplateLength>
-Array<CollectableType, TemplateLength>& Array<CollectableType, TemplateLength>::operator=(const Array<CollectableType, TemplateLength>&& other)
-	{
-		return *this;
-	}
 
 #ifdef __cpp_initializer_lists
 template <typename CollectableType, index_t TemplateLength>
