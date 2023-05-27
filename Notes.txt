@@ -1,7 +1,20 @@
-Add wrapper for iterating through already instantiated begin and end
-Fix forced copying of zip
+Things to fix:
+	-Fix forced copying of zip
 
-check if nullref is defined behavior and will NOT cause crash
+Things to check
+	-Check if nullref is defined behavior and will NOT cause crash
 
-DynamicCollection
-bool operators
+Features to add:
+	Collection<CollectableType>:
+		-MoveTo()
+		-CopyTo()
+
+	General:
+		-Add wrapper for iterating through already instantiated begin and end
+
+	Cast to example: Collection<double> -> Collection<int>
+
+
+Things to do later:
+	-Restructure files to more of a standard, maybe a src directory,
+	base implementation directory and actual collection.
