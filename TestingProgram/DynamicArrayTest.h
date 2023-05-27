@@ -43,4 +43,16 @@ test_function(dynamic_array)
 	test_expect(array[2], 4);
 	test_expect(array[3], 1);
 	test_expect(array[4], 2);
+
+	array.Remove(2, 1);
+	test_expect(array.Length(), 4);
+	test_expect(array[0], 3);
+	test_expect(array[1], 0);
+	test_expect(array[2], 1);
+	test_expect(array[3], 2);
+
+	array.Remove(1);
+	test_expect(array.Length(), 2);
+	test_expect(array[0], 3);
+	test_expect(array[1], 0);
 }
