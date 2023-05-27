@@ -66,8 +66,8 @@ void DynamicCollection<CollectableType>::Insert(index_t index, CollectableType& 
 template <typename CollectableType>
 void DynamicCollection<CollectableType>::Insert(index_t index, Collection<CollectableType>&& collection)
 {
-	if (Capacity() < Length() + collection.Length())
-		SetCapacity(Length() + collection.Length());
+	if (Capacity() < this->Length() + collection.Length())
+		SetCapacity(this->Length() + collection.Length());
 
 	for (index_t collectionIndex = 0; collectionIndex < collection.Length(); collectionIndex++)
 		this->Insert(index + collectionIndex, collection[collectionIndex]);
@@ -76,8 +76,8 @@ void DynamicCollection<CollectableType>::Insert(index_t index, Collection<Collec
 template <typename CollectableType>
 void DynamicCollection<CollectableType>::Insert(index_t index, Collection<CollectableType>& collection)
 {
-	if (Capacity() < Length() + collection.Length())
-		SetCapacity(Length() + collection.Length());
+	if (Capacity() < this->Length() + collection.Length())
+		SetCapacity(this->Length() + collection.Length());
 
 	for (index_t collectionIndex = 0; collectionIndex < collection.Length(); collectionIndex++)
 		this->Insert(index + collectionIndex, collection[collectionIndex]);

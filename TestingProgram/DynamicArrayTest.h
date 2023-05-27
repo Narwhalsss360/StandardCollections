@@ -73,7 +73,6 @@ test_function(dynamic_array_join)
 	auxArray.Push(3);
 	auxArray.Push(4);
 
-
 	test_expect(mainArray.Length(), 3);
 	test_expect(mainArray[0], 0);
 	test_expect(mainArray[1], 1);
@@ -90,4 +89,14 @@ test_function(dynamic_array_join)
 	test_expect(mainArray[2], 2);
 	test_expect(mainArray[3], 3);
 	test_expect(mainArray[4], 4);
+
+	mainArray.Insert(1, auxArray);
+	test_expect(mainArray.Length(), 7);
+	test_expect(mainArray[0], 0);
+	test_expect(mainArray[1], 3);
+	test_expect(mainArray[2], 4);
+	test_expect(mainArray[3], 1);
+	test_expect(mainArray[4], 2);
+	test_expect(mainArray[5], 3);
+	test_expect(mainArray[6], 4);
 }
