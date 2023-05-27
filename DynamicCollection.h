@@ -43,10 +43,10 @@ void DynamicCollection<CollectableType>::Insert(index_t index, CollectableType&&
 	if (this->Length() >= this->Capacity())
 		SetCapacity(this->Length() + 1);
 
-	for (find_index_t iIndex = this->Length(); iIndex > index; iIndex--)
+	SetLength(this->Length() + 1);
+	for (find_index_t iIndex = this->Length() - 1; iIndex > index; iIndex--)
 		this->operator[](iIndex) = this->operator[](iIndex - 1);
 
-	SetLength(this->Length() + 1);
 	this->operator[](index) = item;
 }
 
@@ -56,10 +56,10 @@ void DynamicCollection<CollectableType>::Insert(index_t index, CollectableType& 
 	if (this->Length() >= this->Capacity())
 		SetCapacity(this->Length() + 1);
 
-	for (find_index_t iIndex = this->Length(); iIndex > index; iIndex--)
+	SetLength(this->Length() + 1);
+	for (find_index_t iIndex = this->Length() - 1; iIndex > index; iIndex--)
 		this->operator[](iIndex) = this->operator[](iIndex - 1);
 
-	SetLength(this->Length() + 1);
 	this->operator[](index) = item;
 }
 
@@ -69,10 +69,10 @@ void DynamicCollection<CollectableType>::Insert(index_t index, Collection<Collec
 	if (this->Length() + collection.Length() >= this->Capacity())
 		SetCapacity(this->Length() + collection.Length());
 
-	for (find_index_t iIndex = this->Length(); iIndex > index; iIndex--)
+	SetLength(this->Length() + collection.Length());
+	for (find_index_t iIndex = this->Length() - 1; iIndex > index; iIndex--)
 		this->operator[](iIndex) = this->operator[](iIndex - 1 - collection.Length()); //Test
 
-	SetLength(this->Length() + collection.Length());
 	for (index_t iIndex = 0; iIndex < collection.Length(); iIndex++)
 		this->operator[](iIndex + index) = collection[iIndex];
 }
@@ -83,10 +83,10 @@ void DynamicCollection<CollectableType>::Insert(index_t index, Collection<Collec
 	if (this->Length() + collection.Length() >= this->Capacity())
 		SetCapacity(this->Length() + collection.Length());
 
-	for (find_index_t iIndex = this->Length(); iIndex = index; iIndex--)
+	SetLength(this->Length() + collection.Length());
+	for (find_index_t iIndex = this->Length() - 1; iIndex = index; iIndex--)
 		this->operator[](iIndex) = this->operator[](iIndex - 1 - collection.Length()); //Test
 
-	SetLength(this->Length() + collection.Length());
 	for (find_index_t iIndex = 0; iIndex < collection.Length(); iIndex++)
 		this->operator[](iIndex + index) = collection[iIndex];
 }
