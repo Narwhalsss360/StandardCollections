@@ -39,6 +39,8 @@ const CollectableType& DynamicArray<CollectableType>::operator[](index_t index) 
 template <typename CollectableType>
 void DynamicArray<CollectableType>::SetLength(index_t newLength)
 {
+	if (newLength > m_Capacity)
+		SetCapacity(newLength);
 	m_Length = newLength;
 }
 

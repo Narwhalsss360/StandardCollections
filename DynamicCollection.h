@@ -66,29 +66,21 @@ void DynamicCollection<CollectableType>::Insert(index_t index, CollectableType& 
 template <typename CollectableType>
 void DynamicCollection<CollectableType>::Insert(index_t index, Collection<CollectableType>&& collection)
 {
-	if (this->Length() + collection.Length() >= this->Capacity())
-		SetCapacity(this->Length() + collection.Length());
+	if (Capacity() < Length() + collection.Length())
+		SetCapacity(Length() + collection.Length());
 
-	SetLength(this->Length() + collection.Length());
-	for (find_index_t iIndex = this->Length() - 1; iIndex > index; iIndex--)
-		this->operator[](iIndex) = this->operator[](iIndex - 1 - collection.Length()); //Test
-
-	for (index_t iIndex = 0; iIndex < collection.Length(); iIndex++)
-		this->operator[](iIndex + index) = collection[iIndex];
+	for (index_t collectionIndex = 0; collectionIndex < collection.Length(); collectionIndex++)
+		this->Insert(index + collectionIndex, collection[collectionIndex]);
 }
 
 template <typename CollectableType>
 void DynamicCollection<CollectableType>::Insert(index_t index, Collection<CollectableType>& collection)
 {
-	if (this->Length() + collection.Length() >= this->Capacity())
-		SetCapacity(this->Length() + collection.Length());
+	if (Capacity() < Length() + collection.Length())
+		SetCapacity(Length() + collection.Length());
 
-	SetLength(this->Length() + collection.Length());
-	for (find_index_t iIndex = this->Length() - 1; iIndex = index; iIndex--)
-		this->operator[](iIndex) = this->operator[](iIndex - 1 - collection.Length()); //Test
-
-	for (find_index_t iIndex = 0; iIndex < collection.Length(); iIndex++)
-		this->operator[](iIndex + index) = collection[iIndex];
+	for (index_t collectionIndex = 0; collectionIndex < collection.Length(); collectionIndex++)
+		this->Insert(index + collectionIndex, collection[collectionIndex]);
 }
 
 template <typename CollectableType>
@@ -145,7 +137,7 @@ void DynamicCollection<CollectableType>::Remove(index_t index, find_index_t coun
 template <typename CollectableType>
 void DynamicCollection<CollectableType>::Join(Collection<CollectableType>& collection)
 {
-	Insert(this->Length() - 1, collection);
+	Insert(this->Length(), collection);
 }
 
 #endif // !DynamicCollection_h
