@@ -16,3 +16,4 @@ add_test(comparators);
 
 #include "DynamicArrayTest.h"
 add_test(dynamic_array);
+add_test(dynamic_array_join);
