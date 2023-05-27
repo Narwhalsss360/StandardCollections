@@ -249,7 +249,7 @@ public:
 };
 
 template <typename CollectableType>
-class DynamicCollection : Collection<CollectableType>
+class DynamicCollection : public Collection<CollectableType>
 {
 public:
 	virtual inline void Push(CollectableType&& item);
