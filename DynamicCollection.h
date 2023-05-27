@@ -132,14 +132,14 @@ void DynamicCollection<CollectableType>::Remove(index_t index, find_index_t coun
 {
 	if (count == -1)
 	{
-		SetCapacity(this->Length() - index);
+		SetCapacity(index + 1);
 		return;
 	}
 
 	for (index_t keepIndex = index + count; keepIndex < this->Length(); keepIndex++)
 		this->operator[](keepIndex - count) = this->operator[](keepIndex);
 
-	SetCapacity(this->Length() - (this->Length() - (index + count)) - 1);
+	SetCapacity(this->Length() - count);
 }
 
 template <typename CollectableType>
