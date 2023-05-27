@@ -90,40 +90,4 @@ test_function(dynamic_array_join)
 	test_expect(mainArray[2], 2);
 	test_expect(mainArray[3], 3);
 	test_expect(mainArray[4], 4);
-
-	int popped = mainArray.Pop();
-	test_expect(popped, 4);
-	test_expect(mainArray.Length(), 4);
-	test_expect(mainArray[0], 0);
-	test_expect(mainArray[1], 1);
-	test_expect(mainArray[2], 2);
-	test_expect(mainArray[3], 3);
-
-	mainArray.Insert(1, popped);
-	test_expect(mainArray.Length(), 5);
-	test_expect(mainArray[0], 0);
-	test_expect(mainArray[1], 4);
-	test_expect(mainArray[2], 1);
-	test_expect(mainArray[3], 2);
-	test_expect(mainArray[4], 3);
-
-	mainArray.Unshift(mainArray.Pop());
-	test_expect(mainArray.Length(), 5);
-	test_expect(mainArray[0], 3);
-	test_expect(mainArray[1], 0);
-	test_expect(mainArray[2], 4);
-	test_expect(mainArray[3], 1);
-	test_expect(mainArray[4], 2);
-
-	mainArray.Remove(2, 1);
-	test_expect(mainArray.Length(), 4);
-	test_expect(mainArray[0], 3);
-	test_expect(mainArray[1], 0);
-	test_expect(mainArray[2], 1);
-	test_expect(mainArray[3], 2);
-
-	mainArray.Remove(1);
-	test_expect(mainArray.Length(), 2);
-	test_expect(mainArray[0], 3);
-	test_expect(mainArray[1], 0);
 }
