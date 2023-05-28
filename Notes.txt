@@ -1,19 +1,13 @@
 Things to fix:
 	-Fix forced copying of zip
+	-Enumerate(begin, end)
+		Enumeration is constructed using default constructor
 
 Things to check
 	-Check if nullref is defined behavior and will NOT cause crash
 
 Features to add:
-	Collection<CollectableType>:
-		-MoveTo()
-		-CopyTo()
-
-	General:
-		-Add wrapper for iterating through already instantiated begin and end
-
 	Cast to example: Collection<double> -> Collection<int>
-
 
 Things to do later:
 	-Restructure files to more of a standard, maybe a src directory,
