@@ -233,7 +233,7 @@ public:
 
 	virtual inline void ForEach(ForEachIteratorPointer(CollectableType, iterator));
 
-	virtual inline void ForEach(ConstForEachIteratorPointer(const CollectableType, iterator)) const;
+	virtual inline void ForEach(ConstForEachIteratorPointer(CollectableType, iterator)) const;
 
 	virtual inline IndexValuePair<const CollectableType> Find(const CollectableType& value) const;
 

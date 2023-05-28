@@ -99,7 +99,7 @@ void Collection<CollectableType>::ForEach(ForEachIteratorPointer(CollectableType
 }
 
 template <typename CollectableType>
-void Collection<CollectableType>::ForEach(ConstForEachIteratorPointer(const CollectableType, iterator)) const
+void Collection<CollectableType>::ForEach(ConstForEachIteratorPointer(CollectableType, iterator)) const
 {
 	for (index_t index = 0; index < Length(); ++index)
 		iterator(index, this->operator[](index));
