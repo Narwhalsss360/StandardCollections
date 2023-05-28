@@ -3,6 +3,7 @@ Things to fix:
 	-Enumerate(begin, end)
 		Enumeration is constructed using default constructor
 	-All of the C4244 warnings.
+	-All of the C4309 warnings.
 
 Things to check
 	-Check if nullref is defined behavior and will NOT cause crash

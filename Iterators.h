@@ -3,6 +3,8 @@
 
 #include "CollectionDeclarations.h"
 
+#pragma warning(disable: 4309)
+
 #pragma region Iterators
 #pragma region GeneralIterator
 template <typename CollectionType, typename DereferenceType>
