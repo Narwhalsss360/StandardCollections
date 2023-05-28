@@ -4,6 +4,8 @@
 #include "CollectionDeclarations.h"
 #include "Iterators.h"
 
+#pragma warning(disable: 4244)
+
 #pragma region IndexValuePair
 template <typename ValueType>
 IndexValuePair<ValueType>::IndexValuePair()

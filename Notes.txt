@@ -2,6 +2,7 @@ Things to fix:
 	-Fix forced copying of zip
 	-Enumerate(begin, end)
 		Enumeration is constructed using default constructor
+	-All of the C4244 warnings.
 
 Things to check
 	-Check if nullref is defined behavior and will NOT cause crash
