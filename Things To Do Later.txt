@@ -1,3 +1,9 @@
 - Things To Do Later - 
 -Restructure files to more of a standard, maybe a src directory, base
 implementation directory and actual collection.
+	/docs -> documentation of library.
+	/examples -> samples and examples of library usage
+	/include -> all header files <- Test for arduino's compiler recursive include.
+	/lib -> Solution? and other (these notes)<- Test if possible to reference project directories 1 up from sln.
+	/src -> all source files. None in this case
+	/test -> test project
