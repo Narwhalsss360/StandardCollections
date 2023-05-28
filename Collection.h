@@ -181,6 +181,20 @@ index_t Collection<CollectableType>::Count(bool (*comparator)(const CollectableT
 }
 
 template <typename CollectableType>
+DynamicArray<CollectableType> Collection<CollectableType>::Slice(index_t startIndex, find_index_t endIndex)
+{
+	endIndex = endIndex == -1 ? this->Length() : endIndex;
+
+	DynamicArray<CollectableType> returnCollection;
+
+	for (index_t index = startIndex; index <= endIndex; index++)
+		returnCollection.Push(this->operator[](index));
+
+	return returnCollection;
+}
+
+
+template <typename CollectableType>
 bool Collection<CollectableType>::operator==(const Collection<CollectableType>& other) const
 {
 	if (this->Length() != other.Length()) return false;

@@ -56,6 +56,9 @@ class DynamicCollection;
 
 template <typename CollectableType, index_t TemplateLength = sizeof(CollectableType)>
 class Array;
+
+template <typename CollectableType>
+class DynamicArray;
 #pragma endregion
 
 #pragma region Iterators
@@ -235,6 +238,8 @@ public:
 
 	virtual inline index_t Count(bool (*comparator)(const CollectableType&)) const;
 
+	virtual inline DynamicArray<CollectableType> Slice(index_t startIndex, find_index_t endIndex = -1);
+
 	virtual inline bool operator==(const Collection<CollectableType>& other) const;
 	
 	virtual inline bool operator!=(const Collection<CollectableType>& other) const;
@@ -285,6 +290,14 @@ public:
 	virtual inline void Join(Collection<CollectableType>& collection);
 
 	virtual inline index_t Capacity() const = 0;
+
+	virtual inline DynamicCollection<CollectableType>& operator+=(CollectableType& item);
+
+	virtual inline DynamicCollection<CollectableType>& operator+=(CollectableType&& item);
+
+	virtual inline DynamicCollection<CollectableType>& operator+=(Collection<CollectableType>& item);
+
+	virtual inline DynamicCollection<CollectableType>& operator+=(Collection<CollectableType>&& item);
 
 protected:
 	virtual void SetLength(index_t newLength) = 0;
