@@ -17,7 +17,7 @@ void PrintCollection(Collection<CollectableType>& collection, PrintStyles printS
 	{
 	case PythonStyle:
 		test_standard_output_write('[');
-		for (auto& i : Enumerate(collection))
+		for (auto i : Enumerate(collection))
 		{
 			test_standard_output_write(i.value);
 			if (i.index != collection.Length() - 1) test_standard_output_write(", ");
@@ -25,7 +25,7 @@ void PrintCollection(Collection<CollectableType>& collection, PrintStyles printS
 		test_standard_output_write(']');
 		break;
 	case Indexed:
-		for (auto& i : Enumerate(collection))
+		for (auto i : Enumerate(collection))
 		{
 			test_standard_output_write('[');
 			test_standard_output_write(i.index);
