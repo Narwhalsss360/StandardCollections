@@ -89,7 +89,7 @@ struct DereferencedIteration
 };
 
 template <typename ValueType>
-struct Enumeration : DereferencedIteration
+struct Enumeration : public DereferencedIteration
 {
 	Enumeration(ValueType value);
 
@@ -111,7 +111,7 @@ public:
 };
 
 template <typename Zipped1ValueType, typename Zipped2ValueType>
-struct Zipping : DereferencedIteration
+struct Zipping : public DereferencedIteration
 {
 	Zipping(Zipped1ValueType value1);
 
@@ -157,7 +157,7 @@ protected:
 };
 
 template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
-class ZipIterable : GeneralIterable<CollectionType, ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>>
+class ZipIterable : public GeneralIterable<CollectionType, ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>>
 {
 public:
 	ZipIterable(CollectionType& collection, Collection2Type& collection2, const index_t beginIndex, const index_t endIndex);
@@ -239,6 +239,10 @@ public:
 	virtual inline index_t Count(bool (*comparator)(const CollectableType&)) const;
 
 	virtual inline DynamicArray<CollectableType> Slice(index_t startIndex, find_index_t endIndex = -1);
+
+	virtual inline void CopyTo(Collection<CollectableType>& collection);
+
+	virtual inline void MoveTo(Collection<CollectableType>& collection);
 
 	virtual inline bool operator==(const Collection<CollectableType>& other) const;
 	

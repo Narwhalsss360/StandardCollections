@@ -16,14 +16,16 @@ template <typename CollectableType>
 DynamicArray<CollectableType>::DynamicArray(DynamicArray<CollectableType>& other)
 	: m_Array(nullptr), m_Capacity(0), m_Length(0)
 {
-	this->Join(other);
+	SetCapacity(other.Length());
+	other.CopyTo(*this);
 }
 
 template <typename CollectableType>
 DynamicArray<CollectableType>::DynamicArray(DynamicArray<CollectableType>&& other)
 : m_Array(nullptr), m_Capacity(0), m_Length(0)
 {
-	this->Join(other);
+	SetCapacity(other.Length());
+	other.CopyTo(*this);
 }
 
 template <typename CollectableType>

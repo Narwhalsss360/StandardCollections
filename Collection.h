@@ -183,7 +183,7 @@ index_t Collection<CollectableType>::Count(bool (*comparator)(const CollectableT
 template <typename CollectableType>
 DynamicArray<CollectableType> Collection<CollectableType>::Slice(index_t startIndex, find_index_t endIndex)
 {
-	endIndex = endIndex == -1 ? this->Length() : endIndex;
+	endIndex = endIndex == -1 ? this->Length() - 1: endIndex;
 
 	DynamicArray<CollectableType> returnCollection;
 
@@ -193,6 +193,19 @@ DynamicArray<CollectableType> Collection<CollectableType>::Slice(index_t startIn
 	return returnCollection;
 }
 
+template <typename CollectableType>
+void Collection<CollectableType>::CopyTo(Collection<CollectableType>& collection)
+{
+
+	for (index_t index = 0; index < (this->Length() < collection.Length() ? this->Length() : collection.Length()); index++)
+		collection.operator[](index) = this->operator[](index);
+}
+
+template <typename CollectableType>
+void Collection<CollectableType>::MoveTo(Collection<CollectableType>& collection)
+{
+	CopyTo(collection);
+}
 
 template <typename CollectableType>
 bool Collection<CollectableType>::operator==(const Collection<CollectableType>& other) const
