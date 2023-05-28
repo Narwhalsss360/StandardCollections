@@ -84,7 +84,7 @@ Enumeration<ValueType> EnumerationIterator<CollectionType, ValueType>::operator*
 #pragma region Zipping
 template <typename Zipped1ValueType, typename Zipped2ValueType>
 Zipping<Zipped1ValueType, Zipped2ValueType>::Zipping(Zipped1ValueType value1)
-	: DereferencedIteration(true), value1(value1), value2(nullref(Zipped2ValueType)), index(SIZE_MAX)
+	: DereferencedIteration(true), value1(value1), value2(value1), index(SIZE_MAX)
 {
 }
 
