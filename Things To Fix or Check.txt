@@ -1,0 +1,9 @@
+- Things To Fix -
+-Fix forced copying of zip
+-Enumerate(begin, end)
+	Enumeration is constructed using default constructor
+-All of the C4244 warnings.
+-All of the C4309 warnings.
+
+- Things To Check -
+-null reference is undefined behavior, check if it is not reliable enough.
