@@ -13,6 +13,20 @@ DynamicArray<CollectableType>::DynamicArray()
 }
 
 template <typename CollectableType>
+DynamicArray<CollectableType>::DynamicArray(DynamicArray<CollectableType>& other)
+	: m_Array(nullptr), m_Capacity(0), m_Length(0)
+{
+	this->Join(other);
+}
+
+template <typename CollectableType>
+DynamicArray<CollectableType>::DynamicArray(DynamicArray<CollectableType>&& other)
+: m_Array(nullptr), m_Capacity(0), m_Length(0)
+{
+	this->Join(other);
+}
+
+template <typename CollectableType>
 index_t DynamicArray<CollectableType>::Capacity() const
 {
 	return m_Capacity;

@@ -345,7 +345,12 @@ template <typename CollectableType>
 class DynamicArray : public DynamicCollection<CollectableType>
 {
 public:
+
 	inline DynamicArray();
+
+	inline DynamicArray(DynamicArray<CollectableType>& other);
+
+	inline DynamicArray(DynamicArray<CollectableType>&& other);
 
 	inline index_t Capacity() const override;
 
