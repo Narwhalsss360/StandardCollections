@@ -13,6 +13,12 @@ GeneralIterable<Collection<CollectableType>, GeneralIterator<Collection<Collecta
 {
 	return GeneralIterable<Collection<CollectableType>, GeneralIterator<Collection<CollectableType>, CollectableType&>>(collection, 0, collection.Length());
 }
+
+template <typename CollectionType, typename DereferenceType>
+GeneralIteratorWrapper<CollectionType, DereferenceType> Iterate(GeneralIterator<CollectionType, DereferenceType> begin, GeneralIterator<CollectionType, DereferenceType> end)
+{
+	return GeneralIteratorWrapper<CollectionType, DereferenceType>(begin, end);
+}
 #pragma endregion
 
 #pragma region Enumerate

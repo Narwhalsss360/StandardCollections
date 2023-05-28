@@ -136,6 +136,7 @@
     <ClInclude Include="Commons.h" />
     <ClInclude Include="CStyleArrayTest.h" />
     <ClInclude Include="DynamicArrayTest.h" />
+    <ClInclude Include="IteratorTests.h" />
     <ClInclude Include="OrderedTests.h" />
     <ClInclude Include="TestProvider.h" />
   </ItemGroup>

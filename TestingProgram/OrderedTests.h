@@ -18,3 +18,6 @@ add_test(slice);
 #include "DynamicArrayTest.h"
 add_test(dynamic_array);
 add_test(dynamic_array_join);
+
+#include "IteratorTests.h"
+add_test(general_iteration);

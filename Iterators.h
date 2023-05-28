@@ -135,6 +135,26 @@ Iterator GeneralIterable<CollectionType, Iterator>::end() const
 	}
 #pragma endregion
 
+#pragma region GeneralIteratorWrapper
+template <typename CollectionType, typename DereferenceType>
+GeneralIteratorWrapper<CollectionType, DereferenceType>::GeneralIteratorWrapper(GeneralIterator<CollectionType, DereferenceType> begin, GeneralIterator<CollectionType, DereferenceType> end)
+	: m_Begin(begin), m_End(end)
+{
+}
+
+template <typename CollectionType, typename DereferenceType>
+GeneralIterator<CollectionType, DereferenceType> GeneralIteratorWrapper<CollectionType, DereferenceType>::begin() const
+{
+	return m_Begin;
+}
+
+template <typename CollectionType, typename DereferenceType>
+GeneralIterator<CollectionType, DereferenceType> GeneralIteratorWrapper<CollectionType, DereferenceType>::end() const
+{
+	return m_End;
+}
+#pragma endregion
+
 #pragma region ZipIterable
 template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
 ZipIterable<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>::ZipIterable(CollectionType& collection, Collection2Type& collection2, const index_t beginIndex, const index_t endIndex)

@@ -40,5 +40,8 @@
     <ClInclude Include="DynamicArrayTest.h">
       <Filter>Header Files\Test Headers</Filter>
     </ClInclude>
+    <ClInclude Include="IteratorTests.h">
+      <Filter>Header Files\Test Headers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
