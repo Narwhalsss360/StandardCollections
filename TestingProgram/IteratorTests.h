@@ -9,16 +9,18 @@ test_function(general_iteration)
 
 	auto begin_iterator = GeneralIterator<int[CollectionLength(array)], int&>(array, 0);
 	auto end_iterator = GeneralIterator<int[CollectionLength(array)], int&>(array, CollectionLength(array));
-
 	index_t expectedIndex = 0;
+
 	for (auto i : Iterate(begin_iterator, end_iterator))
 	{
 		test_expect(i, array[expectedIndex]);
 		expectedIndex++;
 	}
 
-	auto begin_enumerator = GeneralIterator<int[CollectionLength(array)], Enumeration<int&>>(array, 0);
-	auto end_enumerator = GeneralIterator<int[CollectionLength(array)], Enumeration<int&>>(array, CollectionLength(array));
+	auto begin_enumerator = EnumerationIterator<int[CollectionLength(array)], int&>(array, 0);
+	auto end_enumerator = EnumerationIterator<int[CollectionLength(array)], int&>(array, CollectionLength(array));
+
+	auto enumerable = GeneralIteratorWrapper<int[CollectionLength(array)], EnumerationIterator<int[CollectionLength(array)], int&>>(begin_enumerator, end_enumerator);
 
 	expectedIndex = 0;
 	for (auto i : Enumerate(begin_enumerator, end_enumerator))

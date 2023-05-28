@@ -156,19 +156,19 @@ protected:
 	const index_t m_BeginIndex, m_EndIndex;
 };
 
-template <typename CollectionType, typename DereferenceType>
+template <typename CollectionType, typename Iterator>
 class GeneralIteratorWrapper
 {
 public:
-	GeneralIteratorWrapper(GeneralIterator<CollectionType, DereferenceType> begin, GeneralIterator<CollectionType, DereferenceType> end);
+	GeneralIteratorWrapper(Iterator begin, Iterator end);
 
-	GeneralIterator<CollectionType, DereferenceType> begin() const;
+	Iterator begin() const;
 
-	GeneralIterator<CollectionType, DereferenceType> end() const;
+	Iterator end() const;
 
 protected:
-	GeneralIterator<CollectionType, DereferenceType> m_Begin;
-	GeneralIterator<CollectionType, DereferenceType> m_End;
+	Iterator m_Begin;
+	Iterator m_End;
 };
 
 template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>

@@ -15,9 +15,9 @@ GeneralIterable<Collection<CollectableType>, GeneralIterator<Collection<Collecta
 }
 
 template <typename CollectionType, typename DereferenceType>
-GeneralIteratorWrapper<CollectionType, DereferenceType> Iterate(GeneralIterator<CollectionType, DereferenceType> begin, GeneralIterator<CollectionType, DereferenceType> end)
+GeneralIteratorWrapper<CollectionType, GeneralIterator<CollectionType, DereferenceType>> Iterate(GeneralIterator<CollectionType, DereferenceType> begin, GeneralIterator<CollectionType, DereferenceType> end)
 {
-	return GeneralIteratorWrapper<CollectionType, DereferenceType>(begin, end);
+	return GeneralIteratorWrapper<CollectionType, GeneralIterator<CollectionType, DereferenceType>>(begin, end);
 }
 #pragma endregion
 
@@ -35,9 +35,9 @@ GeneralIterable<Collection<CollectableType>, EnumerationIterator<Collection<Coll
 }
 
 template <typename CollectionType, typename DereferenceType>
-GeneralIteratorWrapper<CollectionType, Enumeration<DereferenceType>> Enumerate(GeneralIterator<CollectionType, Enumeration<DereferenceType>> begin, GeneralIterator<CollectionType, Enumeration<DereferenceType>> end)
+GeneralIteratorWrapper<CollectionType, EnumerationIterator<CollectionType, DereferenceType>> Enumerate(EnumerationIterator<CollectionType, DereferenceType> begin, EnumerationIterator<CollectionType, DereferenceType> end)
 {
-	return GeneralIteratorWrapper<CollectionType, Enumeration<DereferenceType>>(begin, end);
+	return GeneralIteratorWrapper<CollectionType, EnumerationIterator<CollectionType, DereferenceType>>(begin, end);
 }
 #pragma endregion
 
