@@ -1,22 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="CustomCollections">
-      <UniqueIdentifier>{b6050ca7-e5c0-45c1-89c4-112643d205f4}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{31acfff0-ae6d-452f-b609-dc7499e9e5a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{91e815c6-d208-4f88-bfcb-651d1e8b75c3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Array.h">
-      <Filter>CustomCollections</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Collection.h">
+      <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Collection.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CollectionDeclarations.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DynamicCollection.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Iterators.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IteratorWrappers.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StandardCollections.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CollectionDeclarations.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DynamicCollection.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Iterators.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)IteratorWrappers.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StandardCollections.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Array.h">
+      <Filter>include</Filter>
+    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DynamicArray.h">
-      <Filter>CustomCollections</Filter>
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
