@@ -95,6 +95,6 @@ test_function(slice)
 
 	auto sliced2 = array.Slice(4);
 
-	for (index_t i = sliced2[0]; i < sliced2[sliced2.Length() - 1]; i++)
+	for (int i = sliced2[0]; i < sliced2[sliced2.Length() - 1]; i++)
 		test_expect(sliced2[i], i);
 }
