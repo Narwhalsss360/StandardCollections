@@ -15,9 +15,9 @@ GeneralIterable<Collection<CollectableType>, GeneralIterator<Collection<Collecta
 }
 
 template <typename CollectionType, typename DereferenceType>
-GeneralIteratorWrapper<CollectionType, GeneralIterator<CollectionType, DereferenceType>> Iterate(GeneralIterator<CollectionType, DereferenceType> begin, GeneralIterator<CollectionType, DereferenceType> end)
+GeneralIteratorWrapper<GeneralIterator<CollectionType, DereferenceType>> Iterate(GeneralIterator<CollectionType, DereferenceType> begin, GeneralIterator<CollectionType, DereferenceType> end)
 {
-	return GeneralIteratorWrapper<CollectionType, GeneralIterator<CollectionType, DereferenceType>>(begin, end);
+	return GeneralIteratorWrapper<GeneralIterator<CollectionType, DereferenceType>>(begin, end);
 }
 #pragma endregion
 
@@ -35,9 +35,9 @@ GeneralIterable<Collection<CollectableType>, EnumerationIterator<Collection<Coll
 }
 
 template <typename CollectionType, typename DereferenceType>
-GeneralIteratorWrapper<CollectionType, EnumerationIterator<CollectionType, DereferenceType>> Enumerate(EnumerationIterator<CollectionType, DereferenceType> begin, EnumerationIterator<CollectionType, DereferenceType> end)
+GeneralIteratorWrapper<EnumerationIterator<CollectionType, DereferenceType>> Enumerate(EnumerationIterator<CollectionType, DereferenceType> begin, EnumerationIterator<CollectionType, DereferenceType> end)
 {
-	return GeneralIteratorWrapper<CollectionType, EnumerationIterator<CollectionType, DereferenceType>>(begin, end);
+	return GeneralIteratorWrapper<EnumerationIterator<CollectionType, DereferenceType>>(begin, end);
 }
 #pragma endregion
 
@@ -52,5 +52,11 @@ template <typename CollectableType, typename CollectableType2>
 ZipIterable<Collection<CollectableType>, CollectableType, CollectableType2, Collection<CollectableType2>> Zip(Collection<CollectableType>& collection1, Collection<CollectableType2>& collection2)
 {
 	return ZipIterable<Collection<CollectableType>, CollectableType, CollectableType2, Collection<CollectableType2>>(collection1, collection2, 0, (collection1.Length() < collection2.Length()) ? collection1.Length() : collection2.Length());
+}
+
+template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
+GeneralIteratorWrapper<ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>> Zip(ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> begin, ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> end)
+{
+	return GeneralIteratorWrapper<ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>>(begin, end);
 }
 #pragma endregion

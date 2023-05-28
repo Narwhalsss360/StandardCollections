@@ -138,20 +138,20 @@ Iterator GeneralIterable<CollectionType, Iterator>::end() const
 #pragma endregion
 
 #pragma region GeneralIteratorWrapper
-template <typename CollectionType, typename Iterator>
-GeneralIteratorWrapper<CollectionType, Iterator>::GeneralIteratorWrapper(Iterator begin, Iterator end)
+template <typename Iterator>
+GeneralIteratorWrapper<Iterator>::GeneralIteratorWrapper(Iterator begin, Iterator end)
 	: m_Begin(begin), m_End(end)
 {
 }
 
-template <typename CollectionType, typename Iterator>
-Iterator GeneralIteratorWrapper<CollectionType, Iterator>::begin() const
+template <typename Iterator>
+Iterator GeneralIteratorWrapper<Iterator>::begin() const
 {
 	return m_Begin;
 }
 
-template <typename CollectionType, typename Iterator>
-Iterator GeneralIteratorWrapper<CollectionType, Iterator>::end() const
+template <typename Iterator>
+Iterator GeneralIteratorWrapper<Iterator>::end() const
 {
 	return m_End;
 }

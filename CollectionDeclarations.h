@@ -156,7 +156,7 @@ protected:
 	const index_t m_BeginIndex, m_EndIndex;
 };
 
-template <typename CollectionType, typename Iterator>
+template <typename Iterator>
 class GeneralIteratorWrapper
 {
 public:
