@@ -5,10 +5,10 @@ test_function(general_iteration)
 {
 	int array[] = { 0, 1, 2, 3 };
 
-	test_expect(CStyleLength(array), 4);
+	test_expect(CollectionLength(array), 4);
 
-	auto begin_iterator = GeneralIterator<int[CStyleLength(array)], int&>(array, 0);
-	auto end_iterator = GeneralIterator<int[CStyleLength(array)], int&>(array, CStyleLength(array));
+	auto begin_iterator = GeneralIterator<int[CollectionLength(array)], int&>(array, 0);
+	auto end_iterator = GeneralIterator<int[CollectionLength(array)], int&>(array, CollectionLength(array));
 
 	index_t expectedIndex = 0;
 	for (auto i : Iterate(begin_iterator, end_iterator))
@@ -17,8 +17,8 @@ test_function(general_iteration)
 		expectedIndex++;
 	}
 
-	auto begin_enumerator = GeneralIterator<int[CStyleLength(array)], Enumeration<int&>>(array, 0);
-	auto end_enumerator = GeneralIterator<int[CStyleLength(array)], Enumeration<int&>>(array, CStyleLength(array));
+	auto begin_enumerator = GeneralIterator<int[CollectionLength(array)], Enumeration<int&>>(array, 0);
+	auto end_enumerator = GeneralIterator<int[CollectionLength(array)], Enumeration<int&>>(array, CollectionLength(array));
 
 	expectedIndex = 0;
 	for (auto i : Enumerate(begin_enumerator, end_enumerator))

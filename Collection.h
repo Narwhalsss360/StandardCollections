@@ -260,9 +260,15 @@ inline constexpr void FillCStyleArray(CStyleArrayType(&array)[Length], CStyleArr
 }
 
 template <typename CStyleArrayType, index_t Length = sizeof(CStyleArrayType)>
-inline constexpr index_t CStyleLength(CStyleArrayType(&array)[Length])
+inline constexpr index_t CollectionLength(CStyleArrayType(&array)[Length])
 {
 	return Length;
+}
+
+template <typename CollectableType>
+inline const index_t CollectionLength(Collection<CollectableType>& collection)
+{
+	return collection.Length();
 }
 
 #endif // !Collection_h

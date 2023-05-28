@@ -93,7 +93,7 @@ int f(int x)
 test_function(c_style_zip)
 {
 	int x_values[] = { -2, -1, 0, 1, 2 };
-	int y_values[CStyleLength(x_values)];
+	int y_values[CollectionLength(x_values)];
 
 	FillCStyleArray(y_values, 0);
 
@@ -104,7 +104,7 @@ test_function(c_style_zip)
 		y_values[x.index] = f(x);
 	}
 
-	for (size_t index = 0; index < CStyleLength(x_values); index++)
+	for (size_t index = 0; index < CollectionLength(x_values); index++)
 		test_expect(y_values[index], f(x_values[index]));
 
 	{ /*Testing Iterators*/
