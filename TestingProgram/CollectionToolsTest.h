@@ -74,3 +74,27 @@ test_function(comparators)
 	test_expect(array1 > array3, true);
 	test_expect(array1 >= array3, true);
 }
+
+test_function(slice)
+{
+	Array<int, 10> array;
+
+ 	for (index_t i = 0; i < array.Length(); i++)
+		array[i] = i;
+
+	PrintCollection(array);
+	test_standard_output_write("\n");
+
+	auto sliced1 = array.Slice(0, 7);
+
+	PrintCollection(array);
+	test_standard_output_write("\n");
+
+	for (index_t i = 0; i < sliced1.Length(); i++)
+		test_expect(sliced1[i], i);
+
+	auto sliced2 = array.Slice(4);
+
+	for (index_t i = sliced2[0]; i < sliced2[sliced2.Length() - 1]; i++)
+		test_expect(sliced2[i], i);
+}
