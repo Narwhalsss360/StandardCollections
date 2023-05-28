@@ -12,7 +12,7 @@ test_function(dynamic_array)
 	array.Push(1);
 	array.Push(2);
 	array.Push(3);
-	array.Push(4);
+	array += 4;
 	test_expect(array.Length(), 5);
 	test_expect(array[0], 0);
 	test_expect(array[1], 1);
@@ -82,7 +82,7 @@ test_function(dynamic_array_join)
 	test_expect(auxArray[0], 3);
 	test_expect(auxArray[1], 4);
 
-	mainArray.Join(auxArray);
+	mainArray += auxArray;
 	test_expect(mainArray.Length(), 5);
 	test_expect(mainArray[0], 0);
 	test_expect(mainArray[1], 1);

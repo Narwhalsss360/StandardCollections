@@ -140,4 +140,31 @@ void DynamicCollection<CollectableType>::Join(Collection<CollectableType>& colle
 	Insert(this->Length(), collection);
 }
 
+template <typename CollectableType>
+DynamicCollection<CollectableType>& DynamicCollection<CollectableType>::operator+=(CollectableType& item)
+{
+	Push(item);
+	return *this;
+}
+
+template <typename CollectableType>
+DynamicCollection<CollectableType>& DynamicCollection<CollectableType>::operator+=(CollectableType&& item)
+{
+	Push(item);
+	return *this;
+}
+
+template <typename CollectableType>
+DynamicCollection<CollectableType>& DynamicCollection<CollectableType>::operator+=(Collection<CollectableType>& item)
+{
+	Push(item);
+	return *this;
+}
+
+template <typename CollectableType>
+DynamicCollection<CollectableType>& DynamicCollection<CollectableType>::operator+=(Collection<CollectableType>&& item)
+{
+	Push(item);
+	return *this;
+}
 #endif // !DynamicCollection_h
