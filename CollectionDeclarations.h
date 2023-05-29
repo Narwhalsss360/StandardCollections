@@ -405,5 +405,17 @@ private:
 	index_t m_Capacity;
 	index_t m_Length;
 };
+
+template <typename CollectableType, size_t JaggedCount, size_t JaggedLength>
+using Jagged = Array<Array<CollectableType, JaggedLength>, JaggedCount>;
+
+template <typename CollectableType, size_t JaggedLength>
+using DynamicJagged = DynamicArray<Array<CollectableType, JaggedLength>>;
+
+template <typename CollectableType, size_t JaggedCount>
+using JaggedDynamic = Array<DynamicArray<CollectableType>, JaggedCount>;
+
+template <typename CollectableType>
+using DynamicJaggedDynamic = DynamicArray<DynamicArray<CollectableType>>;
 #pragma endregion
 #endif // !CollectionDefenitions_h
