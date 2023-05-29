@@ -38,3 +38,63 @@ void PrintCollection(Collection<CollectableType>& collection, PrintStyles printS
 		break;
 	}
 }
+
+struct ContainerA
+{
+	ContainerA()
+		: number(0)
+	{
+	}
+
+	ContainerA(int n)
+		: number(n)
+	{
+	}
+
+	int number;
+
+	bool operator==(const ContainerA& other) const
+	{
+		return number == other.number;
+	}
+};
+
+struct ContainerB
+{
+	ContainerB()
+		: precision(0.0f)
+	{
+	}
+
+	ContainerB(float p)
+		: precision(p)
+	{
+	}
+
+	float precision;
+
+	bool operator==(const ContainerB& other) const
+	{
+		return precision == other.precision;
+	}
+};
+
+struct ContainerC : ContainerA, ContainerB
+{
+	ContainerC()
+		: ContainerA(), ContainerB(), string("default")
+	{
+	}
+
+	ContainerC(int n, float p, std::string s)
+		: ContainerA(n), ContainerB(p), string(s)
+	{
+	}
+
+	std::string string;
+
+	bool operator==(const ContainerC& other) const
+	{
+		return precision == other.precision && number == other.number && string == other.string;
+	}
+};
