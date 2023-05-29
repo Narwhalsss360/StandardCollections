@@ -55,6 +55,10 @@ test_function(dynamic_array)
 	test_expect(array.Length(), 2);
 	test_expect(array[0], 3);
 	test_expect(array[1], 0);
+
+	DynamicArray<double> doubleArray = { 0, 0.5, 1, 1.5, 2 };
+	for (auto e : Enumerate(doubleArray))
+		test_expect(e.value, e.index / 2.0);
 }
 
 test_function(dynamic_array_join)

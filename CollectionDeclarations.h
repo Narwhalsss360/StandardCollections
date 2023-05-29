@@ -371,6 +371,10 @@ public:
 
 	inline DynamicArray(DynamicArray<CollectableType>&& other);
 
+#ifdef __cpp_initializer_lists
+	inline DynamicArray(const std::initializer_list<CollectableType>& initializers);
+#endif // __cpp_initializer_lists
+
 	inline index_t Capacity() const override;
 
 	inline index_t Length() const override;
@@ -378,6 +382,14 @@ public:
 	CollectableType& operator[](const index_t index);
 
 	const CollectableType& operator[](const index_t index) const;
+
+	inline DynamicArray<CollectableType>& operator=(DynamicArray<CollectableType>& other);
+
+	inline DynamicArray<CollectableType>& operator=(DynamicArray<CollectableType>&& other);
+
+#ifdef __cpp_initializer_lists
+	DynamicArray<CollectableType>& operator=(const std::initializer_list<CollectableType>& initializers);
+#endif // __cpp_initializer_lists
 
 	inline void SetLength(index_t newLength) override;
 

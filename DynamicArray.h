@@ -16,20 +16,21 @@ template <typename CollectableType>
 DynamicArray<CollectableType>::DynamicArray(DynamicArray<CollectableType>& other)
 	: m_Array(nullptr), m_Capacity(0), m_Length(0)
 {
-	SetCapacity(other.Length());
-	SetLength(other.Length());
-	other.CopyTo(*this);
+	operator=(other);
 }
 
 template <typename CollectableType>
 DynamicArray<CollectableType>::DynamicArray(DynamicArray<CollectableType>&& other)
 	: m_Array(nullptr), m_Capacity(0), m_Length(0)
 {
-	SetCapacity(other.Length());
-	SetLength(other.Length());
-	other.CopyTo(*this);
+	this->operator=(other);
+}
 
-	other.SetCapacity(0);
+template <typename CollectableType>
+DynamicArray<CollectableType>::DynamicArray(const std::initializer_list<CollectableType>& initializers)
+	: m_Array(nullptr), m_Capacity(0), m_Length(0)
+{
+	this->operator=(initializers);
 }
 
 template <typename CollectableType>
@@ -54,6 +55,39 @@ template <typename CollectableType>
 const CollectableType& DynamicArray<CollectableType>::operator[](index_t index) const
 {
 	return m_Array[safe_index(index, m_Length)];
+}
+
+template <typename CollectableType>
+DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(DynamicArray<CollectableType>& other)
+{
+	SetCapacity(other.Length());
+	SetLength(other.Length());
+	other.CopyTo(*this);
+	return *this;
+}
+
+template <typename CollectableType>
+DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(DynamicArray<CollectableType>&& other)
+{
+	SetCapacity(other.Length());
+	SetLength(other.Length());
+	other.CopyTo(*this);
+
+	other.SetCapacity(0);
+	return *this;
+}
+
+template <typename CollectableType>
+DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const std::initializer_list<CollectableType>& initializers)
+{
+	this->SetCapacity(initializers.size());
+
+	const CollectableType* const initializerArray = initializers.begin();
+
+	for (index_t index = 0; index < initializers.size(); index++)
+		this->operator[](index) = initializerArray[index];
+
+	return *this;
 }
 
 template <typename CollectableType>
