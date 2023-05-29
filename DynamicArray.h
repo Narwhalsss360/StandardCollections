@@ -28,6 +28,8 @@ DynamicArray<CollectableType>::DynamicArray(DynamicArray<CollectableType>&& othe
 	SetCapacity(other.Length());
 	SetLength(other.Length());
 	other.CopyTo(*this);
+
+	other.SetCapacity(0);
 }
 
 template <typename CollectableType>
