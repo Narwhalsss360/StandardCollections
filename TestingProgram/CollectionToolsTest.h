@@ -82,12 +82,10 @@ test_function(slice)
  	for (index_t i = 0; i < array.Length(); i++)
 		array[i] = i;
 
-	PrintCollection(array);
 	test_standard_output_write("\n");
 
 	auto sliced1 = array.Slice(0, 7);
 
-	PrintCollection(array);
 	test_standard_output_write("\n");
 
 	for (index_t i = 0; i < sliced1.Length(); i++)
@@ -95,6 +93,68 @@ test_function(slice)
 
 	auto sliced2 = array.Slice(4);
 
-	for (int i = sliced2[0]; i < sliced2[sliced2.Length() - 1]; i++)
-		test_expect(sliced2[i], i);
+	for (auto enumeration : Enumerate(sliced2))
+		test_expect(enumeration.value, enumeration.index + 4);
+}
+
+ContainerC CastAToC(ContainerA& A)
+{
+	ContainerC out;
+	out.number = A.number;
+	return out;
+}
+
+ContainerB CastAToB(ContainerA& A)
+{
+	ContainerB out;
+	out.precision = (float)A.number;
+	return out;
+}
+
+test_function(collection_casts)
+{
+	Array<ContainerA, 3> aTypeArray;
+	aTypeArray[0] = { 0 };
+	aTypeArray[1] = { -1 };
+	aTypeArray[2] = { 2 };
+
+	test_expect(aTypeArray[0].number, 0);
+	test_expect(aTypeArray[1].number, -1);
+	test_expect(aTypeArray[2].number, 2);
+
+	Array<ContainerC, 3> cTypeArrayCasted;
+
+	CastCollection(aTypeArray, cTypeArrayCasted, CastAToC);
+
+	test_expect(cTypeArrayCasted[0].number, 0);
+	test_expect(cTypeArrayCasted[1].number, -1);
+	test_expect(cTypeArrayCasted[2].number, 2);
+	test_expect(cTypeArrayCasted[0].precision, 0.0f);
+	test_expect(cTypeArrayCasted[1].precision, 0.0f);
+	test_expect(cTypeArrayCasted[2].precision, 0.0f);
+	test_expect(cTypeArrayCasted[0].string, "default");
+	test_expect(cTypeArrayCasted[1].string, "default");
+	test_expect(cTypeArrayCasted[2].string, "default");
+
+	Array<ContainerC, 3> cTypeArray;
+
+	cTypeArray[0] = ContainerC(-1, 1.1, "i0");
+	cTypeArray[1] = ContainerC(-2, 2, "i1");
+	cTypeArray[2] = ContainerC(-3, 3, "i2");
+
+	Array<ContainerA, 3> aTypeCasted;
+
+	CastCollection(cTypeArray, aTypeCasted);
+
+	test_expect(aTypeCasted[0].number, -1);
+	test_expect(aTypeCasted[1].number, -2);
+	test_expect(aTypeCasted[2].number, -3);
+
+	Array<ContainerB, 3> bTypeCasted;
+
+	CastCollection(aTypeArray, bTypeCasted, CastAToB);
+
+	test_expect(bTypeCasted[0].precision, 0);
+	test_expect(bTypeCasted[1].precision, -1);
+	test_expect(bTypeCasted[2].precision, 2);
 }

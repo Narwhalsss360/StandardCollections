@@ -14,6 +14,7 @@ add_test(finding_elements);
 add_test(for_each);
 add_test(comparators);
 add_test(slice);
+add_test(collection_casts);
 
 #include "DynamicArrayTest.h"
 add_test(dynamic_array);
