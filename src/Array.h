@@ -3,9 +3,9 @@
 
 #include "Collection.h"
 #include <stdarg.h>
-#ifdef __cpp_initializer_lists
+#ifdef initializer_list_supported
 #include <initializer_list>
-#endif // __cpp_initializer_lists
+#endif // initializer_list_supported
 
 #define Array_init(type, name, ...) type Array_init_##name[] __VA_ARGS__; auto name = CStyleToArray(Array_init_##name)
 
@@ -53,14 +53,14 @@ Array<CollectableType, TemplateLength>::Array(CollectableType(&array)[TemplateLe
 		m_Array[index] = array[index];
 }
 
-#if __cpp_initializer_lists
+#if initializer_list_supported
 template <typename CollectableType, index_t TemplateLength>
 Array<CollectableType, TemplateLength>::Array(const std::initializer_list<CollectableType> initializer)
 	: Collection<CollectableType>(), m_Array{ CollectableType() }
 {
 	operator=(initializer);
 }
-#endif // __cpp_initializer_lists
+#endif // initializer_list_supported
 
 template <typename CollectableType, index_t TemplateLength>
 index_t Array<CollectableType, TemplateLength>::Length() const
@@ -94,7 +94,7 @@ Array<CollectableType, TemplateLength>::operator CollectableType* ()
 	return m_Array;
 }
 
-#ifdef __cpp_initializer_lists
+#ifdef initializer_list_supported
 template <typename CollectableType, index_t TemplateLength>
 Array<CollectableType, TemplateLength>& Array<CollectableType, TemplateLength>::operator=(const std::initializer_list<CollectableType> initializer)
 {
@@ -102,7 +102,7 @@ Array<CollectableType, TemplateLength>& Array<CollectableType, TemplateLength>::
 		m_Array[index] = initializer.begin()[index];
 	return *this;
 }
-#endif // __cpp_initializer_lists
+#endif // initializer_list_supported
 #pragma endregion
 
 template <typename CStyleArrayType, index_t Length = sizeof(CStyleArrayType)>

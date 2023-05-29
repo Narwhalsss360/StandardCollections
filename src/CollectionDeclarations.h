@@ -3,6 +3,11 @@
 
 #include <stdint.h>
 
+#ifdef ARDUINO
+#else
+#define initializer_list_supported
+#endif
+
 typedef uint32_t index_t;
 typedef int64_t find_index_t;
 
@@ -340,9 +345,9 @@ public:
 
 	Array(CollectableType(&array)[TemplateLength]);
 
-#if __cpp_initializer_lists
+#if initializer_list_supported
 	Array(const std::initializer_list<CollectableType> initializer);
-#endif // __cpp_initializer_lists
+#endif // initializer_list_supported
 
 	index_t Length() const override;
 
@@ -354,9 +359,9 @@ public:
 
 	operator CollectableType* ();
 
-#ifdef __cpp_initializer_lists
+#ifdef initializer_list_supported
 	Array& operator=(const std::initializer_list<CollectableType> initializer);
-#endif // __cpp_initializer_lists
+#endif // initializer_list_supported
 
 private:
 	CollectableType m_Array[TemplateLength];
@@ -373,9 +378,9 @@ public:
 
 	inline DynamicArray(DynamicArray<CollectableType>&& other);
 
-#ifdef __cpp_initializer_lists
+#ifdef initializer_list_supported
 	inline DynamicArray(const std::initializer_list<CollectableType>& initializers);
-#endif // __cpp_initializer_lists
+#endif // initializer_list_supported
 
 	inline index_t Capacity() const override;
 
@@ -389,9 +394,9 @@ public:
 
 	inline DynamicArray<CollectableType>& operator=(const DynamicArray<CollectableType>&& other);
 
-#ifdef __cpp_initializer_lists
+#ifdef initializer_list_supported
 	DynamicArray<CollectableType>& operator=(const std::initializer_list<CollectableType>& initializers);
-#endif // __cpp_initializer_lists
+#endif // initializer_list_supported
 
 	inline void SetLength(index_t newLength) override;
 

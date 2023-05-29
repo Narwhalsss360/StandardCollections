@@ -2,9 +2,9 @@
 #define DynamicArray_h
 
 #include "DynamicCollection.h"
-#ifdef __cpp_initializer_lists
+#ifdef initializer_list_supported
 #include <initializer_list>
-#endif // __cpp_initializer_lists
+#endif // initializer_list_supported
 
 template <typename CollectableType>
 DynamicArray<CollectableType>::DynamicArray()
@@ -26,12 +26,14 @@ DynamicArray<CollectableType>::DynamicArray(DynamicArray<CollectableType>&& othe
 	this->operator=(other);
 }
 
+#ifdef initializer_list_supported
 template <typename CollectableType>
 DynamicArray<CollectableType>::DynamicArray(const std::initializer_list<CollectableType>& initializers)
 	: m_Array(nullptr), m_Capacity(0), m_Length(0)
 {
 	this->operator=(initializers);
 }
+#endif // initializer_list_supported
 
 template <typename CollectableType>
 index_t DynamicArray<CollectableType>::Capacity() const
@@ -77,6 +79,7 @@ DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const Dy
 	return *this;
 }
 
+#ifdef initializer_list_supported
 template <typename CollectableType>
 DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const std::initializer_list<CollectableType>& initializers)
 {
@@ -89,6 +92,7 @@ DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const st
 
 	return *this;
 }
+#endif // initializer_list_supported
 
 template <typename CollectableType>
 void DynamicArray<CollectableType>::SetLength(index_t newLength)
