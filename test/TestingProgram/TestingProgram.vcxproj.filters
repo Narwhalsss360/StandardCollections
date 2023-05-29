@@ -19,29 +19,29 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestProvider.h">
-      <Filter>Test Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="CStyleArrayTest.h">
-      <Filter>Test Headers</Filter>
-    </ClInclude>
     <ClInclude Include="ArrayTest.h">
       <Filter>Test Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Commons.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CollectionToolsTest.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
-    <ClInclude Include="OrderedTests.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="CStyleArrayTest.h">
+      <Filter>Test Headers</Filter>
     </ClInclude>
     <ClInclude Include="DynamicArrayTest.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
     <ClInclude Include="IteratorTests.h">
       <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Commons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OrderedTests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestProvider.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

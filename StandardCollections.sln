@@ -5,14 +5,22 @@ VisualStudioVersion = 17.2.32422.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StandardCollections", "StandardCollections.vcxitems", "{6A1B6FF9-C65C-49A9-BEFF-935FC2A4470F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestingProgram", "TestingProgram\TestingProgram.vcxproj", "{3F80113A-19E6-4F59-9C43-D325FA0DAE30}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{09931E67-F33A-4438-A5BA-9C40495DBC20}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "To Do", "To Do", "{8696DC21-4969-4477-A902-C386AD7183A5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{BBB79141-AAF6-468E-BC07-9C2B3CBA4A93}"
 	ProjectSection(SolutionItems) = preProject
-		Features To Add.txt = Features To Add.txt
-		Things To Do Later.txt = Things To Do Later.txt
-		Things To Fix or Check.txt = Things To Fix or Check.txt
+		lib\Notes\Features To Add.txt = lib\Notes\Features To Add.txt
+		lib\Notes\Things To Do Later.txt = lib\Notes\Things To Do Later.txt
+		lib\Notes\Things To Fix or Check.txt = lib\Notes\Things To Fix or Check.txt
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B2C44281-E2D6-4196-8119-D5889E5332EB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestingProgram", "test\TestingProgram\TestingProgram.vcxproj", "{3F80113A-19E6-4F59-9C43-D325FA0DAE30}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7F2687BB-AC31-4AC7-84AD-4ABC9962592F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{4BC778C4-8E46-4ECF-952A-EEB8CAA45465}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +41,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BBB79141-AAF6-468E-BC07-9C2B3CBA4A93} = {09931E67-F33A-4438-A5BA-9C40495DBC20}
+		{3F80113A-19E6-4F59-9C43-D325FA0DAE30} = {B2C44281-E2D6-4196-8119-D5889E5332EB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {014B225B-7211-4959-9EF2-226874628330}

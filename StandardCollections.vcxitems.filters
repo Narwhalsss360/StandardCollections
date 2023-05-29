@@ -2,36 +2,33 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="src">
-      <UniqueIdentifier>{31acfff0-ae6d-452f-b609-dc7499e9e5a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include">
-      <UniqueIdentifier>{91e815c6-d208-4f88-bfcb-651d1e8b75c3}</UniqueIdentifier>
+      <UniqueIdentifier>{364c1c01-db8b-45bc-9a5b-90117d57e350}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Collection.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\Array.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CollectionDeclarations.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\Collection.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)DynamicCollection.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\CollectionDeclarations.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Iterators.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\DynamicArray.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)IteratorWrappers.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\DynamicCollection.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StandardCollections.h">
-      <Filter>include</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\Iterators.h">
+      <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Array.h">
-      <Filter>include</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\IteratorWrappers.h">
+      <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)DynamicArray.h">
-      <Filter>include</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\StandardCollections.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
