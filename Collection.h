@@ -225,7 +225,7 @@ bool Collection<CollectableType>::operator==(const Collection<CollectableType>& 
 	if (this->Length() != other.Length())
 		return false;
 	for (index_t index = 0; index < this->Length(); index++)
-		if (this->operator[](index) != other.operator[](index))
+		if (!(this->operator[](index) == other.operator[](index)))
 			return false;
 	return true;
 }
