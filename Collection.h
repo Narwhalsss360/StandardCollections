@@ -266,6 +266,20 @@ inline index_t SafeIndex(index_t tryIndex, index_t collectionLength)
 	return safe_index(tryIndex, collectionLength);
 }
 
+template <typename SourceType, typename DestinationType>
+inline void CastCollection(Collection<SourceType>& source, Collection<DestinationType>& destination)
+{
+	for (index_t index = 0; index < source.Length(); index++)
+		destination[index] = (DestinationType)source[index];
+}
+
+template <typename SourceType, typename DestinationType>
+inline void CastCollection(Collection<SourceType>& source, Collection<DestinationType>& destination, DestinationType (*caster)(SourceType&))
+{
+	for (index_t index = 0; index < source.Length(); index++)
+		destination[index] = caster(source[index]);
+}
+
 template <typename CStyleArrayType, index_t Length = sizeof(CStyleArrayType)>
 inline constexpr void FillCStyleArray(CStyleArrayType(&array)[Length], CStyleArrayType fillValue)
 {
