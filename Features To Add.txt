@@ -1,2 +1,0 @@
-- Features To Add -
--Cast to example: Collection<double> -> Collection<int>
