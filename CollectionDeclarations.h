@@ -379,11 +379,13 @@ public:
 
 	const CollectableType& operator[](const index_t index) const;
 
+	inline void SetLength(index_t newLength) override;
+
+	inline void SetCapacity(index_t newCapacity) override;
+
 	~DynamicArray();
 
 private:
-	inline void SetLength(index_t newLength) override;
-	inline void SetCapacity(index_t newCapacity) override;
 
 	CollectableType* m_Array;
 	index_t m_Capacity;
