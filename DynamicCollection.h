@@ -31,9 +31,12 @@ template <typename CollectableType>
 CollectableType DynamicCollection<CollectableType>::Pop(bool shrink)
 {
 	CollectableType returnValue = this->operator[](this->Length() - 1);
+
 	SetLength(this->Length() - 1);
+
 	if (shrink)
 		SetCapacity(this->Length());
+
 	return returnValue;
 }
 
@@ -111,11 +114,15 @@ template <typename CollectableType>
 CollectableType DynamicCollection<CollectableType>::Shift(bool shrink)
 {
 	CollectableType returnValue = this->operator[](0);
-	for (index_t index = this->Length() - 1; index > 0; index++)
+
+	for (find_index_t index = this->Length() - 1; index > 0; index++)
 		this->operator[](index) = this->operator[](index - 1);
+
 	SetLength(this->Length() - 1);
+
 	if (shrink)
 		SetCapacity(this->Length());
+
 	return returnValue;
 }
 

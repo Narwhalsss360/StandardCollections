@@ -89,11 +89,11 @@ Array<CollectableType, TemplateLength>::operator CollectableType* ()
 #ifdef __cpp_initializer_lists
 template <typename CollectableType, index_t TemplateLength>
 Array<CollectableType, TemplateLength>& Array<CollectableType, TemplateLength>::operator=(const std::initializer_list<CollectableType> initializer)
-	{
-		for (size_t index = 0; index < (TemplateLength < initializer.size() ? TemplateLength : initializer.size()); index++)
-			m_Array[index] = initializer.begin()[index];
-		return *this;
-	}
+{
+	for (size_t index = 0; index < (TemplateLength < initializer.size() ? TemplateLength : initializer.size()); index++)
+		m_Array[index] = initializer.begin()[index];
+	return *this;
+}
 #endif // __cpp_initializer_lists
 #pragma endregion
 

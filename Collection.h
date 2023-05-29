@@ -12,11 +12,13 @@ IndexValuePair<ValueType>::IndexValuePair()
 	: value(nullref(ValueType)), index(SIZE_MAX), valid(false)
 {
 }
+
 template <typename ValueType>
 IndexValuePair<ValueType>::IndexValuePair(ValueType& value, find_index_t index, bool valid)
 	: value(value), index(index), valid(valid)
 {
 }
+
 template <typename ValueType>
 IndexValuePair<ValueType>::operator ValueType&()
 {
@@ -111,7 +113,8 @@ template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::Find(const CollectableType& value) const
 {
 	for (find_index_t index = 0; index < this->Length(); index++)
-		if (this->operator[](index) == value) return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
+		if (this->operator[](index) == value)
+			return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
 	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
 }
 
@@ -119,7 +122,8 @@ template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::Find(const CollectableType&& value) const
 {
 	for (find_index_t index = 0; index < this->Length(); index++)
-		if (this->operator[](index) == value) return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
+		if (this->operator[](index) == value)
+			return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
 	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
 }
 
@@ -127,7 +131,8 @@ template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::Find(ComparatorFunctionPointer(const CollectableType, comparator)) const
 {
 	for (find_index_t index = 0; index < this->Length(); index++)
-		if (comparator(this->operator[](index))) return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
+		if (comparator(this->operator[](index)))
+			return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
 	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
 }
 
@@ -135,7 +140,8 @@ template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(const CollectableType& value) const
 {
 	for (find_index_t index = this->Length() - 1; index >= 0; index--)
-		if (this->operator[](index) == value) return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
+		if (this->operator[](index) == value)
+			return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
 	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
 }
 
@@ -143,7 +149,8 @@ template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(const CollectableType&& value) const
 {
 	for (find_index_t index = this->Length() - 1; index >= 0; index--)
-		if (this->operator[](index) == value) return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
+		if (this->operator[](index) == value)
+			return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
 	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
 }
 
@@ -151,7 +158,8 @@ template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(ComparatorFunctionPointer(const CollectableType, comparator)) const
 {
 	for (find_index_t index = this->Length() - 1; index >= 0; index--)
-		if (comparator(this->operator[](index))) return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
+		if (comparator(this->operator[](index)))
+			return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
 	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
 }
 
@@ -160,7 +168,8 @@ index_t Collection<CollectableType>::Count(const CollectableType& value) const
 {
 	index_t count = 0;
 	for (index_t index = 0; index < this->Length(); index++)
-		if (this->operator[](index) == value) count++;
+		if (this->operator[](index) == value)
+			count++;
 	return count;
 }
 
@@ -169,7 +178,8 @@ index_t Collection<CollectableType>::Count(const CollectableType&& value) const
 {
 	index_t count = 0;
 	for (index_t index = 0; index < this->Length(); index++)
-		if (this->operator[](index) == value) count++;
+		if (this->operator[](index) == value)
+			count++;
 	return count;
 }
 
@@ -178,7 +188,8 @@ index_t Collection<CollectableType>::Count(bool (*comparator)(const CollectableT
 {
 	index_t count = 0;
 	for (index_t index = 0; index < this->Length(); index++)
-		if (comparator(this->operator[](index))) count++;
+		if (comparator(this->operator[](index)))
+			count++;
 	return count;
 }
 
@@ -198,7 +209,6 @@ DynamicArray<CollectableType> Collection<CollectableType>::Slice(index_t startIn
 template <typename CollectableType>
 void Collection<CollectableType>::CopyTo(Collection<CollectableType>& collection)
 {
-
 	for (index_t index = 0; index < (this->Length() < collection.Length() ? this->Length() : collection.Length()); index++)
 		collection.operator[](index) = this->operator[](index);
 }
@@ -212,7 +222,8 @@ void Collection<CollectableType>::MoveTo(Collection<CollectableType>& collection
 template <typename CollectableType>
 bool Collection<CollectableType>::operator==(const Collection<CollectableType>& other) const
 {
-	if (this->Length() != other.Length()) return false;
+	if (this->Length() != other.Length())
+		return false;
 	for (index_t index = 0; index < this->Length(); index++)
 		if (this->operator[](index) != other.operator[](index))
 			return false;

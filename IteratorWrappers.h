@@ -1,3 +1,6 @@
+#ifndef IteratorWrapper_h
+#define IteratorWrapper_h
+
 #include "Iterators.h"
 #include "Collection.h"
 
@@ -60,3 +63,4 @@ GeneralIteratorWrapper<ZipIterator<CollectionType, Zipped1ValueType, Zipped2Valu
 	return GeneralIteratorWrapper<ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>>(begin, end);
 }
 #pragma endregion
+#endif // !IteratorWrapper_h

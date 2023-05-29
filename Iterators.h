@@ -43,7 +43,6 @@ index_t GeneralIterator<CollectionType, DereferenceType>::index()
 DereferencedIteration::DereferencedIteration(const bool defaulted)
 	: defaulted(defaulted)
 {
-
 }
 #pragma endregion
 
@@ -110,9 +109,9 @@ ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>
 
 template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
 Zipping<Zipped1ValueType, Zipped2ValueType> ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>::operator*()
-	{
-		return Zipping<Zipped1ValueType, Zipped2ValueType>(this->m_Collection[this->m_CurrentIndex], m_Collection2[this->m_CurrentIndex], this->m_CurrentIndex);
-	}
+{
+	return Zipping<Zipped1ValueType, Zipped2ValueType>(this->m_Collection[this->m_CurrentIndex], m_Collection2[this->m_CurrentIndex], this->m_CurrentIndex);
+}
 #pragma endregion
 #pragma endregion
 
@@ -132,9 +131,9 @@ Iterator GeneralIterable<CollectionType, Iterator>::begin() const
 
 template <typename CollectionType, typename Iterator>
 Iterator GeneralIterable<CollectionType, Iterator>::end() const
-	{
-		return Iterator(m_Collection, m_EndIndex);
-	}
+{
+	return Iterator(m_Collection, m_EndIndex);
+}
 #pragma endregion
 
 #pragma region GeneralIteratorWrapper
@@ -172,9 +171,9 @@ ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>
 
 template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
 ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> ZipIterable<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>::end() const
-	{
-		return ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>(this->m_Collection, m_Collection2, this->m_EndIndex);
-	}
+{
+	return ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>(this->m_Collection, m_Collection2, this->m_EndIndex);
+}
 #pragma endregion
 #pragma endregion
 

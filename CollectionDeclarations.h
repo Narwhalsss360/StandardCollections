@@ -380,6 +380,7 @@ public:
 	const CollectableType& operator[](const index_t index) const;
 
 	~DynamicArray();
+
 private:
 	inline void SetLength(index_t newLength) override;
 	inline void SetCapacity(index_t newCapacity) override;
