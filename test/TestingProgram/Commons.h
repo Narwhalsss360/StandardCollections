@@ -1,6 +1,6 @@
 #pragma once
 #include "TestProvider.h"
-#include "src/StandardCollections.h"
+#include "..\..\src\StandardCollections.h"
 
 constexpr int bomb_defusal_code_digits[] = { 7, 3, 5, 5, 6, 0, 8 };
 
