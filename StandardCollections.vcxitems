@@ -14,13 +14,13 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Collection.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CollectionDeclarations.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DynamicArray.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DynamicCollection.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Iterators.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IteratorWrappers.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StandardCollections.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Array.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\Array.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\Collection.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\CollectionDeclarations.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\DynamicArray.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\DynamicCollection.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\Iterators.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\IteratorWrappers.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\StandardCollections.h" />
   </ItemGroup>
 </Project>
