@@ -81,6 +81,14 @@ const CollectableType& Array<CollectableType, TemplateLength>::operator[](index_
 }
 
 template <typename CollectableType, index_t TemplateLength>
+Array<CollectableType, TemplateLength>& Array<CollectableType, TemplateLength>::operator=(const Array<CollectableType, TemplateLength>& other)
+{
+	for (index_t index = 0; index < TemplateLength; index++)
+		this->operator[](index) = other.operator[](index);
+	return *this;
+}
+
+template <typename CollectableType, index_t TemplateLength>
 Array<CollectableType, TemplateLength>::operator CollectableType* ()
 {
 	return m_Array;

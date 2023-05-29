@@ -58,7 +58,7 @@ const CollectableType& DynamicArray<CollectableType>::operator[](index_t index) 
 }
 
 template <typename CollectableType>
-DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(DynamicArray<CollectableType>& other)
+DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const DynamicArray<CollectableType>& other)
 {
 	SetCapacity(other.Length());
 	SetLength(other.Length());
@@ -67,7 +67,7 @@ DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(DynamicA
 }
 
 template <typename CollectableType>
-DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(DynamicArray<CollectableType>&& other)
+DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const DynamicArray<CollectableType>&& other)
 {
 	SetCapacity(other.Length());
 	SetLength(other.Length());

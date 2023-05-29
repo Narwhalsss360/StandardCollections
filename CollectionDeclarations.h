@@ -255,18 +255,18 @@ public:
 
 	virtual inline DynamicArray<CollectableType> Slice(index_t startIndex, find_index_t endIndex = -1);
 
-	virtual inline void CopyTo(Collection<CollectableType>& collection);
+	virtual inline void CopyTo(Collection<CollectableType>& collection) const;
 
-	virtual inline void MoveTo(Collection<CollectableType>& collection);
+	virtual inline void MoveTo(Collection<CollectableType>& collection) const;
 
 	virtual inline bool operator==(const Collection<CollectableType>& other) const;
-	
+
 	virtual inline bool operator!=(const Collection<CollectableType>& other) const;
-	
+
 	virtual inline bool operator<(const Collection<CollectableType>& other) const;
-	
+
 	virtual inline bool operator<=(const Collection<CollectableType>& other) const;
-	
+
 	virtual inline bool operator>(const Collection<CollectableType>& other) const;
 
 	virtual inline bool operator>=(const Collection<CollectableType>& other) const;
@@ -350,6 +350,8 @@ public:
 
 	const CollectableType& operator[](index_t index) const override;
 
+	Array<CollectableType, TemplateLength>& operator=(const Array<CollectableType, TemplateLength>& other);
+
 	operator CollectableType* ();
 
 #ifdef __cpp_initializer_lists
@@ -383,9 +385,9 @@ public:
 
 	const CollectableType& operator[](const index_t index) const;
 
-	inline DynamicArray<CollectableType>& operator=(DynamicArray<CollectableType>& other);
+	inline DynamicArray<CollectableType>& operator=(const DynamicArray<CollectableType>& other);
 
-	inline DynamicArray<CollectableType>& operator=(DynamicArray<CollectableType>&& other);
+	inline DynamicArray<CollectableType>& operator=(const DynamicArray<CollectableType>&& other);
 
 #ifdef __cpp_initializer_lists
 	DynamicArray<CollectableType>& operator=(const std::initializer_list<CollectableType>& initializers);

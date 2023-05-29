@@ -207,14 +207,14 @@ DynamicArray<CollectableType> Collection<CollectableType>::Slice(index_t startIn
 }
 
 template <typename CollectableType>
-void Collection<CollectableType>::CopyTo(Collection<CollectableType>& collection)
+void Collection<CollectableType>::CopyTo(Collection<CollectableType>& collection) const
 {
 	for (index_t index = 0; index < (this->Length() < collection.Length() ? this->Length() : collection.Length()); index++)
 		collection.operator[](index) = this->operator[](index);
 }
 
 template <typename CollectableType>
-void Collection<CollectableType>::MoveTo(Collection<CollectableType>& collection)
+void Collection<CollectableType>::MoveTo(Collection<CollectableType>& collection) const
 {
 	CopyTo(collection);
 }
