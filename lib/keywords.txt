@@ -1,0 +1,86 @@
+Array_init					LITERAL1
+ComparatorFunction			LITERAL1
+ComparatorFunctionPointer	LITERAL1
+CostForEachIterator			LITERAL1
+CostForEachIteratorPointer	LITERAL1
+ForEachIterator				LITERAL1
+ForEachIteratorPointer		LITERAL1
+is_nullref					LITERAL1
+nullref						LITERAL1
+safe_index					LITERAL1
+static_array_fill			LITERAL1
+static_array_length			LITERAL1
+
+DynamicJagged				LITERAL1
+DynamicJaggedDynamic		LITERAL1
+find_index_t				LITERAL1
+index_t						LITERAL1
+Jagged						LITERAL1
+JaggedDynamic				LITERAL1
+
+Array						LITERAL1
+
+Collection					LITERAL1
+begin						KEYWORD2
+CopyTo						KEYWORD2
+Count						KEYWORD2
+end							KEYWORD2
+Fill						KEYWORD2
+Find						KEYWORD2
+FindLast					KEYWORD2
+First						KEYWORD2
+ForEach						KEYWORD2
+Last						KEYWORD2
+Length						KEYWORD2
+MoveTo						KEYWORD2
+Slice						KEYWORD2
+
+DereferencedIteration		LITERAL1
+defaulted					KEYWORD3
+
+DynamicArray				LITERAL1
+SetCapacity					KEYWORD2
+SetLength					KEYWORD2
+
+DynamicCollection			LITERAL1
+Capacity					KEYWORD2
+Insert						KEYWORD2
+Join						KEYWORD2
+Pop							KEYWORD2
+Push						KEYWORD2
+Remove						KEYWORD2
+Shift						KEYWORD2
+Unshift						KEYWORD2
+
+Enumeration					LITERAL1
+index						KEYWORD3
+value						KEYWORD3
+
+EnumerationIterator			LITERAL1
+
+GeneralIterable				LITERAL1
+
+GeneralIterator				LITERAL1
+index						KEYWORD2
+
+GeneralIteratorWrapper		LITERAL1
+
+IndexValuePair				LITERAL1
+valid						KEYWORD3
+
+ZipIterable					LITERAL1
+
+ZipIterator					LITERAL1
+
+Zipping						LITERAL1
+value1						KEYWORD3
+value2						KEYWORD3
+
+CastCollection				KEYWORD2
+CollectionLength			KEYWORD2
+CStyleToArray				KEYWORD2
+Enumerate					KEYWORD2
+FillCStyleArray				KEYWORD2
+Iterate						KEYWORD2
+SafeIndex					KEYWORD2
+Zip							KEYWORD2

@@ -6,6 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StandardCollections", "StandardCollections.vcxitems", "{6A1B6FF9-C65C-49A9-BEFF-935FC2A4470F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{09931E67-F33A-4438-A5BA-9C40495DBC20}"
+	ProjectSection(SolutionItems) = preProject
+		lib\keywords.txt = lib\keywords.txt
+		lib\library.properties = lib\library.properties
+		lib\LibraryInfo.md = lib\LibraryInfo.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{BBB79141-AAF6-468E-BC07-9C2B3CBA4A93}"
 	ProjectSection(SolutionItems) = preProject
