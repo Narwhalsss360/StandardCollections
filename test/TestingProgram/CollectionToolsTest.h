@@ -82,11 +82,7 @@ test_function(slice)
  	for (index_t i = 0; i < array.Length(); i++)
 		array[i] = i;
 
-	test_standard_output_write("\n");
-
 	auto sliced1 = array.Slice(0, 7);
-
-	test_standard_output_write("\n");
 
 	for (index_t i = 0; i < sliced1.Length(); i++)
 		test_expect(sliced1[i], i);
