@@ -53,7 +53,7 @@ Array<CollectableType, TemplateLength>::Array(CollectableType(&array)[TemplateLe
 		m_Array[index] = array[index];
 }
 
-#if initializer_list_supported
+#ifdef initializer_list_supported
 template <typename CollectableType, index_t TemplateLength>
 Array<CollectableType, TemplateLength>::Array(const std::initializer_list<CollectableType> initializer)
 	: Collection<CollectableType>(), m_Array{ CollectableType() }

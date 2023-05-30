@@ -345,7 +345,7 @@ public:
 
 	Array(CollectableType(&array)[TemplateLength]);
 
-#if initializer_list_supported
+#ifdef initializer_list_supported
 	Array(const std::initializer_list<CollectableType> initializer);
 #endif // initializer_list_supported
 
