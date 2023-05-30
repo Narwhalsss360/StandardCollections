@@ -132,9 +132,9 @@ test_function(collection_casts)
 	test_expect(cTypeArrayCasted[0].precision, 0.0f);
 	test_expect(cTypeArrayCasted[1].precision, 0.0f);
 	test_expect(cTypeArrayCasted[2].precision, 0.0f);
-	test_expect(cTypeArrayCasted[0].string, "default");
-	test_expect(cTypeArrayCasted[1].string, "default");
-	test_expect(cTypeArrayCasted[2].string, "default");
+	test_expect(cTypeArrayCasted[0].string, "default"); //These lines fail when testing entire group, failure maybe be due to high memory usage. Pass when isolated to onlt this function.
+	test_expect(cTypeArrayCasted[1].string, "default"); //These lines fail when testing entire group, failure maybe be due to high memory usage. Pass when isolated to onlt this function.
+	test_expect(cTypeArrayCasted[2].string, "default"); //These lines fail when testing entire group, failure maybe be due to high memory usage. Pass when isolated to onlt this function.
 
 	Array<ContainerC, 3> cTypeArray;
 
