@@ -412,13 +412,13 @@ private:
 	index_t m_Length;
 };
 
-template <typename CollectableType, size_t JaggedCount, size_t JaggedLength>
+template <typename CollectableType, index_t JaggedCount, index_t JaggedLength>
 using Jagged = Array<Array<CollectableType, JaggedLength>, JaggedCount>;
 
-template <typename CollectableType, size_t JaggedLength>
+template <typename CollectableType, index_t JaggedLength>
 using DynamicJagged = DynamicArray<Array<CollectableType, JaggedLength>>;
 
-template <typename CollectableType, size_t JaggedCount>
+template <typename CollectableType, index_t JaggedCount>
 using JaggedDynamic = Array<DynamicArray<CollectableType>, JaggedCount>;
 
 template <typename CollectableType>

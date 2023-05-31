@@ -49,7 +49,7 @@ template <typename CollectableType, index_t TemplateLength>
 Array<CollectableType, TemplateLength>::Array(CollectableType(&array)[TemplateLength])
 	: Collection<CollectableType>(), m_Array{ CollectableType() }
 {
-	for (size_t index = 0; index < TemplateLength; index++)
+	for (index_t index = 0; index < TemplateLength; index++)
 		m_Array[index] = array[index];
 }
 
@@ -98,7 +98,7 @@ Array<CollectableType, TemplateLength>::operator CollectableType* ()
 template <typename CollectableType, index_t TemplateLength>
 Array<CollectableType, TemplateLength>& Array<CollectableType, TemplateLength>::operator=(const std::initializer_list<CollectableType> initializer)
 {
-	for (size_t index = 0; index < (TemplateLength < initializer.size() ? TemplateLength : initializer.size()); index++)
+	for (index_t index = 0; index < (TemplateLength < initializer.size() ? TemplateLength : initializer.size()); index++)
 		m_Array[index] = initializer.begin()[index];
 	return *this;
 }
