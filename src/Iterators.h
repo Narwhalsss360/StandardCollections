@@ -39,13 +39,6 @@ index_t GeneralIterator<CollectionType, DereferenceType>::index()
 }
 #pragma endregion
 
-#pragma region DereferencedIteration
-DereferencedIteration::DereferencedIteration(const bool defaulted)
-	: defaulted(defaulted)
-{
-}
-#pragma endregion
-
 #pragma region Enumeration
 template <typename ValueType>
 Enumeration<ValueType>::Enumeration(ValueType value)

@@ -23,4 +23,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)src\IteratorWrappers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\StandardCollections.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\DereferencedIteration.cpp" />
+  </ItemGroup>
 </Project>
