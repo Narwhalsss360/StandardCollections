@@ -6,6 +6,7 @@
 #ifdef ARDUINO
 #else
 #define initializer_list_supported
+#include <initializer_list>
 #endif
 
 typedef uint32_t index_t;
