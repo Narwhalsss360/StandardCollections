@@ -4,10 +4,30 @@
 #include <stdint.h>
 
 #ifdef ARDUINO
+
+#ifndef __collection_allocator__
+#define __collection_allocator__(type, count) new type[count]
+#endif
+
+#ifndef __collection_freer__
+#define __collection_freer__(identifier) delete[] identifier
+#endif
+
 #else
 #define initializer_list_supported
+
 #include <initializer_list>
+
+#ifndef __collection_allocator__
+#define __collection_allocator__(type, count) new type[count]
 #endif
+
+#ifndef __collection_freer__
+#define __collection_freer__(identifier) delete[] identifier
+#endif
+
+#endif
+
 
 typedef uint32_t index_t;
 typedef int64_t find_index_t;

@@ -112,20 +112,20 @@ void DynamicArray<CollectableType>::SetCapacity(index_t newCapacity)
 retry:
 	if (m_Array == nullptr)
 	{
-		m_Array = new CollectableType[newCapacity];
+		m_Array = __collection_allocator__(CollectableType, newCapacity);
 		if (m_Array != nullptr)
 			m_Capacity = newCapacity;
 		return;
 	}
 
-	CollectableType* newAllocation = new CollectableType[newCapacity];
+	CollectableType* newAllocation = __collection_allocator__(CollectableType, newCapacity);
 	if (newAllocation == nullptr)
 		goto retry;
 
 	for (index_t index = 0; index < (newCapacity < m_Length ? newCapacity : m_Length); index++)
 		newAllocation[index] = m_Array[index];
 
-	delete[] m_Array;
+	__collection_freer__(m_Array);
 	m_Array = newAllocation;
 
 	m_Capacity = newCapacity;
@@ -136,7 +136,7 @@ template <typename CollectableType>
 DynamicArray<CollectableType>::~DynamicArray()
 {
 	if (m_Array != nullptr)
-		delete[] m_Array;
+		__collection_freer__(m_Array);
 
 	m_Capacity = 0;
 	m_Length = 0;

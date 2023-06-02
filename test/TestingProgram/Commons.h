@@ -1,6 +1,10 @@
 #pragma once
 #include "TestProvider.h"
 //#include "..\..\src\LightCollection.h"
+
+#define __collection_allocator__(type, count) (type*)malloc(count * sizeof(type))
+#define __collection_freer__(identifier) free(identifier)
+
 #include "..\..\src\StandardCollections.h"
 
 constexpr int bomb_defusal_code_digits[] = { 7, 3, 5, 5, 6, 0, 8 };
