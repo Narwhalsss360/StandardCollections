@@ -7,8 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StandardCollections", "Stan
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{09931E67-F33A-4438-A5BA-9C40495DBC20}"
 	ProjectSection(SolutionItems) = preProject
-		lib\keywords.txt = lib\keywords.txt
-		lib\library.properties = lib\library.properties
+		keywords.txt = keywords.txt
+		library.properties = library.properties
 		lib\LibraryInfo.md = lib\LibraryInfo.md
 	EndProjectSection
 EndProject
@@ -34,11 +34,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arduino", "Arduino", "{4020
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arduino", "Arduino", "{94CDF3FF-7890-4977-B8B3-9550FF920990}"
 	ProjectSection(SolutionItems) = preProject
-		examples\Arduino\Arrays\Arrays.ino = examples\Arduino\Arrays\Arrays.ino
-		examples\Arduino\CArrays\CArrays.ino = examples\Arduino\CArrays\CArrays.ino
-		examples\Arduino\DynamicArrays\DynamicArrays.ino = examples\Arduino\DynamicArrays\DynamicArrays.ino
-		examples\Arduino\Iterators\Iterators.ino = examples\Arduino\Iterators\Iterators.ino
-		examples\Arduino\JaggedArrays\JaggedArrays.ino = examples\Arduino\JaggedArrays\JaggedArrays.ino
+		examples\ArduinoArrays\ArduinoArrays.ino = examples\ArduinoArrays\ArduinoArrays.ino
+		examples\ArduinoCArrays\ArduinoCArrays.ino = examples\ArduinoCArrays\ArduinoCArrays.ino
+		examples\ArduinoDynamicArrays\ArduinoDynamicArrays.ino = examples\ArduinoDynamicArrays\ArduinoDynamicArrays.ino
+		examples\ArduinoIterators\ArduinoIterators.ino = examples\ArduinoIterators\ArduinoIterators.ino
+		examples\ArduinoJaggedArrays\ArduinoJaggedArrays.ino = examples\ArduinoJaggedArrays\ArduinoJaggedArrays.ino
 	EndProjectSection
 EndProject
 Global
