@@ -98,11 +98,11 @@ void setup()
 
 	Serial.println();
 
-	Serial.print("The highest-place digit is ");
-	Serial.println(specialCode.First());
+	//Serial.print("The highest-place digit is "); <--- These won't work anymore! but atleast they're not hard to replicate.
+	//Serial.println(specialCode.First()); <--- These won't work anymore! but atleast they're not hard to replicate.
 
-	Serial.print("The lowest-place digit is ");
-	Serial.println(specialCode.Last());
+	//Serial.print("The lowest-place digit is "); <--- These won't work anymore! but atleast they're not hard to replicate.
+	//Serial.println(specialCode.Last()); <--- These won't work anymore! but atleast they're not hard to replicate.
 
 	Serial.print("There are ");
 	Serial.print(specialCode.Count(5));

@@ -5,3 +5,42 @@
 
 - Things To Check -
 -null reference is undefined behavior, check if it is not reliable enough.
+-ArduinoJaggedArrays example log message:
+	:Array.h:72:18: note: candidate 1: CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t) [with CollectableType = int; long unsigned int TemplateLength = 2; index_t = long unsigned int]
+ CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t index)
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ArduinoJaggedArrays.ino:34:47: note: candidate 2: operator[](int*, int) <built-in>
+         pinAndModeJagged[pinModeGroup.index][0] = pinModeGroup[0];
+                                               ^
+In file included from /StandardCollections.h:13:0,
+                 from examples\ArduinoJaggedArrays\ArduinoJaggedArrays.ino:1:
+/Array.h:72:18: note: candidate 1: CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t) [with CollectableType = int; long unsigned int TemplateLength = 2; index_t = long unsigned int]
+ CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t index)
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ArduinoJaggedArrays.ino:35:47: note: candidate 2: operator[](int*, int) <built-in>
+         pinAndModeJagged[pinModeGroup.index][1] = pinModeGroup[1];
+                                               ^
+In file included from StandardCollections.h:13:0,
+                 from examples\ArduinoJaggedArrays\ArduinoJaggedArrays.ino:1:
+Array.h:72:18: note: candidate 1: CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t) [with CollectableType = Array<Array<int, 2>, 3>; long unsigned int TemplateLength = 5; index_t = long unsigned int]
+ CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t index)
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+examples\ArduinoJaggedArrays\ArduinoJaggedArrays.ino:50:20: note: candidate 2: operator[](Array<Array<int, 2>, 3>*, int) <built-in>
+     mutiplyJagged[4][2][1] = 3;
+                    ^
+In file included from StandardCollections.h:13:0,
+                 from examples\ArduinoJaggedArrays\ArduinoJaggedArrays.ino:1:
+Array.h:72:18: note: candidate 1: CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t) [with CollectableType = Array<int, 2>; long unsigned int TemplateLength = 3; index_t = long unsigned int]
+ CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t index)
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+examples\ArduinoJaggedArrays\ArduinoJaggedArrays.ino:50:23: note: candidate 2: operator[](Array<int, 2>*, int) <built-in>
+     mutiplyJagged[4][2][1] = 3;
+                       ^
+In file included from StandardCollections.h:13:0,
+                 from examples\ArduinoJaggedArrays\ArduinoJaggedArrays.ino:1:
+Array.h:72:18: note: candidate 1: CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t) [with CollectableType = int; long unsigned int TemplateLength = 2; index_t = long unsigned int]
+ CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t index)
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+examples\ArduinoJaggedArrays\ArduinoJaggedArrays.ino:50:26: note: candidate 2: operator[](int*, int) <built-in>
+     mutiplyJagged[4][2][1] = 3;
+                          ^
