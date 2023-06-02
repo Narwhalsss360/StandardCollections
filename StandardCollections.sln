@@ -39,6 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arduino", "Arduino", "{94CD
 		examples\ArduinoDynamicArrays\ArduinoDynamicArrays.ino = examples\ArduinoDynamicArrays\ArduinoDynamicArrays.ino
 		examples\ArduinoIterators\ArduinoIterators.ino = examples\ArduinoIterators\ArduinoIterators.ino
 		examples\ArduinoJaggedArrays\ArduinoJaggedArrays.ino = examples\ArduinoJaggedArrays\ArduinoJaggedArrays.ino
+		examples\ArduinoLightCollection\ArduinoLightCollection.ino = examples\ArduinoLightCollection\ArduinoLightCollection.ino
 	EndProjectSection
 EndProject
 Global
