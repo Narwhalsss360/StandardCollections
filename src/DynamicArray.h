@@ -64,7 +64,10 @@ DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const Dy
 {
 	SetCapacity(other.Length());
 	SetLength(other.Length());
-	other.CopyTo(*this);
+
+	for (index_t i = 0; i < other.Length(); i++)
+		this->operator[](i) = other.operator[](i);
+
 	return *this;
 }
 
@@ -73,7 +76,8 @@ DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const Dy
 {
 	SetCapacity(other.Length());
 	SetLength(other.Length());
-	other.CopyTo(*this);
+	for (index_t i = 0; i < other.Length(); i++)
+		this->operator[](i) = other.operator[](i);
 
 	other.SetCapacity(0);
 	return *this;
