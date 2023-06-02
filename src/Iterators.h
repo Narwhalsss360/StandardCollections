@@ -1,10 +1,6 @@
 #ifndef Iterators_h
 #define Iterators_h
 
-#ifndef CollectionDeclarations_h //Means that this was included on its own.
-#define LightCollection_h
-#endif // !CollectionDeclarations_h
-
 #include "CollectionDeclarations.h"
 
 #pragma warning(disable: 4309)
