@@ -21,6 +21,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)src\DynamicCollection.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\Iterators.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\IteratorWrappers.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\LightCollection.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\StandardCollections.h" />
   </ItemGroup>
   <ItemGroup>

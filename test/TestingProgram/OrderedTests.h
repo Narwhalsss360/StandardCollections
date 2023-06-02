@@ -11,9 +11,13 @@ add_test(array_General_iterator);
 
 #include "CollectionToolsTest.h"
 add_test(finding_elements);
+#ifndef LightCollection_h
 add_test(for_each);
+#endif // !LightCollection_h
 add_test(comparators);
+#ifndef LightCollection_h
 add_test(slice);
+#endif // !LightCollection_h
 add_test(collection_casts);
 
 #include "DynamicArrayTest.h"

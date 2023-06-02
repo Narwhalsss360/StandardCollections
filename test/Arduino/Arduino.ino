@@ -64,11 +64,15 @@ void setup()
 
 #if TEST_GROUP == 2
     finding_elements();
+#ifndef LightCollection_h
     for_each();
+#endif
     comparators();
 #endif
 #if TEST_GROUP == 3
+#ifndef LightCollection_h
     slice();
+#endif
     collection_casts();
 #endif
 

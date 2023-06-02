@@ -43,5 +43,8 @@
     <ClInclude Include="TestProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LightCollectionTest.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

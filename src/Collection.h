@@ -45,6 +45,7 @@ GeneralIterator<const Collection<CollectableType>, const CollectableType&> Colle
 	return GeneralIterator<const Collection<CollectableType>, const CollectableType&>(*this, Length());
 }
 
+#ifndef LightCollection_h
 template <typename CollectableType>
 GeneralIterator<Collection<CollectableType>, CollectableType&> Collection<CollectableType>::begin()
 {
@@ -108,6 +109,7 @@ void Collection<CollectableType>::ForEach(ConstForEachIteratorPointer(Collectabl
 	for (index_t index = 0; index < Length(); ++index)
 		iterator(index, this->operator[](index));
 }
+#endif // !LightCollection_h
 
 template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::Find(const CollectableType& value) const
@@ -193,6 +195,7 @@ index_t Collection<CollectableType>::Count(bool (*comparator)(const CollectableT
 	return count;
 }
 
+#ifndef LightCollection_h
 template <typename CollectableType>
 DynamicArray<CollectableType> Collection<CollectableType>::Slice(index_t startIndex, find_index_t endIndex)
 {
@@ -218,6 +221,7 @@ void Collection<CollectableType>::MoveTo(Collection<CollectableType>& collection
 {
 	CopyTo(collection);
 }
+#endif // !LightCollection_h
 
 template <typename CollectableType>
 bool Collection<CollectableType>::operator==(const Collection<CollectableType>& other) const

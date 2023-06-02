@@ -46,6 +46,7 @@ void TestIfZero(const index_t, const int& number)
 	test_expect(number, 0);
 }
 
+#ifndef LightCollection_h
 test_function(for_each)
 {
 	Array<int, 5> inOrderNumbers = { 0, 1, 2, 3, 4, 5 };
@@ -53,6 +54,7 @@ test_function(for_each)
 	Array<int, 10> justNumbers;
 	inOrderNumbers.ForEach(SetToZero);
 }
+#endif // !LightCollection_h
 
 test_function(comparators)
 {
@@ -75,6 +77,7 @@ test_function(comparators)
 	test_expect(array1 >= array3, true);
 }
 
+#ifndef LightCollection_h
 test_function(slice)
 {
 	Array<int, 10> array;
@@ -92,6 +95,7 @@ test_function(slice)
 	for (auto enumeration : Enumerate(sliced2))
 		test_expect(enumeration.value, enumeration.index + 4);
 }
+#endif // !LightCollection_h
 
 ContainerC CastAToC(ContainerA& A)
 {

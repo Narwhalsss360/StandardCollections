@@ -220,7 +220,7 @@ public:
 	virtual inline GeneralIterator<const Collection<CollectableType>, const CollectableType&> begin() const;
 
 	virtual inline GeneralIterator<const Collection<CollectableType>, const CollectableType&> end() const;
-
+#ifndef LightCollection_h
 	virtual inline GeneralIterator<Collection<CollectableType>, CollectableType&> begin();
 
 	virtual inline GeneralIterator<Collection<CollectableType>, CollectableType&> end();
@@ -240,7 +240,7 @@ public:
 	virtual inline void ForEach(ForEachIteratorPointer(CollectableType, iterator));
 
 	virtual inline void ForEach(ConstForEachIteratorPointer(CollectableType, iterator)) const;
-
+#endif // LightCollection_h
 	virtual inline IndexValuePair<const CollectableType> Find(const CollectableType& value) const;
 
 	virtual inline IndexValuePair<const CollectableType> Find(const CollectableType&& value) const;
@@ -259,11 +259,13 @@ public:
 
 	virtual inline index_t Count(bool (*comparator)(const CollectableType&)) const;
 
+#ifndef LightCollection_h
 	virtual inline DynamicArray<CollectableType> Slice(index_t startIndex, find_index_t endIndex = -1);
 
 	virtual inline void CopyTo(Collection<CollectableType>& collection) const;
 
 	virtual inline void MoveTo(Collection<CollectableType>& collection) const;
+#endif // LightCollection_h
 
 	virtual inline bool operator==(const Collection<CollectableType>& other) const;
 
@@ -412,6 +414,7 @@ private:
 	index_t m_Length;
 };
 
+#ifndef LightCollection_h
 template <typename CollectableType, index_t JaggedCount, index_t JaggedLength>
 using Jagged = Array<Array<CollectableType, JaggedLength>, JaggedCount>;
 
@@ -423,5 +426,6 @@ using JaggedDynamic = Array<DynamicArray<CollectableType>, JaggedCount>;
 
 template <typename CollectableType>
 using DynamicJaggedDynamic = DynamicArray<DynamicArray<CollectableType>>;
+#endif // LightCollection_h
 #pragma endregion
 #endif // !CollectionDefenitions_h
