@@ -1,4 +1,6 @@
 - Things To Fix -
+-DynamicCollection<CollectableType>::Pop() Doesn't check for 0 length.
+
 -Fix forced copying of zip
 -Investigate the C4244 warnings.
 -Investigate the C4309 warnings.
