@@ -140,6 +140,7 @@
     <ClCompile Include="TestingProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AlgorithmTest.h" />
     <ClInclude Include="ArrayTest.h" />
     <ClInclude Include="CollectionToolsTest.h" />
     <ClInclude Include="Commons.h" />

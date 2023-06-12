@@ -46,5 +46,8 @@
     <ClInclude Include="LightCollectionTest.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
+    <ClInclude Include="AlgorithmTest.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -33,6 +33,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)src\LightCollection.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\CollectionAlgorithm.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\DereferencedIteration.cpp">

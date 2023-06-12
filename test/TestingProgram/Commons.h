@@ -2,8 +2,8 @@
 #include "TestProvider.h"
 //#include "..\..\src\LightCollection.h"
 
-#define __collection_allocator__(type, count) (type*)malloc(count * sizeof(type))
-#define __collection_freer__(identifier) free(identifier)
+//#define __collection_allocator__(type, count) (type*)malloc(count * sizeof(type)) //<- DynamicArray<Array<CollectableType, TemplateLength>>: Array<CollectableType, TemplateLength> Doesn't construct virtual function pointers with malloc.
+//#define __collection_freer__(identifier) free(identifier) //<- DynamicArray<Array<CollectableType, TemplateLength>>: Array<CollectableType, TemplateLength> Doesn't construct virtual function pointers with malloc.
 
 #include "..\..\src\StandardCollections.h"
 

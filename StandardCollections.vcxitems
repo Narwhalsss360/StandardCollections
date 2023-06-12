@@ -16,6 +16,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)src\Array.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\Collection.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\CollectionAlgorithm.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\CollectionDeclarations.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\DynamicArray.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\DynamicCollection.h" />
