@@ -121,3 +121,25 @@ test_function(collection_stdev)
 	double stdev = CollectionAlgorithm::StandardDeviation(numbers);
 	test_expect(int(stdev * 100000000000), int(expectedStdev * 100000000000)); //Round off
 }
+
+test_function(insertion_sort)
+{
+	Array<int, 8> intArray = { 54, 562, 2, 3, 54 ,7, 2, 9 };
+	Array<int, 8> sortedExpected = { 2, 2, 3, 7, 9, 54, 54, 562 };
+
+	CollectionAlgorithm::InsertionSort(intArray);
+
+	for (index_t i = 0; i < intArray.Length(); i++)
+		test_expect(intArray[i], sortedExpected[i]);
+}
+
+test_function(selection_sort)
+{
+	Array<int, 8> intArray = { 54, 562, 2, 3, 54 ,7, 2, 9 };
+	Array<int, 8> sortedExpected = { 2, 2, 3, 7, 9, 54, 54, 562 };
+
+	CollectionAlgorithm::SelectionSort(intArray);
+
+	for (index_t i = 0; i < intArray.Length(); i++)
+		test_expect(intArray[i], sortedExpected[i]);
+}

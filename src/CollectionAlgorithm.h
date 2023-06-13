@@ -67,6 +67,33 @@ namespace CollectionAlgorithm
 				if (reverse ? collection[iItemA] < collection[iItemB] : collection[iItemA] > collection[iItemB])
 					Swap(collection, iItemA, iItemB, false);
 	}
+
+	template <typename CollectableType>
+	void SelectionSort(Collection<CollectableType>& collection, bool reverse = false)
+	{
+		index_t len = collection.Length();
+
+		for (index_t iLowest = 0; iLowest < len; iLowest++)
+			for (index_t iItem = iLowest + 1; iItem < len; iItem++)
+				if (collection[iItem] < collection[iLowest])
+					Swap(collection, iItem, iLowest);
+	}
+
+	template <typename CollectableType>
+	void InsertionSort(Collection<CollectableType>& collection, bool reverse = false)
+	{
+		index_t len = collection.Length();
+		for (index_t iCollection = 0; iCollection < len; iCollection++)
+			for (index_t iItemA = iCollection, iItemB = iCollection - 1; iItemA >= 1; iItemA--, iItemB--)
+				if (reverse ? collection[iItemA] > collection[iItemB] : collection[iItemA] < collection[iItemB])
+					Swap(collection, iItemA - 1, iItemA);
+	}
+
+	template <typename CollectableType>
+	void Sort(Collection<CollectableType>& collection, void (*sorter)(Collection<CollectableType>&, bool), bool reverse = false)
+	{
+		sorter(collection, reverse);
+	}
 	#pragma endregion
 
 	#pragma region Math

@@ -42,3 +42,5 @@ add_test(collection_prime_factors);
 add_test(collection_lcm);
 add_test(collection_gcd);
 add_test(collection_stdev);
+add_test(insertion_sort);
+add_test(selection_sort);
