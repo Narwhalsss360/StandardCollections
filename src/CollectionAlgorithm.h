@@ -160,7 +160,86 @@ namespace CollectionAlgorithm
 
 		return factors;
 	}
+
+	template <typename CollectableType>
+	DynamicArray<CollectableType> PrimeFactors(CollectableType number)
+	{
+		DynamicArray<CollectableType> primeFactors = DynamicArray<CollectableType>();
+		CollectableType divisor = 2;
+
+		number = abs(number);
+
+		while (number > 1)
+		{
+			if (number % divisor == 0)
+			{
+				primeFactors += divisor;
+				number /= divisor;
+				continue;
+			}
+			divisor++;
+		}
+
+		return primeFactors;
+	}
+
+	template <typename CollectableType>
+	CollectableType LCM(Collection<CollectableType>& collection)
+	{
+		auto primesWithExponents = DynamicArray<Array<int, 2>>();
+		for (CollectableType& number : collection)
+		{
+			DynamicArray<CollectableType> primeFactors = PrimeFactors(number);
+			for (auto& factor : primeFactors)
+			{
+				find_index_t indexOfPair = -1;
+				for (auto enumeration : Enumerate(primesWithExponents))
+				{
+					if (enumeration.value[0] == factor)
+					{
+						indexOfPair = enumeration.index;
+						break;
+					}
+				}
+
+				if (indexOfPair == -1)
+				{
+					Array<int, 2> factorWithExponent = Array<int, 2>();
+					factorWithExponent[0] = factor;
+					factorWithExponent[1] = 1;
+					primesWithExponents.Push(factorWithExponent);
+				}
+				else
+				{
+					index_t countOfFactor = primeFactors.Count(factor);
+					if (countOfFactor > primesWithExponents[indexOfPair][1])
+						primesWithExponents[indexOfPair][1] = countOfFactor;
+				}
+			}
+		}
+
+		CollectableType lcm = 1;
+		for (auto& factorWithExponent : primesWithExponents)
+			lcm *= pow(factorWithExponent[0], factorWithExponent[1]);
+
+		return lcm;
+	}
+
+	template <typename CollectableType>
+	CollectableType GCD(Collection<CollectableType>& collection)
+	{
+		return Product(collection) / LCM(collection);
+	}
 	#pragma region Statistics
+	template <typename CollectableType>
+	CollectableType StandardDeviation(Collection<CollectableType>& collection, bool population = false)
+	{
+		CollectableType summation = 0;
+		CollectableType average = Average(collection);
+		for (auto& number : collection)
+			summation += pow(number - average, 2);
+		return sqrt(summation / (population ? collection.Length() : collection.Length() - 1));
+	}
 	#pragma endregion
 	#pragma endregion
 }

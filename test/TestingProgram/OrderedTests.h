@@ -30,7 +30,7 @@ add_test(general_iteration);
 #include "AlgorithmTest.h"
 add_test(reverse);
 add_test(unique);
-add_test(buuble_sort);
+add_test(bubble_sort);
 add_test(collection_min);
 add_test(collection_max);
 add_test(collection_product);
@@ -38,3 +38,7 @@ add_test(collection_sum);
 add_test(collection_average);
 add_test(collection_median);
 add_test(collection_factors);
+add_test(collection_prime_factors);
+add_test(collection_lcm);
+add_test(collection_gcd);
+add_test(collection_stdev);

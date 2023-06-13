@@ -18,7 +18,7 @@ test_function(unique)
 	test_expect(uniqueItems, uniqueItemsExpected);
 }
 
-test_function(buuble_sort)
+test_function(bubble_sort)
 {
 	Array<int, 8> intArray = { 54, 562, 2, 3, 54 ,7, 2, 9 };
 	Array<int, 8> sortedExpected = { 2, 2, 3, 7, 9, 54, 54, 562 };
@@ -89,4 +89,35 @@ test_function(collection_factors)
 	};
 
 	test_expect(factors, expectedFactors);
+}
+
+test_function(collection_prime_factors)
+{
+	auto primeFactors = CollectionAlgorithm::PrimeFactors(20);
+	Array<int, 3> expectedPrimeFactors = { 2, 2, 5 };
+	test_expect(primeFactors, expectedPrimeFactors);
+}
+
+test_function(collection_lcm)
+{
+	Array<int, 2> numbers = { 15, 20 };
+	int expectedLCM = 60;
+	int lcm = CollectionAlgorithm::LCM(numbers);
+	test_expect(lcm, expectedLCM);
+}
+
+test_function(collection_gcd)
+{
+	Array<int, 2> numbers = { 15, 20 };
+	int expectedGCD = 5;
+	int GCD = CollectionAlgorithm::GCD(numbers);
+	test_expect(GCD, expectedGCD);
+}
+
+test_function(collection_stdev)
+{
+	Array<double, 3> numbers = { 1, 3, 4 };
+	double expectedStdev = 1.52752523165;
+	double stdev = CollectionAlgorithm::StandardDeviation(numbers);
+	test_expect(int(stdev * 100000000000), int(expectedStdev * 100000000000)); //Round off
 }
