@@ -7,7 +7,11 @@
 
 namespace CollectionAlgorithm
 {
-	constexpr bool SortReversed = true;
+#pragma region Argument Constant Expressions
+	constexpr bool SortOrderReversed = true;
+	constexpr bool SortOrderNormal = true;
+#pragma endregion
+
 	#pragma region General Operations
 	//Shift left, and right.
 	template <typename CollectableType>
