@@ -7,6 +7,7 @@
 
 namespace CollectionAlgorithm
 {
+	constexpr bool SortReversed = true;
 	#pragma region General Operations
 	//Shift left, and right.
 	template <typename CollectableType>
@@ -15,6 +16,9 @@ namespace CollectionAlgorithm
 		if (safe)
 			if (a >= collection.Length() || b >= collection.Length())
 				return;
+
+		if (a == b)
+			return;
 
 		CollectableType aCopy = collection[a];
 		collection[a] = collection[b];
@@ -52,7 +56,7 @@ namespace CollectionAlgorithm
 
 	#pragma region Sorting
 	template <typename CollectableType>
-	void BubbleSort(Collection<CollectableType>& collection)
+	void BubbleSort(Collection<CollectableType>& collection, bool reverse = false)
 	{
 		index_t len = collection.Length();
 		if (len <= 1)
@@ -60,7 +64,7 @@ namespace CollectionAlgorithm
 
 		for (index_t iCollection = 0; iCollection < len; iCollection++)
 			for (index_t iItemA = 0, iItemB = 1; iItemA < len - iCollection - 1; iItemA++, iItemB++)
-				if (collection[iItemA] > collection[iItemB])
+				if (reverse ? collection[iItemA] < collection[iItemB] : collection[iItemA] > collection[iItemB])
 					Swap(collection, iItemA, iItemB, false);
 	}
 	#pragma endregion
