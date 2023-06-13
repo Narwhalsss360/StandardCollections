@@ -58,6 +58,48 @@ namespace CollectionAlgorithm
 	}
 	#pragma endregion
 
+#pragma region List Operations
+	template <typename CollectableType>
+	DynamicArray<CollectableType> Union(Collection<CollectableType>& collectionA, Collection<CollectableType>& collectionB)
+	{
+		DynamicArray<CollectableType> unionItems = DynamicArray<CollectableType>();
+		for (auto& item : collectionA)
+					unionItems += item;
+		for (auto& item : collectionB)
+			if (unionItems.Find(item).index == -1)
+				unionItems += item;
+		return unionItems;
+	}
+
+	template <typename CollectableType>
+	DynamicArray<CollectableType> Intersection(Collection<CollectableType>& collectionA, Collection<CollectableType>& collectionB)
+	{
+		DynamicArray<CollectableType> intersectionItems = DynamicArray<CollectableType>();
+		for (auto& item : collectionA)
+			if (collectionB.Find(item).index != -1)
+				intersectionItems += item;
+		return intersectionItems;
+	}
+
+	template <typename CollectableTypeIn, typename CollectableTypeOut>
+	DynamicArray<CollectableTypeOut> CastTo(Collection<CollectableTypeIn>& collection)
+	{
+		DynamicArray<CollectableTypeOut> castedCollection = DynamicArray<CollectableTypeOut>();
+		for (auto& input : collection)
+			castedCollection += (CollectableTypeOut)input;
+		return castedCollection
+	}
+
+	template <typename CollectableTypeIn, typename CollectableTypeOut>
+	DynamicArray<CollectableTypeOut> CastTo(Collection<CollectableTypeIn>& collection, CollectableTypeOut (*castFunction)(CollectableTypeIn&))
+	{
+		DynamicArray<CollectableTypeOut> castedCollection = DynamicArray<CollectableTypeOut>();
+		for (auto& input : collection)
+			castedCollection += castFunction(input);
+		return castedCollection
+	}
+#pragma endregion
+
 	#pragma region Sorting
 	template <typename CollectableType>
 	void BubbleSort(Collection<CollectableType>& collection, bool reverse = false)
