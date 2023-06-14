@@ -80,24 +80,6 @@ namespace CollectionAlgorithm
 				intersectionItems += item;
 		return intersectionItems;
 	}
-
-	template <typename CollectableTypeIn, typename CollectableTypeOut>
-	DynamicArray<CollectableTypeOut> CastTo(Collection<CollectableTypeIn>& collection)
-	{
-		DynamicArray<CollectableTypeOut> castedCollection = DynamicArray<CollectableTypeOut>();
-		for (auto& input : collection)
-			castedCollection += (CollectableTypeOut)input;
-		return castedCollection
-	}
-
-	template <typename CollectableTypeIn, typename CollectableTypeOut>
-	DynamicArray<CollectableTypeOut> CastTo(Collection<CollectableTypeIn>& collection, CollectableTypeOut (*castFunction)(CollectableTypeIn&))
-	{
-		DynamicArray<CollectableTypeOut> castedCollection = DynamicArray<CollectableTypeOut>();
-		for (auto& input : collection)
-			castedCollection += castFunction(input);
-		return castedCollection
-	}
 #pragma endregion
 
 	#pragma region Sorting
