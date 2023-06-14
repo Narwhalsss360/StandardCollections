@@ -44,3 +44,5 @@ add_test(collection_gcd);
 add_test(collection_stdev);
 add_test(insertion_sort);
 add_test(selection_sort);
+add_test(collection_union);
+add_test(collection_intersect);

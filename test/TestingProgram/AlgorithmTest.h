@@ -143,3 +143,19 @@ test_function(selection_sort)
 	for (index_t i = 0; i < intArray.Length(); i++)
 		test_expect(intArray[i], sortedExpected[i]);
 }
+
+test_function(collection_union)
+{
+	Array<int, 3> a = { 2, 3, 4 }, b = { 4, 5, 6 };
+	Array<int, 5> expextedUnion = { 2, 3, 4, 5, 6 };
+	auto aob = CollectionAlgorithm::Union(a, b);
+	test_expect(aob, expextedUnion);
+}
+
+test_function(collection_intersect)
+{
+	Array<int, 3> a = { 2, 3, 4 }, b = { 4, 5, 6 };
+	Array<int, 1> expextedIntersection = { 4 };
+	auto aab = CollectionAlgorithm::Intersection(a, b);
+	test_expect(aab, expextedIntersection);
+}
