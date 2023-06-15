@@ -13,22 +13,22 @@ test_function(finding_elements)
 	auto finding1 = array.Find(4);
 	test_expect(finding1.valid, true);
 	test_expect(finding1.index, 4);
-	test_expect(finding1.value, 4);
+	test_expect(*finding1.value, 4);
 
 	auto finding2 = array.Find(is4);
 	test_expect(finding2.valid, true);
 	test_expect(finding2.index, 4);
-	test_expect(finding2.value, 4);
+	test_expect(*finding2.value, 4);
 
 	auto finding3 = array.Find(8);
 	test_expect(finding3.valid, true);
 	test_expect(finding3.index, 8);
-	test_expect(finding3.value, 8);
+	test_expect(*finding3.value, 8);
 
 	auto finding4 = array.FindLast(8);
 	test_expect(finding4.valid, true);
 	test_expect(finding4.index, 9);
-	test_expect(finding4.value, 8);
+	test_expect(*finding4.value, 8);
 }
 
 void TestIfValueIsIndex(const index_t index, const int& value)

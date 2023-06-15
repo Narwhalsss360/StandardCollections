@@ -49,5 +49,8 @@
     <ClInclude Include="AlgorithmTest.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
+    <ClInclude Include="DetachedTests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

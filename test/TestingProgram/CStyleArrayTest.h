@@ -11,8 +11,8 @@ test_function(c_style_general_iterate)
 
 			test_expect(static_array_length(int, bomb_defusal_code), 7);
 
-			auto bomb_defusal_code_begin_general_iterator = GeneralIterator<int[static_array_length(int, bomb_defusal_code)], int&>(bomb_defusal_code, 0);
-			auto bomb_defusal_code_end_general_iterator = GeneralIterator<int[static_array_length(int, bomb_defusal_code)], int&>(bomb_defusal_code, static_array_length(int, bomb_defusal_code));
+			auto bomb_defusal_code_begin_general_iterator = GeneralIterator<int[static_array_length(int, bomb_defusal_code)], int&>(&bomb_defusal_code, 0);
+			auto bomb_defusal_code_end_general_iterator = GeneralIterator<int[static_array_length(int, bomb_defusal_code)], int&>(&bomb_defusal_code, static_array_length(int, bomb_defusal_code));
 			int expectedIndex = 0;
 			for (;
 				bomb_defusal_code_begin_general_iterator != bomb_defusal_code_end_general_iterator;
@@ -25,7 +25,7 @@ test_function(c_style_general_iterate)
 		}
 
 		{ /*Testing iterables*/
-			auto bomb_defusal_iterable = GeneralIterable<int[7], GeneralIterator<int[7], int&>>(bomb_defusal_code, 0, 7);
+			auto bomb_defusal_iterable = GeneralIterable<int[7], GeneralIterator<int[7], int&>>(&bomb_defusal_code, 0, 7);
 
 			int expectedIndex = 0;
 			for (auto& num : bomb_defusal_iterable)
@@ -49,8 +49,8 @@ test_function(c_style_enumerate)
 	int bomb_defusal_code[7] = { 7 ,3, 5, 5, 6, 0, 8 };
 
 	{ /*Testing Iterators*/
-		auto enumeration_iterator_begin = EnumerationIterator<int[7], int&>(bomb_defusal_code, 0);
-		auto enumeration_iterator_end = EnumerationIterator<int[7], int&>(bomb_defusal_code, 7);
+		auto enumeration_iterator_begin = EnumerationIterator<int[7], int&>(&bomb_defusal_code, 0);
+		auto enumeration_iterator_end = EnumerationIterator<int[7], int&>(&bomb_defusal_code, 7);
 
 		size_t expectedIndex = 0;
 		for (; enumeration_iterator_begin != enumeration_iterator_end;
@@ -64,7 +64,7 @@ test_function(c_style_enumerate)
 	}
 
 	{ /*Testing Iterables*/
-		auto enumeration_iterable = GeneralIterable<int[7], EnumerationIterator<int[7], int&>>(bomb_defusal_code, 0, 7);
+		auto enumeration_iterable = GeneralIterable<int[7], EnumerationIterator<int[7], int&>>(&bomb_defusal_code, 0, 7);
 		size_t expectedIndex = 0;
 		for (auto enumeration : enumeration_iterable)
 		{
@@ -108,8 +108,8 @@ test_function(c_style_zip)
 		test_expect(y_values[index], f(x_values[index]));
 
 	{ /*Testing Iterators*/
-		auto zip_begin = ZipIterator<int[5], int>(x_values, y_values, 0);
-		auto zip_end = ZipIterator<int[5], int>(x_values, y_values, 5);
+		auto zip_begin = ZipIterator<int[5], int>(&x_values, &y_values, 0);
+		auto zip_end = ZipIterator<int[5], int>(&x_values, &y_values, 5);
 
 		test_expect(zip_begin.m_Defaulted, false);
 		test_expect(zip_end.m_Defaulted, false);
@@ -127,7 +127,7 @@ test_function(c_style_zip)
 	}
 
 	{ /*Testing Iterables*/
-		auto zip_iterable = ZipIterable<int[5], int>(x_values, y_values, 0, 5);
+		auto zip_iterable = ZipIterable<int[5], int>(&x_values, &y_values, 0, 5);
 		
 		size_t expectedIndex = 0;
 		for (auto zipping : zip_iterable)

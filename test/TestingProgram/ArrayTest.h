@@ -28,7 +28,7 @@ test_function(array_General_iterator)
 {
 	Array<int, 7> bomb_defusal_code = { 7, 3, 5, 5, 6, 0, 8 };
 
-	auto iterable = GeneralIterable<Collection<int>, GeneralIterator<Collection<int>, int&>>(bomb_defusal_code, 0, 7);
+	auto iterable = GeneralIterable<Collection<int>, GeneralIterator<Collection<int>, int&>>(&bomb_defusal_code, 0, 7);
 
 	index_t expectedIndex = 0;
 	for (auto& digit : iterable)

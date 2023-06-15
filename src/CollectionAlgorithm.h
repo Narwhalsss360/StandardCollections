@@ -130,9 +130,9 @@ namespace CollectionAlgorithm
 	{
 		index_t len = collection.Length();
 		if (len == 0)
-			return IndexValuePair<CollectableType>(nullref(CollectableType), -1, false);
+			return IndexValuePair<CollectableType>(nullptr, -1, false);
 		if (len == 1)
-			return IndexValuePair<CollectableType>(collection[0], 0, true);
+			return IndexValuePair<CollectableType>(&collection[0], 0, true);
 
 		index_t leastIndex = 0;
 		CollectableType& leastValue = collection[0];
@@ -143,7 +143,7 @@ namespace CollectionAlgorithm
 				leastIndex = enumeration.index;
 				leastValue = enumeration.value;
 			}
-		return IndexValuePair<CollectableType>(leastValue, leastIndex, true);
+		return IndexValuePair<CollectableType>(&leastValue, leastIndex, true);
 	}
 
 	template <typename CollectableType>
@@ -151,9 +151,9 @@ namespace CollectionAlgorithm
 	{
 		index_t len = collection.Length();
 		if (len == 0)
-			return IndexValuePair<CollectableType>(nullref(CollectableType), -1, false);
+			return IndexValuePair<CollectableType>(nullptr, -1, false);
 		if (len == 1)
-			return IndexValuePair<CollectableType>(collection[0], 0, true);
+			return IndexValuePair<CollectableType>(&collection[0], 0, true);
 
 		index_t leastIndex = 0;
 		CollectableType& leastValue = collection[0];
@@ -164,7 +164,7 @@ namespace CollectionAlgorithm
 				leastIndex = enumeration.index;
 				leastValue = enumeration.value;
 			}
-		return IndexValuePair<CollectableType>(leastValue, leastIndex, true);
+		return IndexValuePair<CollectableType>(&leastValue, leastIndex, true);
 	}
 
 	template <typename CollectableType>

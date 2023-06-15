@@ -1,6 +1,7 @@
 #include <iostream>
 #include "TestProvider.h"
 #include "OrderedTests.h"
+#include "DetachedTests.h"
 
 using std::cout;
 

@@ -28,12 +28,8 @@
 
 #endif
 
-
 typedef uint32_t index_t;
 typedef int64_t find_index_t;
-
-#define nullref(T) (*(T*)nullptr)
-#define is_nullref(expr) (&expr == nullptr)
 
 #define safe_index(index, Length) (Length == 0 ? 0 : (index % Length))
 #define static_array_length(type, identifier) (sizeof(identifier) / sizeof(type))
@@ -92,7 +88,7 @@ template <typename CollectionType, typename DereferenceType>
 class GeneralIterator
 {
 public:
-	GeneralIterator(CollectionType& collection, const index_t index);
+	GeneralIterator(CollectionType* const collection, const index_t index);
 
 	virtual bool operator!=(GeneralIterator& other);
 
@@ -103,7 +99,7 @@ public:
 	virtual index_t index();
 
 protected:
-	CollectionType& m_Collection;
+	CollectionType* const m_Collection;
 	index_t m_CurrentIndex;
 };
 
@@ -131,7 +127,7 @@ template <typename CollectionType, typename ValueType>
 class EnumerationIterator : public GeneralIterator<CollectionType, Enumeration<ValueType>>
 {
 public:
-	EnumerationIterator(CollectionType& collection, const index_t index);
+	EnumerationIterator(CollectionType* const collection, const index_t index);
 
 	Enumeration<ValueType> operator*() override;
 };
@@ -152,9 +148,9 @@ template <typename CollectionType, typename Zipped1ValueType, typename Zipped2Va
 class ZipIterator : public GeneralIterator<CollectionType, Zipping<Zipped1ValueType, Zipped2ValueType>>
 {
 public:
-	ZipIterator(CollectionType& collection, const index_t index);
+	ZipIterator(CollectionType* const collection, const index_t index);
 
-	ZipIterator(CollectionType& collection, Collection2Type& collection2, const index_t index);
+	ZipIterator(CollectionType* const collection, Collection2Type* const collection2, const index_t index);
 
 	Zipping<Zipped1ValueType, Zipped2ValueType> operator*();
 
@@ -162,7 +158,7 @@ public:
 	const bool m_Defaulted;
 
 protected:
-	Collection2Type& m_Collection2;
+	Collection2Type* const m_Collection2;
 };
 #pragma endregion
 
@@ -171,14 +167,14 @@ template <typename CollectionType, typename Iterator>
 class GeneralIterable
 {
 public:
-	GeneralIterable(CollectionType& collection, const index_t beginIndex, const index_t endIndex);
+	GeneralIterable(CollectionType* const collection, const index_t beginIndex, const index_t endIndex);
 
 	virtual Iterator begin() const;
 
 	virtual Iterator end() const;
 
 protected:
-	CollectionType& m_Collection;
+	CollectionType* const m_Collection;
 	const index_t m_BeginIndex, m_EndIndex;
 };
 
@@ -201,14 +197,14 @@ template <typename CollectionType, typename Zipped1ValueType, typename Zipped2Va
 class ZipIterable : public GeneralIterable<CollectionType, ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>>
 {
 public:
-	ZipIterable(CollectionType& collection, Collection2Type& collection2, const index_t beginIndex, const index_t endIndex);
+	ZipIterable(CollectionType* const collection, Collection2Type* const collection2, const index_t beginIndex, const index_t endIndex);
 
 	ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> begin() const override;
 
 	ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> end() const override;
 
 protected:
-	Collection2Type& m_Collection2;
+	Collection2Type* const m_Collection2;
 };
 #pragma endregion
 
@@ -218,11 +214,11 @@ struct IndexValuePair
 {
 	IndexValuePair();
 
-	IndexValuePair(ValueType& value, find_index_t index, bool valid = false);
+	IndexValuePair(ValueType* value, find_index_t index, bool valid = false);
 
 	operator ValueType& ();
 
-	ValueType& value;
+	ValueType* value;
 	const find_index_t index;
 	const bool valid;
 };

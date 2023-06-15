@@ -14,15 +14,15 @@ IndexValuePair<ValueType>::IndexValuePair()
 }
 
 template <typename ValueType>
-IndexValuePair<ValueType>::IndexValuePair(ValueType& value, find_index_t index, bool valid)
-	: value(value), index(index), valid(valid)
+IndexValuePair<ValueType>::IndexValuePair(ValueType* value, find_index_t index, bool valid)
+	: value(value), index(index), valid(value != nullptr)
 {
 }
 
 template <typename ValueType>
 IndexValuePair<ValueType>::operator ValueType&()
 {
-	return value;
+	return *value;
 }
 #pragma endregion
 
@@ -36,26 +36,26 @@ index_t Collection<CollectableType>::Length() const
 template <typename CollectableType>
 GeneralIterator<const Collection<CollectableType>, const CollectableType&> Collection<CollectableType>::begin() const
 {
-	return GeneralIterator<const Collection<CollectableType>, const CollectableType&>(*this, 0);
+	return GeneralIterator<const Collection<CollectableType>, const CollectableType&>(this, 0);
 }
 
 template <typename CollectableType>
 GeneralIterator<const Collection<CollectableType>, const CollectableType&> Collection<CollectableType>::end() const
 {
-	return GeneralIterator<const Collection<CollectableType>, const CollectableType&>(*this, Length());
+	return GeneralIterator<const Collection<CollectableType>, const CollectableType&>(this, Length());
 }
 
 #ifndef LightCollection_h
 template <typename CollectableType>
 GeneralIterator<Collection<CollectableType>, CollectableType&> Collection<CollectableType>::begin()
 {
-	return GeneralIterator<Collection<CollectableType>, CollectableType&>(*this, 0);
+	return GeneralIterator<Collection<CollectableType>, CollectableType&>(this, 0);
 }
 
 template <typename CollectableType>
 GeneralIterator<Collection<CollectableType>, CollectableType&> Collection<CollectableType>::end()
 {
-	return GeneralIterator<Collection<CollectableType>, CollectableType&>(*this, Length());
+	return GeneralIterator<Collection<CollectableType>, CollectableType&>(this, Length());
 }
 
 template <typename CollectableType>
@@ -116,8 +116,8 @@ IndexValuePair<const CollectableType> Collection<CollectableType>::Find(const Co
 {
 	for (find_index_t index = 0; index < this->Length(); index++)
 		if (this->operator[](index) == value)
-			return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
-	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
+			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
+	return IndexValuePair<const CollectableType>(nullptr, -1, false);
 }
 
 template <typename CollectableType>
@@ -125,8 +125,8 @@ IndexValuePair<const CollectableType> Collection<CollectableType>::Find(const Co
 {
 	for (find_index_t index = 0; index < this->Length(); index++)
 		if (this->operator[](index) == value)
-			return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
-	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
+			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
+	return IndexValuePair<const CollectableType>(nullptr, -1, false);
 }
 
 template <typename CollectableType>
@@ -134,8 +134,8 @@ IndexValuePair<const CollectableType> Collection<CollectableType>::Find(Comparat
 {
 	for (find_index_t index = 0; index < this->Length(); index++)
 		if (comparator(this->operator[](index)))
-			return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
-	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
+			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
+	return IndexValuePair<const CollectableType>(nullptr, -1, false);
 }
 
 template <typename CollectableType>
@@ -143,8 +143,8 @@ IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(cons
 {
 	for (find_index_t index = this->Length() - 1; index >= 0; index--)
 		if (this->operator[](index) == value)
-			return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
-	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
+			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
+	return IndexValuePair<const CollectableType>(nullptr, -1, false);
 }
 
 template <typename CollectableType>
@@ -152,8 +152,8 @@ IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(cons
 {
 	for (find_index_t index = this->Length() - 1; index >= 0; index--)
 		if (this->operator[](index) == value)
-			return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
-	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
+			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
+	return IndexValuePair<const CollectableType>(nullptr, -1, false);
 }
 
 template <typename CollectableType>
@@ -161,8 +161,8 @@ IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(Comp
 {
 	for (find_index_t index = this->Length() - 1; index >= 0; index--)
 		if (comparator(this->operator[](index)))
-			return IndexValuePair<const CollectableType>(this->operator[](index), index, true);
-	return IndexValuePair<const CollectableType>(nullref(CollectableType), -1, false);
+			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
+	return IndexValuePair<const CollectableType>(nullptr, -1, false);
 }
 
 template <typename CollectableType>
