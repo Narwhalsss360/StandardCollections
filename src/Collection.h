@@ -130,10 +130,10 @@ IndexValuePair<const CollectableType> Collection<CollectableType>::Find(const Co
 }
 
 template <typename CollectableType>
-IndexValuePair<const CollectableType> Collection<CollectableType>::Find(ComparatorFunctionPointer(const CollectableType, comparator)) const
+IndexValuePair<const CollectableType> Collection<CollectableType>::Find(PredicateFunctionPointer(const CollectableType, predicate)) const
 {
 	for (find_index_t index = 0; index < this->Length(); index++)
-		if (comparator(this->operator[](index)))
+		if (predicate(this->operator[](index)))
 			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
 	return IndexValuePair<const CollectableType>(nullptr, -1, false);
 }
@@ -157,10 +157,10 @@ IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(cons
 }
 
 template <typename CollectableType>
-IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(ComparatorFunctionPointer(const CollectableType, comparator)) const
+IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(PredicateFunctionPointer(const CollectableType, predicate)) const
 {
 	for (find_index_t index = this->Length() - 1; index >= 0; index--)
-		if (comparator(this->operator[](index)))
+		if (predicate(this->operator[](index)))
 			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
 	return IndexValuePair<const CollectableType>(nullptr, -1, false);
 }
@@ -186,7 +186,7 @@ index_t Collection<CollectableType>::Count(const CollectableType&& value) const
 }
 
 template <typename CollectableType>
-index_t Collection<CollectableType>::Count(bool (*comparator)(const CollectableType&)) const
+index_t Collection<CollectableType>::Count(PredicateFunctionPointer(const CollectableType, predicate)) const
 {
 	index_t count = 0;
 	for (index_t index = 0; index < this->Length(); index++)

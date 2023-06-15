@@ -40,8 +40,8 @@ typedef int64_t find_index_t;
 #define ForEachIteratorPointer(type, name) void(*name)(const index_t, type&)
 #define ConstForEachIteratorPointer(type, name) void(*name)(const index_t, const type&)
 
-#define ComparatorFunction(type, name) bool name(type& item)
-#define ComparatorFunctionPointer(type, name) bool (*name)(type&)
+#define PredicateFunction(type, name) bool name(type& item)
+#define PredicateFunctionPointer(type, name) bool (*name)(type&)
 
 #pragma region Forward Declarations
 template <typename CollectionType, typename DereferenceType>
@@ -261,19 +261,19 @@ public:
 
 	virtual inline IndexValuePair<const CollectableType> Find(const CollectableType&& value) const;
 
-	virtual inline IndexValuePair<const CollectableType> Find(ComparatorFunctionPointer(const CollectableType, comparator)) const;
+	virtual inline IndexValuePair<const CollectableType> Find(PredicateFunctionPointer(const CollectableType, predicate)) const;
 
 	virtual inline IndexValuePair<const CollectableType> FindLast(const CollectableType& value) const;
 
 	virtual inline IndexValuePair<const CollectableType> FindLast(const CollectableType&& value) const;
 
-	virtual inline IndexValuePair<const CollectableType> FindLast(ComparatorFunctionPointer(const CollectableType, comparator)) const;
+	virtual inline IndexValuePair<const CollectableType> FindLast(PredicateFunctionPointer(const CollectableType, predicate)) const;
 
 	virtual inline index_t Count(const CollectableType& value) const;
 
 	virtual inline index_t Count(const CollectableType&& value) const;
 
-	virtual inline index_t Count(bool (*comparator)(const CollectableType&)) const;
+	virtual inline index_t Count(PredicateFunctionPointer(const CollectableType, predicate)) const;
 
 #ifndef LightCollection_h
 	virtual inline DynamicArray<CollectableType> Slice(index_t startIndex, find_index_t endIndex = -1);
