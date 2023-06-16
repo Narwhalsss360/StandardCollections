@@ -27,6 +27,7 @@ test_function(array_instantiation)
 test_function(array_General_iterator)
 {
 	Array<int, 7> bomb_defusal_code = { 7, 3, 5, 5, 6, 0, 8 };
+	const auto& const_reference__bomb_defusal_code = bomb_defusal_code;
 
 	auto iterable = GeneralIterable<Collection<int>, GeneralIterator<Collection<int>, int&>>(&bomb_defusal_code, 0, 7);
 
@@ -45,6 +46,13 @@ test_function(array_General_iterator)
 	}
 
 	expectedIndex = 0;
+	for (auto& digit : Iterate(const_reference__bomb_defusal_code))
+	{
+		test_expect(digit, bomb_defusal_code_digits[expectedIndex]);
+		expectedIndex++;
+	}
+
+	expectedIndex = 0;
 	for (auto digit : Enumerate(bomb_defusal_code))
 	{
 		test_expect(digit.defaulted, false);
@@ -53,10 +61,30 @@ test_function(array_General_iterator)
 		expectedIndex++;
 	}
 
+	expectedIndex = 0;
+	for (auto digit : Enumerate(const_reference__bomb_defusal_code))
+	{
+		test_expect(digit.defaulted, false);
+		test_expect(digit.index, expectedIndex);
+		test_expect(digit, bomb_defusal_code_digits[expectedIndex]);
+		expectedIndex++;
+	}
+
 	Array<int, 7> bomb_defusal_code_backwards = { 8, 0, 6, 5, 5, 3, 7 };
+	const auto& const_ref__bomb_defusal_code_backwards = bomb_defusal_code_backwards;
 
 	expectedIndex = 0;
 	for (auto zipping : Zip(bomb_defusal_code, bomb_defusal_code_backwards))
+	{
+		test_expect(zipping.defaulted, false);
+		test_expect(zipping.index, expectedIndex);
+		test_expect(zipping.value1, bomb_defusal_code[expectedIndex]);
+		test_expect(zipping.value2, bomb_defusal_code_backwards[expectedIndex]);
+		expectedIndex++;
+	}
+
+	expectedIndex = 0;
+	for (auto zipping : Zip(const_reference__bomb_defusal_code, const_ref__bomb_defusal_code_backwards))
 	{
 		test_expect(zipping.defaulted, false);
 		test_expect(zipping.index, expectedIndex);
