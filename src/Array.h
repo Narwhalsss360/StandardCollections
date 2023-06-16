@@ -18,14 +18,7 @@ Array<CollectableType, TemplateLength>::Array()
 }
 
 template <typename CollectableType, index_t TemplateLength>
-Array<CollectableType, TemplateLength>::Array(CollectableType& fill)
-	: Collection<CollectableType>(), m_Array{ CollectableType() }
-{
-	FillCStyleArray(m_Array, fill);
-}
-
-template <typename CollectableType, index_t TemplateLength>
-Array<CollectableType, TemplateLength>::Array(CollectableType&& fill)
+Array<CollectableType, TemplateLength>::Array(const CollectableType& fill)
 	: Collection<CollectableType>(), m_Array{ CollectableType() }
 {
 	FillCStyleArray(m_Array, fill);

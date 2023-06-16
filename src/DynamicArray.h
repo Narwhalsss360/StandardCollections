@@ -71,18 +71,6 @@ DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const Dy
 	return *this;
 }
 
-template <typename CollectableType>
-DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const DynamicArray<CollectableType>&& other)
-{
-	SetCapacity(other.Length());
-	SetLength(other.Length());
-	for (index_t i = 0; i < other.Length(); i++)
-		this->operator[](i) = other.operator[](i);
-
-	other.SetCapacity(0);
-	return *this;
-}
-
 #ifdef initializer_list_supported
 template <typename CollectableType>
 DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const std::initializer_list<CollectableType>& initializers)

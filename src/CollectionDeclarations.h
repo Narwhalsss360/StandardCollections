@@ -243,8 +243,6 @@ public:
 
 	virtual inline void Fill(const CollectableType& value);
 
-	virtual inline void Fill(const CollectableType&& value);
-
 	virtual inline CollectableType& First();
 
 	virtual inline const CollectableType& First() const;
@@ -259,19 +257,13 @@ public:
 #endif // LightCollection_h
 	virtual inline IndexValuePair<const CollectableType> Find(const CollectableType& value) const;
 
-	virtual inline IndexValuePair<const CollectableType> Find(const CollectableType&& value) const;
-
 	virtual inline IndexValuePair<const CollectableType> Find(PredicateFunctionPointer(const CollectableType, predicate)) const;
 
 	virtual inline IndexValuePair<const CollectableType> FindLast(const CollectableType& value) const;
 
-	virtual inline IndexValuePair<const CollectableType> FindLast(const CollectableType&& value) const;
-
 	virtual inline IndexValuePair<const CollectableType> FindLast(PredicateFunctionPointer(const CollectableType, predicate)) const;
 
 	virtual inline index_t Count(const CollectableType& value) const;
-
-	virtual inline index_t Count(const CollectableType&& value) const;
 
 	virtual inline index_t Count(PredicateFunctionPointer(const CollectableType, predicate)) const;
 
@@ -300,47 +292,31 @@ template <typename CollectableType>
 class DynamicCollection : public Collection<CollectableType>
 {
 public:
-	virtual inline void Push(CollectableType&& item);
+	virtual inline void Push(const CollectableType& item);
 
-	virtual inline void Push(CollectableType& item);
-
-	virtual inline void Push(Collection<CollectableType>&& collection);
-
-	virtual inline void Push(Collection<CollectableType>& collection);
+	virtual inline void Push(const Collection<CollectableType>& collection);
 
 	virtual inline CollectableType Pop(bool shrink = false);
 
-	virtual inline void Insert(index_t index, CollectableType&& item);
+	virtual inline void Insert(index_t index, const CollectableType& item);
 
-	virtual inline void Insert(index_t index, CollectableType& item);
+	virtual inline void Insert(index_t index, const Collection<CollectableType>& collection);
 
-	virtual inline void Insert(index_t index, Collection<CollectableType>&& collection);
+	virtual inline void Unshift(const CollectableType& item);
 
-	virtual inline void Insert(index_t index, Collection<CollectableType>& collection);
-
-	virtual inline void Unshift(CollectableType&& item);
-
-	virtual inline void Unshift(CollectableType& item);
-
-	virtual inline void Unshift(Collection<CollectableType>&& collection);
-
-	virtual inline void Unshift(Collection<CollectableType>& collection);
+	virtual inline void Unshift(const Collection<CollectableType>& collection);
 
 	virtual inline CollectableType Shift(bool shrink = false);
 
 	virtual inline void Remove(index_t index, find_index_t count = -1, bool shrink = false);
 
-	virtual inline void Join(Collection<CollectableType>& collection);
+	virtual inline void Join(const Collection<CollectableType>& collection);
 
 	virtual inline index_t Capacity() const = 0;
 
-	virtual inline DynamicCollection<CollectableType>& operator+=(CollectableType& item);
+	virtual inline DynamicCollection<CollectableType>& operator+=(const CollectableType& item);
 
-	virtual inline DynamicCollection<CollectableType>& operator+=(CollectableType&& item);
-
-	virtual inline DynamicCollection<CollectableType>& operator+=(Collection<CollectableType>& item);
-
-	virtual inline DynamicCollection<CollectableType>& operator+=(Collection<CollectableType>&& item);
+	virtual inline DynamicCollection<CollectableType>& operator+=(const Collection<CollectableType>& item);
 
 protected:
 	virtual void SetLength(index_t newLength) = 0;
@@ -354,9 +330,7 @@ class Array : public Collection<CollectableType>
 public:
 	Array();
 
-	Array(CollectableType& fill);
-
-	Array(CollectableType&& fill);
+	Array(const CollectableType& fill);
 
 	Array(const Array& other);
 
@@ -410,8 +384,6 @@ public:
 	const CollectableType& operator[](const index_t index) const;
 
 	inline DynamicArray<CollectableType>& operator=(const DynamicArray<CollectableType>& other);
-
-	inline DynamicArray<CollectableType>& operator=(const DynamicArray<CollectableType>&& other);
 
 #ifdef initializer_list_supported
 	DynamicArray<CollectableType>& operator=(const std::initializer_list<CollectableType>& initializers);

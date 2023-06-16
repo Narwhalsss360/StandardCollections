@@ -4,25 +4,13 @@
 #include "CollectionDeclarations.h"
 
 template <typename CollectableType>
-void DynamicCollection<CollectableType>::Push(CollectableType&& item)
-{
-	Insert((this->Length() ? this->Length(): 0), item);
-}
-
-template <typename CollectableType>
-void DynamicCollection<CollectableType>::Push(CollectableType& item)
+void DynamicCollection<CollectableType>::Push(const CollectableType& item)
 {
 	Insert((this->Length() ? this->Length() : 0), item);
 }
 
 template <typename CollectableType>
-void DynamicCollection<CollectableType>::Push(Collection<CollectableType>&& collection)
-{
-	Insert((this->Length() ? this->Length() : 0), collection);
-}
-
-template <typename CollectableType>
-void DynamicCollection<CollectableType>::Push(Collection<CollectableType>& collection)
+void DynamicCollection<CollectableType>::Push(const Collection<CollectableType>& collection)
 {
 	Insert((this->Length() ? this->Length(): 0), collection);
 }
@@ -41,7 +29,7 @@ CollectableType DynamicCollection<CollectableType>::Pop(bool shrink)
 }
 
 template <typename CollectableType>
-void DynamicCollection<CollectableType>::Insert(index_t index, CollectableType&& item)
+void DynamicCollection<CollectableType>::Insert(index_t index, const CollectableType& item)
 {
 	if (this->Length() >= this->Capacity())
 		SetCapacity(this->Length() + 1);
@@ -54,20 +42,7 @@ void DynamicCollection<CollectableType>::Insert(index_t index, CollectableType&&
 }
 
 template <typename CollectableType>
-void DynamicCollection<CollectableType>::Insert(index_t index, CollectableType& item)
-{
-	if (this->Length() >= this->Capacity())
-		SetCapacity(this->Length() + 1);
-
-	SetLength(this->Length() + 1);
-	for (find_index_t iIndex = this->Length() - 1; iIndex > index; iIndex--)
-		this->operator[](iIndex) = this->operator[](iIndex - 1);
-
-	this->operator[](index) = item;
-}
-
-template <typename CollectableType>
-void DynamicCollection<CollectableType>::Insert(index_t index, Collection<CollectableType>&& collection)
+void DynamicCollection<CollectableType>::Insert(index_t index, const Collection<CollectableType>& collection)
 {
 	if (Capacity() < this->Length() + collection.Length())
 		SetCapacity(this->Length() + collection.Length());
@@ -77,35 +52,13 @@ void DynamicCollection<CollectableType>::Insert(index_t index, Collection<Collec
 }
 
 template <typename CollectableType>
-void DynamicCollection<CollectableType>::Insert(index_t index, Collection<CollectableType>& collection)
-{
-	if (Capacity() < this->Length() + collection.Length())
-		SetCapacity(this->Length() + collection.Length());
-
-	for (index_t collectionIndex = 0; collectionIndex < collection.Length(); collectionIndex++)
-		this->Insert(index + collectionIndex, collection[collectionIndex]);
-}
-
-template <typename CollectableType>
-void DynamicCollection<CollectableType>::Unshift(CollectableType&& item)
+void DynamicCollection<CollectableType>::Unshift(const CollectableType& item)
 {
 	Insert(0, item);
 }
 
 template <typename CollectableType>
-void DynamicCollection<CollectableType>::Unshift(CollectableType& item)
-{
-	Insert(0, item);
-}
-
-template <typename CollectableType>
-void DynamicCollection<CollectableType>::Unshift(Collection<CollectableType>&& collection)
-{
-	Insert(0, collection);
-}
-
-template <typename CollectableType>
-void DynamicCollection<CollectableType>::Unshift(Collection<CollectableType>& collection)
+void DynamicCollection<CollectableType>::Unshift(const Collection<CollectableType>& collection)
 {
 	Insert(0, collection);
 }
@@ -142,34 +95,20 @@ void DynamicCollection<CollectableType>::Remove(index_t index, find_index_t coun
 }
 
 template <typename CollectableType>
-void DynamicCollection<CollectableType>::Join(Collection<CollectableType>& collection)
+void DynamicCollection<CollectableType>::Join(const Collection<CollectableType>& collection)
 {
 	Insert(this->Length(), collection);
 }
 
 template <typename CollectableType>
-DynamicCollection<CollectableType>& DynamicCollection<CollectableType>::operator+=(CollectableType& item)
+DynamicCollection<CollectableType>& DynamicCollection<CollectableType>::operator+=(const CollectableType& item)
 {
 	Push(item);
 	return *this;
 }
 
 template <typename CollectableType>
-DynamicCollection<CollectableType>& DynamicCollection<CollectableType>::operator+=(CollectableType&& item)
-{
-	Push(item);
-	return *this;
-}
-
-template <typename CollectableType>
-DynamicCollection<CollectableType>& DynamicCollection<CollectableType>::operator+=(Collection<CollectableType>& item)
-{
-	Push(item);
-	return *this;
-}
-
-template <typename CollectableType>
-DynamicCollection<CollectableType>& DynamicCollection<CollectableType>::operator+=(Collection<CollectableType>&& item)
+DynamicCollection<CollectableType>& DynamicCollection<CollectableType>::operator+=(const Collection<CollectableType>& item)
 {
 	Push(item);
 	return *this;

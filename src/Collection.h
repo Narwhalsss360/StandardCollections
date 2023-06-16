@@ -66,13 +66,6 @@ void Collection<CollectableType>::Fill(const CollectableType& value)
 }
 
 template <typename CollectableType>
-void Collection<CollectableType>::Fill(const CollectableType&& value)
-{
-	for (index_t index = 0; index < this->Length(); index++)
-		this->operator[](index) = value;
-}
-
-template <typename CollectableType>
 CollectableType& Collection<CollectableType>::First()
 {
 	return this->operator[](0);
@@ -121,15 +114,6 @@ IndexValuePair<const CollectableType> Collection<CollectableType>::Find(const Co
 }
 
 template <typename CollectableType>
-IndexValuePair<const CollectableType> Collection<CollectableType>::Find(const CollectableType&& value) const
-{
-	for (find_index_t index = 0; index < this->Length(); index++)
-		if (this->operator[](index) == value)
-			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
-	return IndexValuePair<const CollectableType>(nullptr, -1, false);
-}
-
-template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::Find(PredicateFunctionPointer(const CollectableType, predicate)) const
 {
 	for (find_index_t index = 0; index < this->Length(); index++)
@@ -148,15 +132,6 @@ IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(cons
 }
 
 template <typename CollectableType>
-IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(const CollectableType&& value) const
-{
-	for (find_index_t index = this->Length() - 1; index >= 0; index--)
-		if (this->operator[](index) == value)
-			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
-	return IndexValuePair<const CollectableType>(nullptr, -1, false);
-}
-
-template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(PredicateFunctionPointer(const CollectableType, predicate)) const
 {
 	for (find_index_t index = this->Length() - 1; index >= 0; index--)
@@ -167,16 +142,6 @@ IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(Pred
 
 template <typename CollectableType>
 index_t Collection<CollectableType>::Count(const CollectableType& value) const
-{
-	index_t count = 0;
-	for (index_t index = 0; index < this->Length(); index++)
-		if (this->operator[](index) == value)
-			count++;
-	return count;
-}
-
-template <typename CollectableType>
-index_t Collection<CollectableType>::Count(const CollectableType&& value) const
 {
 	index_t count = 0;
 	for (index_t index = 0; index < this->Length(); index++)
