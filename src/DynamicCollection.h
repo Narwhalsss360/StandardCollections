@@ -6,13 +6,13 @@
 template <typename CollectableType>
 void DynamicCollection<CollectableType>::Push(const CollectableType& item)
 {
-	Insert((this->Length() ? this->Length() : 0), item);
+	Insert(this->Length(), item);
 }
 
 template <typename CollectableType>
 void DynamicCollection<CollectableType>::Push(const Collection<CollectableType>& collection)
 {
-	Insert((this->Length() ? this->Length(): 0), collection);
+	Insert(this->Length(), collection);
 }
 
 template <typename CollectableType>
