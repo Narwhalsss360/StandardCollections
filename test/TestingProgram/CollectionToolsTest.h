@@ -144,7 +144,7 @@ test_function(collection_casts)
 
 	Array<ContainerA, 3> aTypeCasted;
 
-	CastCollection(cTypeArray, aTypeCasted);
+	CastCollection<ContainerC, ContainerA>(cTypeArray, aTypeCasted);
 
 	test_expect(aTypeCasted[0].number, -1);
 	test_expect(aTypeCasted[1].number, -2);
@@ -157,4 +157,12 @@ test_function(collection_casts)
 	test_expect(bTypeCasted[0].precision, 0);
 	test_expect(bTypeCasted[1].precision, -1);
 	test_expect(bTypeCasted[2].precision, 2);
+
+	ContainerA ATypeCArray[3] = { ContainerA(0), ContainerA(1), ContainerA(2) };
+	ContainerB BTypeCArrayCasted[3];
+	CastCollection<ContainerA, ContainerB>(ATypeCArray, BTypeCArrayCasted, CastAToB);
+
+	test_expect(BTypeCArrayCasted[0].precision, 0);
+	test_expect(BTypeCArrayCasted[1].precision, 1);
+	test_expect(BTypeCArrayCasted[2].precision, 2);
 }
