@@ -84,6 +84,15 @@ namespace CollectionAlgorithm
 
 	#pragma region Sorting
 	template <typename CollectableType>
+	bool IsSorted(const Collection<CollectableType>& collection)
+	{
+		for (index_t iCurrent = 0, iNext = 1; iNext < collection.Length(); iCurrent++, iNext++)
+			if (collection[iCurrent] > collection[iNext])
+				return false;
+		return true;
+	}
+
+	template <typename CollectableType>
 	void BubbleSort(Collection<CollectableType>& collection, bool reverse = false)
 	{
 		index_t len = collection.Length();

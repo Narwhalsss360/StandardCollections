@@ -23,6 +23,9 @@ test_function(bubble_sort)
 	Array<int, 8> intArray = { 54, 562, 2, 3, 54 ,7, 2, 9 };
 	Array<int, 8> sortedExpected = { 2, 2, 3, 7, 9, 54, 54, 562 };
 
+	test_expect(CollectionAlgorithm::IsSorted(intArray), false);
+	test_expect(CollectionAlgorithm::IsSorted(sortedExpected), true);
+
 	CollectionAlgorithm::BubbleSort(intArray);
 
 	for (index_t i = 0; i < intArray.Length(); i++)
