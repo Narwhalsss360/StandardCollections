@@ -7,10 +7,10 @@
 
 namespace CollectionAlgorithm
 {
-#pragma region Argument Constant Expressions
+	#pragma region Argument Constant Expressions
 	constexpr bool SortOrderReversed = true;
 	constexpr bool SortOrderNormal = true;
-#pragma endregion
+	#pragma endregion
 
 	#pragma region General Operations
 	//Shift left, and right.
@@ -46,11 +46,11 @@ namespace CollectionAlgorithm
 	}
 
 	template <typename CollectableType>
-	DynamicArray<CollectableType> unique(Collection<CollectableType>& collection)
+	DynamicArray<CollectableType> unique(const Collection<CollectableType>& collection)
 	{
 		DynamicArray<CollectableType> uniqueItems = DynamicArray<CollectableType>();
 
-		for (CollectableType& item : Iterate(collection))
+		for (const CollectableType& item : Iterate(collection))
 			if (uniqueItems.Find(item).index == -1)
 				uniqueItems.Push(item);
 
@@ -58,9 +58,9 @@ namespace CollectionAlgorithm
 	}
 	#pragma endregion
 
-#pragma region List Operations
+	#pragma region List Operations
 	template <typename CollectableType>
-	DynamicArray<CollectableType> Union(Collection<CollectableType>& collectionA, Collection<CollectableType>& collectionB)
+	DynamicArray<CollectableType> Union(const Collection<CollectableType>& collectionA, const Collection<CollectableType>& collectionB)
 	{
 		DynamicArray<CollectableType> unionItems = DynamicArray<CollectableType>();
 		for (auto& item : collectionA)
@@ -72,7 +72,7 @@ namespace CollectionAlgorithm
 	}
 
 	template <typename CollectableType>
-	DynamicArray<CollectableType> Intersection(Collection<CollectableType>& collectionA, Collection<CollectableType>& collectionB)
+	DynamicArray<CollectableType> Intersection(const Collection<CollectableType>& collectionA, const Collection<CollectableType>& collectionB)
 	{
 		DynamicArray<CollectableType> intersectionItems = DynamicArray<CollectableType>();
 		for (auto& item : collectionA)
@@ -80,7 +80,7 @@ namespace CollectionAlgorithm
 				intersectionItems += item;
 		return intersectionItems;
 	}
-#pragma endregion
+	#pragma endregion
 
 	#pragma region Sorting
 	template <typename CollectableType>
@@ -118,7 +118,7 @@ namespace CollectionAlgorithm
 	}
 
 	template <typename CollectableType>
-	void Sort(Collection<CollectableType>& collection, void (*sorter)(Collection<CollectableType>&, bool), bool reverse = false)
+	void Sort(Collection<CollectableType>& collection, void (*sorter)(Collection<CollectableType>&, bool) = InsertionSort, bool reverse = false)
 	{
 		sorter(collection, reverse);
 	}
@@ -126,16 +126,16 @@ namespace CollectionAlgorithm
 
 	#pragma region Math
 	template <typename CollectableType>
-	IndexValuePair<CollectableType> Min(Collection<CollectableType>& collection)
+	IndexValuePair<const CollectableType> Min(const Collection<CollectableType>& collection)
 	{
 		index_t len = collection.Length();
 		if (len == 0)
-			return IndexValuePair<CollectableType>(nullptr, -1, false);
+			return IndexValuePair<const CollectableType>(nullptr, -1, false);
 		if (len == 1)
-			return IndexValuePair<CollectableType>(&collection[0], 0, true);
+			return IndexValuePair<const CollectableType>(&collection[0], 0, true);
 
 		index_t leastIndex = 0;
-		CollectableType& leastValue = collection[0];
+		CollectableType& leastValue = (CollectableType&)collection[0];
 
 		for (auto enumeration : Enumerate(collection))
 			if (enumeration.value < leastValue)
@@ -143,20 +143,20 @@ namespace CollectionAlgorithm
 				leastIndex = enumeration.index;
 				leastValue = enumeration.value;
 			}
-		return IndexValuePair<CollectableType>(&leastValue, leastIndex, true);
+		return IndexValuePair<const CollectableType>(&leastValue, leastIndex, true);
 	}
 
 	template <typename CollectableType>
-	IndexValuePair<CollectableType> Max(Collection<CollectableType>& collection)
+	IndexValuePair<const CollectableType> Max(const Collection<CollectableType>& collection)
 	{
 		index_t len = collection.Length();
 		if (len == 0)
-			return IndexValuePair<CollectableType>(nullptr, -1, false);
+			return IndexValuePair<const CollectableType>(nullptr, -1, false);
 		if (len == 1)
-			return IndexValuePair<CollectableType>(&collection[0], 0, true);
+			return IndexValuePair<const CollectableType>(&collection[0], 0, true);
 
 		index_t leastIndex = 0;
-		CollectableType& leastValue = collection[0];
+		CollectableType& leastValue = (CollectableType&)collection[0];
 
 		for (auto enumeration : Enumerate(collection))
 			if (enumeration.value > leastValue)
@@ -164,29 +164,29 @@ namespace CollectionAlgorithm
 				leastIndex = enumeration.index;
 				leastValue = enumeration.value;
 			}
-		return IndexValuePair<CollectableType>(&leastValue, leastIndex, true);
+		return IndexValuePair<const CollectableType>(&leastValue, leastIndex, true);
 	}
 
 	template <typename CollectableType>
-	CollectableType Sum(Collection<CollectableType>& collection)
+	CollectableType Sum(const Collection<CollectableType>& collection)
 	{
 		CollectableType sum = 0;
-		for (CollectableType& number : Iterate(collection))
+		for (const CollectableType& number : Iterate(collection))
 			sum += number;
 		return sum;
 	}
 
 	template <typename CollectableType>
-	CollectableType Product(Collection<CollectableType>& collection)
+	CollectableType Product(const Collection<CollectableType>& collection)
 	{
 		CollectableType productResult = 1;
-		for (CollectableType& number : Iterate(collection))
+		for (const CollectableType& number : Iterate(collection))
 			productResult *= number;
 		return productResult;
 	}
 
 	template <typename CollectableType>
-	CollectableType Average(Collection<CollectableType>& collection)
+	CollectableType Average(const Collection<CollectableType>& collection)
 	{
 		if (collection.Length() == 0)
 			return 0;
@@ -194,7 +194,7 @@ namespace CollectionAlgorithm
 	}
 
 	template <typename CollectableType>
-	CollectableType Median(Collection<CollectableType>& collection)
+	CollectableType Median(const Collection<CollectableType>& collection)
 	{
 		index_t len = collection.Length();
 		if (len == 0)
@@ -243,10 +243,10 @@ namespace CollectionAlgorithm
 	}
 
 	template <typename CollectableType>
-	CollectableType LCM(Collection<CollectableType>& collection)
+	CollectableType LCM(const Collection<CollectableType>& collection)
 	{
 		auto primesWithExponents = DynamicArray<Array<int, 2>>();
-		for (CollectableType& number : collection)
+		for (const CollectableType& number : collection)
 		{
 			DynamicArray<CollectableType> primeFactors = PrimeFactors(number);
 			for (auto& factor : primeFactors)
@@ -285,17 +285,17 @@ namespace CollectionAlgorithm
 	}
 
 	template <typename CollectableType>
-	CollectableType GCD(Collection<CollectableType>& collection)
+	CollectableType GCD(const Collection<CollectableType>& collection)
 	{
 		return Product(collection) / LCM(collection);
 	}
 	#pragma region Statistics
 	template <typename CollectableType>
-	CollectableType StandardDeviation(Collection<CollectableType>& collection, bool population = false)
+	CollectableType StandardDeviation(const Collection<CollectableType>& collection, bool population = false)
 	{
 		CollectableType summation = 0;
 		CollectableType average = Average(collection);
-		for (auto& number : collection)
+		for (const CollectableType& number : collection)
 			summation += pow(number - average, 2);
 		return sqrt(summation / (population ? collection.Length() : collection.Length() - 1));
 	}

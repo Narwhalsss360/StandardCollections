@@ -4,6 +4,7 @@
 #include "DetachedTests.h"
 
 using std::cout;
+using std::cin;
 
 void RunTests()
 {
@@ -13,7 +14,9 @@ void RunTests()
 		test();
 	}
 
-	test_standard_output_write("Tests done.");
+	cout << "Tests done.\n";
+	cout << "Press enter to exit.";
+	cin.get();
 }
 
 int main()

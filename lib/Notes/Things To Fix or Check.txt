@@ -1,9 +1,6 @@
 - Things To Fix -
 -DynamicCollection<CollectableType>::Pop() Doesn't check for 0 length.
 
--null reference is undefined behavior, check if it is not reliable enough.
-    Change all references to pointers, arguments can still pass references, but default is null pointer.
-
 -Easier use Collection<CollectableType>&
 
 -Fix forced copying of zip
@@ -13,6 +10,8 @@
 -Investigate the C4309 warnings.
 
 - Things To Check -
+-Casting away const, CollectionAlgorithm.h 138, 159.
+
 -ArduinoJaggedArrays example log message:
 	:Array.h:72:18: note: candidate 1: CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t) [with CollectableType = int; long unsigned int TemplateLength = 2; index_t = long unsigned int]
  CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t index)
