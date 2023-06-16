@@ -5,7 +5,7 @@ template <typename CollectionType, typename ReturnType>
 ReturnType GetSumOfCollection(const CollectionType* const collection, size_t size = sizeof(CollectionType))
 {
 	ReturnType sum = 0;
-	for (size_t i = 0; i < size; i++)
+	for (index_t i = 0; i < size; i++)
 		sum += (*collection)[i];
 	return sum;
 }

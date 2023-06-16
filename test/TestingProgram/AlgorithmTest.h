@@ -6,7 +6,7 @@ test_function(reverse)
 	Array<int, 5> intArray = { 0, 1, 2, 3, 4 };
 	auto intArrayOriginal = intArray;
 	CollectionAlgorithm::Reverse(intArray);
-	for (size_t i = 0, ir = intArray.Length() - 1; i < intArray.Length(); i++, ir--)
+	for (index_t i = 0, ir = intArray.Length() - 1; i < intArray.Length(); i++, ir--)
 		test_expect(intArray[ir], intArrayOriginal[i]);
 }
 
