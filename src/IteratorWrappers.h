@@ -17,6 +17,12 @@ GeneralIterable<Collection<CollectableType>, GeneralIterator<Collection<Collecta
 	return GeneralIterable<Collection<CollectableType>, GeneralIterator<Collection<CollectableType>, CollectableType&>>(&collection, 0, collection.Length());
 }
 
+template <typename CollectableType>
+GeneralIterable<const Collection<CollectableType>, GeneralIterator<const Collection<CollectableType>, const CollectableType&>> Iterate(const Collection<CollectableType>& collection)
+{
+	return GeneralIterable<const Collection<CollectableType>, GeneralIterator<const Collection<CollectableType>, const CollectableType&>>(&collection, 0, collection.Length());
+}
+
 template <typename CollectionType, typename DereferenceType>
 GeneralIteratorWrapper<GeneralIterator<CollectionType, DereferenceType>> Iterate(GeneralIterator<CollectionType, DereferenceType> begin, GeneralIterator<CollectionType, DereferenceType> end)
 {
@@ -37,6 +43,12 @@ GeneralIterable<Collection<CollectableType>, EnumerationIterator<Collection<Coll
 	return GeneralIterable<Collection<CollectableType>, EnumerationIterator<Collection<CollectableType>, CollectableType&>>(&collection, 0, collection.Length());
 }
 
+template <typename CollectableType>
+GeneralIterable<const Collection<CollectableType>, EnumerationIterator<const Collection<CollectableType>, const CollectableType&>> Enumerate(const Collection<CollectableType>& collection)
+{
+	return GeneralIterable<const Collection<CollectableType>, EnumerationIterator<const Collection<CollectableType>, const CollectableType&>>(&collection, 0, collection.Length());
+}
+
 template <typename CollectionType, typename DereferenceType>
 GeneralIteratorWrapper<EnumerationIterator<CollectionType, DereferenceType>> Enumerate(EnumerationIterator<CollectionType, DereferenceType> begin, EnumerationIterator<CollectionType, DereferenceType> end)
 {
@@ -46,21 +58,27 @@ GeneralIteratorWrapper<EnumerationIterator<CollectionType, DereferenceType>> Enu
 
 #pragma region Zip
 template <typename CStyleArrayType1, typename CStyleArrayType2 = CStyleArrayType1, index_t Array1Length = sizeof(CStyleArrayType1), index_t Array2Length = sizeof(CStyleArrayType2)>
-inline ZipIterable<CStyleArrayType1[Array1Length], CStyleArrayType1, CStyleArrayType2, CStyleArrayType2[Array2Length]> Zip(CStyleArrayType1(&array1)[Array1Length], CStyleArrayType2(&array2)[Array2Length])
+inline ZipIterable<CStyleArrayType1[Array1Length], CStyleArrayType1&, CStyleArrayType2&, CStyleArrayType2[Array2Length]> Zip(CStyleArrayType1(&array1)[Array1Length], CStyleArrayType2(&array2)[Array2Length])
 {
-	return ZipIterable<CStyleArrayType1[Array1Length], CStyleArrayType1, CStyleArrayType2, CStyleArrayType2[Array2Length]>(&array1, &array2, 0, (Array1Length < Array2Length) ? Array1Length : Array2Length);
+	return ZipIterable<CStyleArrayType1[Array1Length], CStyleArrayType1&, CStyleArrayType2&, CStyleArrayType2[Array2Length]>(&array1, &array2, 0, (Array1Length < Array2Length) ? Array1Length : Array2Length);
 }
 
 template <typename CollectableType, typename CollectableType2>
-ZipIterable<Collection<CollectableType>, CollectableType, CollectableType2, Collection<CollectableType2>> Zip(Collection<CollectableType>& collection1, Collection<CollectableType2>& collection2)
+ZipIterable<Collection<CollectableType>, CollectableType&, CollectableType2&, Collection<CollectableType2>> Zip(Collection<CollectableType>& collection1, Collection<CollectableType2>& collection2)
 {
-	return ZipIterable<Collection<CollectableType>, CollectableType, CollectableType2, Collection<CollectableType2>>(&collection1, &collection2, 0, (collection1.Length() < collection2.Length()) ? collection1.Length() : collection2.Length());
+	return ZipIterable<Collection<CollectableType>, CollectableType&, CollectableType2&, Collection<CollectableType2>>(&collection1, &collection2, 0, (collection1.Length() < collection2.Length()) ? collection1.Length() : collection2.Length());
+}
+
+template <typename CollectableType, typename CollectableType2>
+ZipIterable<const Collection<CollectableType>, const CollectableType&, const CollectableType2&, const Collection<CollectableType2>> Zip(const Collection<CollectableType>& collection1, const Collection<CollectableType2>& collection2)
+{
+	return ZipIterable<const Collection<CollectableType>, const CollectableType&, const CollectableType2&, const Collection<CollectableType2>>(&collection1, &collection2, 0, (collection1.Length() < collection2.Length()) ? collection1.Length() : collection2.Length());
 }
 
 template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
-GeneralIteratorWrapper<ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>> Zip(ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> begin, ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> end)
+GeneralIteratorWrapper<ZipIterator<CollectionType, Zipped1ValueType&, Zipped2ValueType&, Collection2Type>> Zip(ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> begin, ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> end)
 {
-	return GeneralIteratorWrapper<ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>>(begin, end);
+	return GeneralIteratorWrapper<ZipIterator<CollectionType, Zipped1ValueType&, Zipped2ValueType&, Collection2Type>>(begin, end);
 }
 #pragma endregion
 #endif // !IteratorWrapper_h
