@@ -190,7 +190,7 @@ index_t Collection<CollectableType>::Count(PredicateFunctionPointer(const Collec
 {
 	index_t count = 0;
 	for (index_t index = 0; index < this->Length(); index++)
-		if (comparator(this->operator[](index)))
+		if (predicate(this->operator[](index)))
 			count++;
 	return count;
 }
