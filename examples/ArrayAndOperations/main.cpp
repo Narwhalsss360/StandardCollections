@@ -64,9 +64,74 @@ void castingArrays()
 	//CastCollection<double, unsigned int>(real, natural, userDefinedCaster); //<- Use this to define how the types are casted.
 
 	cout << "Real | Natural\n";
-	for (const auto& z : ZipIterable<Collection<double>, double, unsigned int, Collection<unsigned int>>(&real, &natural, 0, 2))
+
+	for (const auto& z : ZipIterable<Collection<double>, double, unsigned int, Collection<unsigned int>>(&real, &natural, 0, 2)) //Zip() doesnt currently work on differing types
+	//                               ^                   ^       ^             ^                         ^      ^         ^  ^
+	//                       Type of collection 1   col 1 type col 2 type  Type of collection         col1ptr col2ptr  start end
+	{
 		cout << z.value1 << " | " << z.value2 << '\n';
+	}
 	cout << '\n';
+}
+
+void safelyIndexing()
+{
+	index_t index = 3360; //Clearly out of bounds...
+	cout << "index: " << index << '\n';
+	index = SafeIndex(index, CollectionLength(fib)); //With the length, the index is ran through modulo operator to make sure index is not out of bounds.
+	cout << "index: " << index << '\n';
+}
+
+//Linear function
+double f(double x)
+{
+	return sqrt(2 * x);
+}
+
+//Linear function, output is just a reference parameter.
+void f_out(const index_t x, double& y)
+{
+	y = f(x);
+}
+
+//Prints number with index. const to promise not to change it, for compatability with non-const or const Array.
+void printWithIndex(const index_t x, const double& y)
+{
+	cout << '[' << x << "]:" << y << '\n';
+}
+
+void forEachIteration()
+{
+	Array<double, 10> functionValues;
+	functionValues.ForEach(f_out);
+	cout << "Function values:\n";
+	functionValues.ForEach(printWithIndex);
+}
+
+//Prints number with index. const to promise not to change it, for compatability with non-const or const Array.
+void printWithIndex(const index_t x, const char& y)
+{
+	//Prints character, else ascii number
+	if (y > '0')
+		cout << '[' << x << "]:" << y << '\n';
+	else
+		cout << '[' << x << "]: ASCII " << (int)y << '\n';
+}
+
+void finding()
+{
+	char cstr[36] = "My null terminated(szType) c string";
+	Array<char, 36> stringBuffer = Array<char, 36>(cstr);
+	cout << "stringBuffer contains:\n";
+	stringBuffer.ForEach(printWithIndex);
+
+	IndexValuePair<const char> found = stringBuffer.Find('e');
+	if (found.valid)
+		cout << "found '" << *found.value << "' at index " << found.index;
+	else
+		cout << "Did not find.";
+
+	auto foundLast = stringBuffer.FindLast('e');
 }
 
 int main()
@@ -76,5 +141,8 @@ int main()
 	calculateAndShowFib();
 	findPattern();
 	castingArrays();
+	safelyIndexing();
+	forEachIteration();
+	finding();
 	cout << endl;
 }
