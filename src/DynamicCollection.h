@@ -82,6 +82,9 @@ CollectableType DynamicCollection<CollectableType>::Shift(bool shrink)
 template <typename CollectableType>
 void DynamicCollection<CollectableType>::Remove(index_t index, find_index_t count, bool shrink)
 {
+	if (index + count >= this->Length())
+		count = -1;
+
 	if (count == -1)
 	{
 		SetCapacity(index + 1);

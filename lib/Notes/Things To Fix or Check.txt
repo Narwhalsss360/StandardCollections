@@ -1,6 +1,8 @@
 - Things To Fix -
 -DynamicCollection<CollectableType>::Pop() Doesn't check for 0 length.
 
+-DynamicCollection<CollectableType>::Remove() Doesn't implement shrink, doesnt change length either.
+
 -Easier use Collection<CollectableType>&
 
 -Fix forced copying of zip
