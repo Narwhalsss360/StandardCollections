@@ -10,7 +10,7 @@ const Array<unsigned int, 5> someDigitsOfPi = { 3, 1, 4, 1, 5 }; //<- Initialize
 using std::cout;
 using std::endl;
 
-void showSomeDigitsOdPi()
+void showSomeDigitsOfPi()
 {
 	cout << "The digits of pi are ";
 	for (const unsigned int& digit : someDigitsOfPi) //Alternatively -> for (const unsigned int& digit : Iterate(someDigitsOfPi))
@@ -137,7 +137,7 @@ void finding()
 int main()
 {
 	cout << EXAMPLE_NAME << " Example.\n";
-	showSomeDigitsOdPi();
+	showSomeDigitsOfPi();
 	calculateAndShowFib();
 	findPattern();
 	castingArrays();
