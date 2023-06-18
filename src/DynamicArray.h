@@ -124,6 +124,8 @@ DynamicArray<CollectableType>::~DynamicArray()
 	if (m_Array != nullptr)
 		__collection_freer__(m_Array);
 
+	m_Array = nullptr;
+
 	m_Capacity = 0;
 	m_Length = 0;
 }
