@@ -356,7 +356,7 @@ public:
 	Array& operator=(const std::initializer_list<CollectableType> initializer);
 #endif // initializer_list_supported
 
-private:
+protected:
 	CollectableType m_Array[TemplateLength];
 };
 
@@ -389,14 +389,13 @@ public:
 	DynamicArray<CollectableType>& operator=(const std::initializer_list<CollectableType>& initializers);
 #endif // initializer_list_supported
 
-	inline void SetLength(index_t newLength) override;
+	inline virtual void SetLength(index_t newLength) override;
 
-	inline void SetCapacity(index_t newCapacity) override;
+	inline virtual void SetCapacity(index_t newCapacity) override;
 
 	~DynamicArray();
 
-private:
-
+protected:
 	CollectableType* m_Array;
 	index_t m_Capacity;
 	index_t m_Length;
