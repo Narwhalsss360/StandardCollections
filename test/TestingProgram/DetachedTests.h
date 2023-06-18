@@ -1,116 +1,147 @@
 #pragma once
 #include "Commons.h"
 
-template <typename CollectionType, typename ReturnType>
-ReturnType GetSumOfCollection(const CollectionType* const collection, size_t size = sizeof(CollectionType))
+template <typename T>
+T* alloc_h(size_t count)
 {
-	ReturnType sum = 0;
-	for (index_t i = 0; i < size; i++)
-		sum += (*collection)[i];
-	return sum;
+	return (T*)malloc(sizeof(T) * count);
 }
 
-template <typename CollectionType, typename DereferenceType>
-class NewGeneralIterator
+template <typename T>
+void free_h(T* h_ptr)
+{
+	free(h_ptr);
+}
+
+template <typename T>
+T* ctor_alloc_h(size_t count)
+{
+	return new T[count];
+}
+
+template <typename T>
+void ctor_free_h(T* h_ptr)
+{
+	delete[] h_ptr;
+}
+
+template <typename CollectableType, CollectableType* (*Allocator)(size_t) = ctor_alloc_h, void (*Freer)(CollectableType*) = ctor_free_h>
+class NewDynamicArray : public DynamicCollection<CollectableType>
 {
 public:
-	NewGeneralIterator(const CollectionType* const collection, const index_t index)
-		: m_Collection(collection), m_CurrentIndex(index)
+	NewDynamicArray()
 	{
 	}
 
-	virtual bool operator!=(NewGeneralIterator& other)
+	virtual inline index_t Capacity() const
 	{
-		return m_CurrentIndex != other.m_CurrentIndex;
+		return cap;
 	}
 
-	virtual void operator++()
+	virtual inline void SetCapacity(index_t newCapacity)
 	{
-		m_CurrentIndex++;
-	}
-
-	virtual DereferenceType operator*()
-	{
-		return (*m_Collection)[m_CurrentIndex];
-	}
-
-	virtual index_t index()
-	{
-		return m_CurrentIndex;
-	}
-
-protected:
-	const CollectionType* const m_Collection;
-	index_t m_CurrentIndex;
-};
-
-template <typename CollectionType, typename Iterator>
-class NewGeneralIterable
-{
-public:
-	NewGeneralIterable(const CollectionType* const collection, const index_t beginIndex, const index_t endIndex)
-		: m_Collection(collection), m_BeginIndex(beginIndex), m_EndIndex(endIndex)
-	{
-	}
-
-	virtual Iterator begin() const
-	{
-		return Iterator(m_Collection, m_BeginIndex);
-	}
-
-	virtual Iterator end() const
-	{
-		return Iterator(m_Collection, m_EndIndex);
-	}
-
-protected:
-	const CollectionType* const m_Collection;
-	const index_t m_BeginIndex, m_EndIndex;
-};
- 
-template <typename CollectableType>
-NewGeneralIterable<Collection<CollectableType>, NewGeneralIterator<Collection<CollectableType>, CollectableType>> NewIterate(const Collection<CollectableType>& collection)
-{
-	return NewGeneralIterable<Collection<CollectableType>, NewGeneralIterator<Collection<CollectableType>, CollectableType>>(&collection, 0, collection.Length());
-}
-
-void PointersToAnyTypeOfCollection()
-{
-	Array<int, 3> CollectionArray = { 1, 2, 3 };
-	int sCollectionArray = GetSumOfCollection<Array<int, 3>, int>(&CollectionArray, 3);
-
-	const int CArray[3] = { 1, 2, 3 };
-	int sCArray = GetSumOfCollection<int[3], int>(&CArray, 3);
-}
-
-void NewIterators()
-{
-	Array<int, 3> CollectionArray = { 1, 2, 3 };
-	const int CArray[3] = { 1, 2, 3 };
-
-	for (auto begin = NewGeneralIterator<Array<int, 3>, int>(&CollectionArray, 0),
-		end = NewGeneralIterator<Array<int, 3>, int>(&CollectionArray, CollectionLength(CollectionArray));
-		begin != end;
-		++begin)
-	{
-		auto i = *begin;
+	retry:
+		if (arr == nullptr)
 		{
-			std::cout << i << ' ';
+			arr = Allocator(newCapacity);
+			if (arr != nullptr)
+				cap = newCapacity;
+			return;
 		}
-	}
-	std::cout << '\n';
 
-	auto iterable = Iterate(CollectionArray);
-	for (auto& i : iterable)
-	{
-		std::cout << i << ' ';
+		CollectableType* newAllocation = Allocator(newCapacity);
+		if (newAllocation == nullptr)
+			goto retry;
+
+		for (index_t index = 0; index < (newCapacity < len ? newCapacity : len); index++)
+			newAllocation[index] = arr[index];
+
+		Freer(arr);
+		arr = newAllocation;
+
+		cap = newCapacity;
+		len = newCapacity < len ? newCapacity : len;
 	}
-	std::cout << '\n';
+
+	virtual inline index_t Length() const
+	{
+		return len;
+	}
+
+	virtual inline void SetLength(index_t newLength)
+	{
+		if (newLength > cap)
+			SetCapacity(newLength);
+		len = newLength;
+	}
+
+	virtual inline CollectableType& operator[](index_t index)
+	{
+		return arr[SafeIndex(index, len)];
+	}
+
+	virtual inline const CollectableType& operator[](index_t index) const
+	{
+		return arr[SafeIndex(index, len)];
+	}
+
+	CollectableType* arr = nullptr;
+	index_t cap = 0, len = 0;
+};
+
+template <typename T>
+T* alloc_s(size_t count)
+{
+	return (T*)_malloca(sizeof(T) * count);
+}
+
+template <typename T>
+void free_s(T* ptr)
+{
+	_freea(ptr);
+}
+
+struct MathFunctionPair
+{
+	MathFunctionPair()
+		: x(0), y(0)
+	{
+	}
+
+	MathFunctionPair(double x, double y)
+		: x(x), y(y)
+	{
+	}
+
+	bool operator==(const MathFunctionPair& other) const
+	{
+		return x == other.x && y == other.y;
+	}
+
+	double x, y;
+};
+
+NewDynamicArray<MathFunctionPair, alloc_s, free_s> fpairArray;
+void newDynamicArrayTest()
+{
+	int n = 2;
+	fpairArray.Push(MathFunctionPair(0, pow(0, 2)));
+	fpairArray.Push(MathFunctionPair(1, pow(1, 2)));
+	fpairArray.Push(MathFunctionPair(2, pow(2, 2)));
+	fpairArray.Push(MathFunctionPair(3, pow(3, 2)));
+	fpairArray.Push(MathFunctionPair(4, pow(4, 2)));
+}
+
+void otherFunction()
+{
+	for (auto& i : fpairArray)
+		std::cout << i.x;
+	fpairArray.Remove(0);
 }
 
 void RunDetachedTests()
 {
 	std::cout << "Running detached tests...\n";
-	PointersToAnyTypeOfCollection();
-	NewIterators();
+	newDynamicArrayTest();
+	otherFunction();
 }

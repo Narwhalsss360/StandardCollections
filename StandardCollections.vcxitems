@@ -18,6 +18,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)src\Collection.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\CollectionAlgorithm.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\CollectionDeclarations.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\CustomAllocatorArray.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\DynamicArray.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\DynamicCollection.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\Iterators.h" />

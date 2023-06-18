@@ -46,3 +46,8 @@ add_test(insertion_sort);
 add_test(selection_sort);
 add_test(collection_union);
 add_test(collection_intersect);
+
+#include "CustomAllocatorArrayTest.h"
+add_test(alloch_ctor_test);
+add_test(freeh_dtor_test);
+add_test(custom_allocator_array);

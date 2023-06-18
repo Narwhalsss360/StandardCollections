@@ -52,5 +52,8 @@
     <ClInclude Include="DetachedTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CustomAllocatorArrayTest.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
