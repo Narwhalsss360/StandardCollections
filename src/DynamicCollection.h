@@ -19,12 +19,7 @@ template <typename CollectableType>
 CollectableType DynamicCollection<CollectableType>::Pop(bool shrink)
 {
 	CollectableType returnValue = this->operator[](this->Length() - 1);
-
-	SetLength(this->Length() - 1);
-
-	if (shrink)
-		SetCapacity(this->Length());
-
+	this->Remove(this->Length() - 1, 1, shrink);
 	return returnValue;
 }
 
@@ -67,22 +62,14 @@ template <typename CollectableType>
 CollectableType DynamicCollection<CollectableType>::Shift(bool shrink)
 {
 	CollectableType returnValue = this->operator[](0);
-
-	for (find_index_t index = this->Length() - 1; index > 0; index++)
-		this->operator[](index) = this->operator[](index - 1);
-
-	SetLength(this->Length() - 1);
-
-	if (shrink)
-		SetCapacity(this->Length());
-
+	this->Remove(0, 1, shrink);
 	return returnValue;
 }
 
 template <typename CollectableType>
 void DynamicCollection<CollectableType>::Remove(index_t index, find_index_t count, bool shrink)
 {
-	if (index + count >= this->Length())
+	if (index + count > this->Length())
 		count = -1;
 
 	if (count == -1)
@@ -94,7 +81,9 @@ void DynamicCollection<CollectableType>::Remove(index_t index, find_index_t coun
 	for (index_t keepIndex = index + count; keepIndex < this->Length(); keepIndex++)
 		this->operator[](keepIndex - count) = this->operator[](keepIndex);
 
-	SetCapacity(this->Length() - count);
+	SetLength(this->Length() - count);
+	if (shrink)
+		SetCapacity(this->Length() - count);
 }
 
 template <typename CollectableType>
