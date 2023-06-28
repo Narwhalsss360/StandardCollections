@@ -1,10 +1,4 @@
 - Things To Fix -
--DynamicCollection<CollectableType>::Remove() Doesn't implement shrink, doesnt change length either.
-
--Easier use Collection<CollectableType>&
-
--Fix forced copying of zip
-
 -Investigate the C4244 warnings.
 
 -Investigate the C4309 warnings.

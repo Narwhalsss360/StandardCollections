@@ -150,3 +150,19 @@ test_function(c_style_zip)
 		}
 	}
 }
+
+test_function(c_style_zip_copy)
+{
+	int x_values[] = { -2, -1, 0, 1, 2 };
+	int y_values[CollectionLength(x_values)];
+
+	index_t expectedIndex = 0;
+	for (auto zipping : Zip(x_values, y_values))
+	{
+		test_expect(zipping.defaulted, false);
+		test_expect(zipping.value1, x_values[zipping.index]);
+		test_expect(zipping.value2, y_values[zipping.index]);
+		test_expect(zipping.index, expectedIndex);
+		expectedIndex++;
+	}
+}

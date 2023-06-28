@@ -24,7 +24,7 @@ test_function(array_instantiation)
 		test_expect(array_fibonacci[index], fibonacci[index]);
 }
 
-test_function(array_General_iterator)
+test_function(array_general_iterator)
 {
 	Array<int, 7> bomb_defusal_code = { 7, 3, 5, 5, 6, 0, 8 };
 	const auto& const_reference__bomb_defusal_code = bomb_defusal_code;
@@ -85,6 +85,16 @@ test_function(array_General_iterator)
 
 	expectedIndex = 0;
 	for (auto zipping : Zip(const_reference__bomb_defusal_code, const_ref__bomb_defusal_code_backwards))
+	{
+		test_expect(zipping.defaulted, false);
+		test_expect(zipping.index, expectedIndex);
+		test_expect(zipping.value1, bomb_defusal_code[expectedIndex]);
+		test_expect(zipping.value2, bomb_defusal_code_backwards[expectedIndex]);
+		expectedIndex++;
+	}
+
+	expectedIndex = 0;
+	for (auto zipping : ZipCopy(const_reference__bomb_defusal_code, const_ref__bomb_defusal_code_backwards))
 	{
 		test_expect(zipping.defaulted, false);
 		test_expect(zipping.index, expectedIndex);

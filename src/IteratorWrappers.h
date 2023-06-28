@@ -80,5 +80,17 @@ GeneralIteratorWrapper<ZipIterator<CollectionType, Zipped1ValueType&, Zipped2Val
 {
 	return GeneralIteratorWrapper<ZipIterator<CollectionType, Zipped1ValueType&, Zipped2ValueType&, Collection2Type>>(begin, end);
 }
+
+template <typename CollectableType, typename CollectableType2>
+ZipIterable<const Collection<CollectableType>, const CollectableType, const CollectableType2, const Collection<CollectableType2>> ZipCopy(const Collection<CollectableType>& collection1, const Collection<CollectableType2>& collection2)
+{
+	return ZipIterable<const Collection<CollectableType>, const CollectableType, const CollectableType2, const Collection<CollectableType2>>(&collection1, &collection2, 0, (collection1.Length() < collection2.Length()) ? collection1.Length() : collection2.Length());
+}
+
+template <typename CollectionType, typename Zipped1ValueType, typename Zipped2ValueType, typename Collection2Type>
+GeneralIteratorWrapper<ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>> ZipCopy(ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> begin, ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type> end)
+{
+	return GeneralIteratorWrapper<ZipIterator<CollectionType, Zipped1ValueType, Zipped2ValueType, Collection2Type>>(begin, end);
+}
 #pragma endregion
 #endif // !IteratorWrapper_h
