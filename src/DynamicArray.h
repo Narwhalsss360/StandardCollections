@@ -75,8 +75,8 @@ DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const Dy
 template <typename CollectableType>
 DynamicArray<CollectableType>& DynamicArray<CollectableType>::operator=(const std::initializer_list<CollectableType>& initializers)
 {
-	this->SetCapacity(initializers.size());
-	this->SetLength(initializers.size());
+	this->SetCapacity(ShrinkSize_t(initializers.size()));
+	this->SetLength(ShrinkSize_t(initializers.size()));
 	for (index_t index = 0; index < initializers.size(); index++)
 		this->operator[](index) = initializers.begin()[index];
 

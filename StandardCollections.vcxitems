@@ -28,5 +28,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\DereferencedIteration.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\SafeTypeConversions.cpp" />
   </ItemGroup>
 </Project>

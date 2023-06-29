@@ -74,7 +74,7 @@ test_function(collection_median)
 	test_expect(CollectionAlgorithm::Median(intArray), expected);
 
 	Array<int, 4> intArray2 = { 5, 3, 6, 7 };
-	int expected2 = 4.5;
+	int expected2 = 4;
 	test_expect(CollectionAlgorithm::Median(intArray2), expected2);
 }
 

@@ -138,7 +138,7 @@ test_function(collection_casts)
 
 	Array<ContainerC, 3> cTypeArray;
 
-	cTypeArray[0] = ContainerC(-1, 1.1, "i0");
+	cTypeArray[0] = ContainerC(-1, 1.1f, "i0");
 	cTypeArray[1] = ContainerC(-2, 2, "i1");
 	cTypeArray[2] = ContainerC(-3, 3, "i2");
 

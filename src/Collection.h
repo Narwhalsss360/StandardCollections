@@ -4,8 +4,6 @@
 #include "CollectionDeclarations.h"
 #include "Iterators.h"
 
-#pragma warning(disable: 4244)
-
 #pragma region IndexValuePair
 template <typename ValueType>
 IndexValuePair<ValueType>::IndexValuePair()
@@ -108,8 +106,8 @@ template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::Find(const CollectableType& value) const
 {
 	for (find_index_t index = 0; index < this->Length(); index++)
-		if (this->operator[](index) == value)
-			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
+		if (this->operator[](ShrinkFindIndex(index)) == value)
+			return IndexValuePair<const CollectableType>(&(this->operator[](ShrinkFindIndex(index))), index, true);
 	return IndexValuePair<const CollectableType>(nullptr, -1, false);
 }
 
@@ -117,8 +115,8 @@ template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::Find(PredicateFunctionPointer(const CollectableType, predicate)) const
 {
 	for (find_index_t index = 0; index < this->Length(); index++)
-		if (predicate(this->operator[](index)))
-			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
+		if (predicate(this->operator[](ShrinkFindIndex(index))))
+			return IndexValuePair<const CollectableType>(&(this->operator[](ShrinkFindIndex(index))), index, true);
 	return IndexValuePair<const CollectableType>(nullptr, -1, false);
 }
 
@@ -126,8 +124,8 @@ template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(const CollectableType& value) const
 {
 	for (find_index_t index = this->Length() - 1; index >= 0; index--)
-		if (this->operator[](index) == value)
-			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
+		if (this->operator[](ShrinkFindIndex(index)) == value)
+			return IndexValuePair<const CollectableType>(&(this->operator[](ShrinkFindIndex(index))), index, true);
 	return IndexValuePair<const CollectableType>(nullptr, -1, false);
 }
 
@@ -135,8 +133,8 @@ template <typename CollectableType>
 IndexValuePair<const CollectableType> Collection<CollectableType>::FindLast(PredicateFunctionPointer(const CollectableType, predicate)) const
 {
 	for (find_index_t index = this->Length() - 1; index >= 0; index--)
-		if (predicate(this->operator[](index)))
-			return IndexValuePair<const CollectableType>(&(this->operator[](index)), index, true);
+		if (predicate(this->operator[](ShrinkFindIndex(index))))
+			return IndexValuePair<const CollectableType>(&(this->operator[](ShrinkFindIndex(index))), index, true);
 	return IndexValuePair<const CollectableType>(nullptr, -1, false);
 }
 

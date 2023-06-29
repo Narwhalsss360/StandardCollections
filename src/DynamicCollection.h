@@ -31,7 +31,7 @@ void DynamicCollection<CollectableType>::Insert(index_t index, const Collectable
 
 	SetLength(this->Length() + 1);
 	for (find_index_t iIndex = this->Length() - 1; iIndex > index; iIndex--)
-		this->operator[](iIndex) = this->operator[](iIndex - 1);
+		this->operator[](ShrinkFindIndex(iIndex)) = this->operator[](ShrinkFindIndex(iIndex - 1));
 
 	this->operator[](index) = item;
 }
@@ -78,12 +78,12 @@ void DynamicCollection<CollectableType>::Remove(index_t index, find_index_t coun
 		return;
 	}
 
-	for (index_t keepIndex = index + count; keepIndex < this->Length(); keepIndex++)
-		this->operator[](keepIndex - count) = this->operator[](keepIndex);
+	for (index_t keepIndex = index + ShrinkFindIndex(count); keepIndex < this->Length(); keepIndex++)
+		this->operator[](keepIndex - ShrinkFindIndex(count)) = this->operator[](keepIndex);
 
-	SetLength(this->Length() - count);
+	SetLength(this->Length() - ShrinkFindIndex(count));
 	if (shrink)
-		SetCapacity(this->Length() - count);
+		SetCapacity(this->Length() - ShrinkFindIndex(count));
 }
 
 template <typename CollectableType>

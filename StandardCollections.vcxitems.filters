@@ -44,5 +44,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\DereferencedIteration.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\SafeTypeConversions.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

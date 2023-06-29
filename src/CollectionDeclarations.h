@@ -31,6 +31,8 @@
 typedef uint32_t index_t;
 typedef int64_t find_index_t;
 
+constexpr index_t index_t_max = UINT32_MAX;
+
 #define safe_index(index, Length) (Length == 0 ? 0 : (index % Length))
 #define static_array_length(type, identifier) (sizeof(identifier) / sizeof(type))
 #define static_array_fill(identifier, Length, value) for (index_t index_##identifier = 0; index_##identifier < Length; ++index_##identifier) identifier[index_##identifier] = value
@@ -81,6 +83,12 @@ class Array;
 
 template <typename CollectableType>
 class DynamicArray;
+#pragma endregion
+
+#pragma region Safe Type Conversions
+inline const index_t ShrinkFindIndex(const find_index_t & findIndex);
+
+inline const index_t ShrinkSize_t(const size_t& size);
 #pragma endregion
 
 #pragma region Iterators

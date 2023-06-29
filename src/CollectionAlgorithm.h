@@ -279,16 +279,16 @@ namespace CollectionAlgorithm
 				}
 				else
 				{
-					index_t countOfFactor = primeFactors.Count(factor);
-					if (countOfFactor > primesWithExponents[indexOfPair][1])
-						primesWithExponents[indexOfPair][1] = countOfFactor;
+					int countOfFactor = primeFactors.Count(factor);
+					if (countOfFactor > primesWithExponents[ShrinkFindIndex(indexOfPair)][1])
+						primesWithExponents[ShrinkFindIndex(indexOfPair)][1] = countOfFactor;
 				}
 			}
 		}
 
 		CollectableType lcm = 1;
 		for (auto& factorWithExponent : primesWithExponents)
-			lcm *= pow(factorWithExponent[0], factorWithExponent[1]);
+			lcm *= (CollectableType)pow(factorWithExponent[0], factorWithExponent[1]);
 
 		return lcm;
 	}
