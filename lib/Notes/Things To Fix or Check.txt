@@ -1,7 +1,6 @@
 - Things To Fix -
-- Things To Check -
--Casting away const, CollectionAlgorithm.h 138, 159.
 
+- Things To Check -
 -ArduinoJaggedArrays example log message:
 	:Array.h:72:18: note: candidate 1: CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t) [with CollectableType = int; long unsigned int TemplateLength = 2; index_t = long unsigned int]
  CollectableType& Array<CollectableType, TemplateLength>::operator[](index_t index)

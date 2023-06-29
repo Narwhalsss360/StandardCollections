@@ -144,7 +144,7 @@ namespace CollectionAlgorithm
 			return IndexValuePair<const CollectableType>(&collection[0], 0, true);
 
 		index_t leastIndex = 0;
-		CollectableType& leastValue = (CollectableType&)collection[0];
+		CollectableType leastValue = collection[0];
 
 		for (auto enumeration : Enumerate(collection))
 			if (enumeration.value < leastValue)
@@ -152,7 +152,7 @@ namespace CollectionAlgorithm
 				leastIndex = enumeration.index;
 				leastValue = enumeration.value;
 			}
-		return IndexValuePair<const CollectableType>(&leastValue, leastIndex, true);
+		return IndexValuePair<const CollectableType>(&collection[leastIndex], leastIndex, true);
 	}
 
 	template <typename CollectableType>
@@ -165,7 +165,7 @@ namespace CollectionAlgorithm
 			return IndexValuePair<const CollectableType>(&collection[0], 0, true);
 
 		index_t leastIndex = 0;
-		CollectableType& leastValue = (CollectableType&)collection[0];
+		CollectableType leastValue = collection[0];
 
 		for (auto enumeration : Enumerate(collection))
 			if (enumeration.value > leastValue)
@@ -173,7 +173,7 @@ namespace CollectionAlgorithm
 				leastIndex = enumeration.index;
 				leastValue = enumeration.value;
 			}
-		return IndexValuePair<const CollectableType>(&leastValue, leastIndex, true);
+		return IndexValuePair<const CollectableType>(&collection[leastValue], leastIndex, true);
 	}
 
 	template <typename CollectableType>
