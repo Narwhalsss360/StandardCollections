@@ -3,8 +3,6 @@
 
 #include "CollectionDeclarations.h"
 
-#pragma warning(disable: 4309)
-
 #pragma region Iterators
 #pragma region GeneralIterator
 template <typename CollectionType, typename DereferenceType>
@@ -42,7 +40,7 @@ index_t GeneralIterator<CollectionType, DereferenceType>::index()
 #pragma region Enumeration
 template <typename ValueType>
 Enumeration<ValueType>::Enumeration(ValueType value)
-	: DereferencedIteration(true), value(value), index(SIZE_MAX)
+	: DereferencedIteration(true), value(value), index(index_t_max)
 {
 }
 
@@ -76,7 +74,7 @@ Enumeration<ValueType> EnumerationIterator<CollectionType, ValueType>::operator*
 #pragma region Zipping
 template <typename Zipped1ValueType, typename Zipped2ValueType>
 Zipping<Zipped1ValueType, Zipped2ValueType>::Zipping(Zipped1ValueType value1)
-	: DereferencedIteration(true), value1(value1), value2(value1), index(SIZE_MAX)
+	: DereferencedIteration(true), value1(value1), value2(value1), index(index_t_max)
 {
 }
 

@@ -1,6 +1,4 @@
 - Things To Fix -
--Investigate the C4309 warnings.
-
 - Things To Check -
 -Casting away const, CollectionAlgorithm.h 138, 159.
 
