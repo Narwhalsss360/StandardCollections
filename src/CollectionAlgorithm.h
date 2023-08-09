@@ -164,16 +164,16 @@ namespace CollectionAlgorithm
 		if (len == 1)
 			return IndexValuePair<const CollectableType>(&collection[0], 0, true);
 
-		index_t leastIndex = 0;
-		CollectableType leastValue = collection[0];
+		index_t greatestIndex = 0;
+		CollectableType greatestValue = collection[0];
 
 		for (auto enumeration : Enumerate(collection))
-			if (enumeration.value > leastValue)
+			if (enumeration.value > greatestValue)
 			{
-				leastIndex = enumeration.index;
-				leastValue = enumeration.value;
+				greatestIndex = enumeration.index;
+				greatestValue = enumeration.value;
 			}
-		return IndexValuePair<const CollectableType>(&collection[leastValue], leastIndex, true);
+		return IndexValuePair<const CollectableType>(&collection[greatestIndex], greatestIndex, true);
 	}
 
 	template <typename CollectableType>
