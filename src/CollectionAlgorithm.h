@@ -9,7 +9,7 @@ namespace CollectionAlgorithm
 {
 	#pragma region Argument Constant Expressions
 	constexpr bool SortOrderReversed = true;
-	constexpr bool SortOrderNormal = true;
+	constexpr bool SortOrderNormal = false;
 	#pragma endregion
 
 	#pragma region General Operations
@@ -93,7 +93,7 @@ namespace CollectionAlgorithm
 	}
 
 	template <typename CollectableType>
-	void BubbleSort(Collection<CollectableType>& collection, bool reverse = false)
+	void BubbleSort(Collection<CollectableType>& collection, bool reverse = SortOrderNormal)
 	{
 		index_t len = collection.Length();
 		if (len <= 1)
@@ -106,7 +106,7 @@ namespace CollectionAlgorithm
 	}
 
 	template <typename CollectableType>
-	void SelectionSort(Collection<CollectableType>& collection, bool reverse = false)
+	void SelectionSort(Collection<CollectableType>& collection, bool reverse = SortOrderNormal)
 	{
 		index_t len = collection.Length();
 
@@ -117,7 +117,7 @@ namespace CollectionAlgorithm
 	}
 
 	template <typename CollectableType>
-	void InsertionSort(Collection<CollectableType>& collection, bool reverse = false)
+	void InsertionSort(Collection<CollectableType>& collection, bool reverse = SortOrderNormal)
 	{
 		index_t len = collection.Length();
 		for (index_t iCollection = 0; iCollection < len; iCollection++)
@@ -127,7 +127,7 @@ namespace CollectionAlgorithm
 	}
 
 	template <typename CollectableType>
-	void Sort(Collection<CollectableType>& collection, void (*sorter)(Collection<CollectableType>&, bool) = InsertionSort, bool reverse = false)
+	void Sort(Collection<CollectableType>& collection, void (*sorter)(Collection<CollectableType>&, bool) = InsertionSort, bool reverse = SortOrderNormal)
 	{
 		sorter(collection, reverse);
 	}
