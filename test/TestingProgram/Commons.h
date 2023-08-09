@@ -45,6 +45,11 @@ void PrintCollection(Collection<CollectableType>& collection, PrintStyles printS
 	}
 }
 
+bool isNear(float a, float b, float tolerance)
+{
+	return a - tolerance <= b && b <= a + tolerance;
+}
+
 struct ContainerA
 {
 	ContainerA()
