@@ -5,6 +5,7 @@
 //#define __collection_allocator__(type, count) (type*)malloc(count * sizeof(type)) //<- DynamicArray<Array<CollectableType, TemplateLength>>: Array<CollectableType, TemplateLength> Doesn't construct virtual function pointers with malloc.
 //#define __collection_freer__(identifier) free(identifier) //<- DynamicArray<Array<CollectableType, TemplateLength>>: Array<CollectableType, TemplateLength> Doesn't construct virtual function pointers with malloc.
 
+#include <iostream>
 #include "..\..\src\StandardCollections.h"
 
 constexpr int bomb_defusal_code_digits[] = { 7, 3, 5, 5, 6, 0, 8 };
