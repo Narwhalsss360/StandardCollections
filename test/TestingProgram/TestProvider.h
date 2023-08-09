@@ -16,6 +16,27 @@
 											__debugbreak(); \
 											}
 
+#ifdef TOP_LVL
+#define test_expect(expression, expected) { \
+											test_standard_output_write("Testing "); \
+											test_standard_output_write(#expression); \
+											test_standard_output_write("->"); \
+											test_standard_output_write(#expected); \
+											test_standard_output_write('\n'); \
+											if ((expression) != (expected))  { test_standard_output_write("test_expected failed at line "); test_standard_output_write(__LINE__); \
+											test_standard_output_write(" of file: "); \
+											test_standard_output_write(__FILE__); \
+											test_standard_output_write(" expression: "); \
+											test_standard_output_write(#expression); \
+											test_standard_output_write(" expected: "); \
+											test_standard_output_write(#expected); \
+											test_standard_output_write('\n'); \
+											__debugbreak(); \
+											} \
+											}
+
+#endif
+
 using std::vector;
 using std::string;
 
