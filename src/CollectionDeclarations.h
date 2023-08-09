@@ -2,6 +2,7 @@
 #define CollectionDefenitions_h
 
 #include <stdint.h>
+#include <stddef.h>
 
 #ifdef ARDUINO
 
