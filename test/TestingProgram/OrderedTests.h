@@ -47,6 +47,10 @@ add_test(insertion_sort);
 add_test(selection_sort);
 add_test(collection_union);
 add_test(collection_intersect);
+add_test(collection_weighted_average);
+add_test(collection_range);
+add_test(collection_correlation_coefficient);
+add_test(collection_least_squares_line_slope);
 
 #include "CustomAllocatorArrayTest.h"
 add_test(alloch_ctor_test);

@@ -298,15 +298,74 @@ namespace CollectionAlgorithm
 	{
 		return Product(collection) / LCM(collection);
 	}
+	
 	#pragma region Statistics
 	template <typename CollectableType>
-	CollectableType StandardDeviation(const Collection<CollectableType>& collection, bool population = false)
+	float StandardDeviation(const Collection<CollectableType>& collection, bool population = false)
 	{
 		CollectableType summation = 0;
 		CollectableType average = Average(collection);
 		for (const CollectableType& number : collection)
 			summation += pow(number - average, 2);
 		return sqrt(summation / (population ? collection.Length() : collection.Length() - 1));
+	}
+
+	template <typename CollectableType>
+	float WeightedAverage(const Collection<CollectableType>& collection, const Collection<CollectableType>& weights)
+	{
+		CollectableType avg = CollectableType();
+		if (collection.Length() != weights.Length())
+			return Average(collection);
+		for (const auto& zipping : Zip(collection, weights))
+			avg += (zipping.value1 * zipping.value2);
+		return avg / Sum(weights);
+	}
+
+	template <typename CollectableType>
+	CollectableType Range(const Collection<CollectableType>& collection)
+	{
+		return Max(collection) - Min(collection);
+	}
+
+	template <typename CollectableType>
+	float CorrelationCoefficient(const Collection<CollectableType>& x, const Collection<CollectableType>& y)
+	{
+		index_t n = x.Length();
+		CollectableType xSum, ySum, xySum, x2Sum, y2Sum;
+		DynamicArray<CollectableType> xy;
+		DynamicArray<CollectableType> x2;
+		DynamicArray<CollectableType> y2;
+		for (const auto& zipping : Zip(x, y))
+		{
+			xy += zipping.value1 * zipping.value2;
+			x2 += zipping.value1 * zipping.value1;
+			y2 += zipping.value2 * zipping.value2;
+		}
+		xSum = Sum(x);
+		ySum = Sum(y);
+		xySum = Sum(xy);
+		x2Sum = Sum(x2);
+		y2Sum = Sum(y2);
+		return ((n * xySum) - (xSum * ySum)) / (sqrt((n * x2Sum) - pow(xSum, 2)) * sqrt((n * y2Sum) - pow(ySum, 2)));
+	}
+
+	template <typename CollectableType>
+	float LeastSquaresLineSlope(const Collection<CollectableType>& x, const Collection<CollectableType>& y)
+	{
+		index_t n = x.Length();
+		CollectableType xSum, ySum, xySum, x2Sum, y2Sum;
+		DynamicArray<CollectableType> xy;
+		DynamicArray<CollectableType> x2;
+		for (const auto& zipping : Zip(x, y))
+		{
+			xy += zipping.value1 * zipping.value2;
+			x2 += zipping.value1 * zipping.value1;
+		}
+		xSum = Sum(x);
+		ySum = Sum(y);
+		xySum = Sum(xy);
+		x2Sum = Sum(x2);
+		return ((n * xySum) - (xSum * ySum)) / ((n * x2Sum) - pow(xSum, 2));
 	}
 	#pragma endregion
 	#pragma endregion

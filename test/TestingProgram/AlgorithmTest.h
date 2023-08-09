@@ -162,3 +162,32 @@ test_function(collection_intersect)
 	auto aab = CollectionAlgorithm::Intersection(a, b);
 	test_expect(aab, expextedIntersection);
 }
+
+test_function(collection_weighted_average)
+{
+	Array<float, 5> nums = { 2, 3, 3 ,4, 5 };
+	Array<float, 5> weights = { 0.1, 0.2, 0.3, 0.3, 0.1 };
+	float wavg = CollectionAlgorithm::WeightedAverage(nums, weights);
+	float expectedWavg = 34.0 / 10.0;
+	test_expect(wavg, expectedWavg);
+}
+
+test_function(collection_range)
+{
+	Array<int, 5> nums = { 20, 5, 3, 5, 7 };
+	test_expect(CollectionAlgorithm::Range(nums), 17);
+}
+
+test_function(collection_correlation_coefficient)
+{
+	Array<int, 6> x = { 43, 21, 25, 42, 57, 59 }, y = { 99, 65, 79, 75, 87, 81 };
+	float cc = CollectionAlgorithm::CorrelationCoefficient(x, y);
+	test_expect(isNear(cc, 0.529, 0.001), true);
+}
+
+test_function(collection_least_squares_line_slope)
+{
+	Array<int, 8> x = { 16, 12, 18, 4, 3, 10, 5, 12 }, y = { 87, 88, 89, 68, 78, 80, 75, 83 };
+	float lsl = CollectionAlgorithm::LeastSquaresLineSlope(x, y);
+	test_expect(isNear(lsl, 1.133, 0.001), true);
+}
