@@ -7,7 +7,7 @@
 #pragma region IndexValuePair
 template <typename ValueType>
 IndexValuePair<ValueType>::IndexValuePair()
-	: value(nullref(ValueType)), index(SIZE_MAX), valid(false)
+	: value(nullptr), index(SIZE_MAX), valid(false)
 {
 }
 
