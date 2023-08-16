@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stddef.h>
 
 typedef uint32_t index_t;
 typedef int64_t find_index_t;
