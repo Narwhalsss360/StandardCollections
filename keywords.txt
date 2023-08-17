@@ -1,15 +1,20 @@
-Array_init					LITERAL1
-ComparatorFunction			LITERAL1
-ComparatorFunctionPointer	LITERAL1
-CostForEachIterator			LITERAL1
-CostForEachIteratorPointer	LITERAL1
-ForEachIterator				LITERAL1
-ForEachIteratorPointer		LITERAL1
-is_nullref					LITERAL1
-nullref						LITERAL1
-safe_index					LITERAL1
-static_array_fill			LITERAL1
-static_array_length			LITERAL1
+alloch_ctor					KEYWORD2
+CastCollection				KEYWORD2
+CollectionLength			KEYWORD2
+CStyleToArray				KEYWORD2
+Enumerate					KEYWORD2
+FillCStyleArray				KEYWORD2
+freeh_dtor					KEYWORD2
+Iterate						KEYWORD2
+SafeIndex					KEYWORD2
+ShrinkFindIndex				KEYWORD2
+ShrinkSize					KEYWORD2
+Zip							KEYWORD2
+ZipCopy						KEYWORD2
+
+index_t_max					LITERAL1
+SortOrderNormal				LITERAL1
+SortOrderReversed			LITERAL1
 
 DynamicJagged				LITERAL1
 DynamicJaggedDynamic		LITERAL1
@@ -17,6 +22,32 @@ find_index_t				LITERAL1
 index_t						LITERAL1
 Jagged						LITERAL1
 JaggedDynamic				LITERAL1
+
+Array_h						LITERAL1
+Array_init					LITERAL1
+__collection_allocator__	LITERAL1
+__collection_freer__		LITERAL1
+Collection_h				LITERAL1
+CollectionAlgorithm_h		LITERAL1
+CollectionDefenitions_h		LITERAL1
+ComparatorFunction			LITERAL1
+ComparatorFunctionPointer	LITERAL1
+ConstForEachIterator		LITERAL1
+ConstForEachIteratorPointer	LITERAL1
+CustomAllocatorAray_h		LITERAL1
+DynamicArray_h				LITERAL1
+DynamicCollection_h			LITERAL1
+ForEachIterator				LITERAL1
+ForEachIteratorPointer		LITERAL1
+Iterators_h					LITERAL1
+IteratorWrappers_h			LITERAL1
+LightCollection_h			LITERAL1
+PredicateFunction			LITERAL1
+PredicateFunctionPointer	LITERAL1
+safe_index					LITERAL1
+StandardCollections_h		LITERAL1
+static_array_fill			LITERAL1
+static_array_length			LITERAL1
 
 Array						LITERAL1
 
@@ -35,12 +66,39 @@ Length						KEYWORD2
 MoveTo						KEYWORD2
 Slice						KEYWORD2
 
+CollectionAlgorithm			LITERAL1
+Average						KEYWORD2
+BubbleSort					KEYWORD2
+CorrelationCoefficient		KEYWORD2
+Factors						KEYWORD2
+GCD							KEYWORD2
+InsertionSort				KEYWORD2
+Intersection				KEYWORD2
+IsSorted					KEYWORD2
+LCM							KEYWORD2
+LeastSquaresLineSlope		KEYWORD2
+Max							KEYWORD2
+Median						KEYWORD2
+Min							KEYWORD2
+PrimeFactors				KEYWORD2
+Product						KEYWORD2
+Range						KEYWORD2
+Reverse						KEYWORD2
+SelectionSort				KEYWORD2
+Sort						KEYWORD2
+StandardDeviation			KEYWORD2
+Sum							KEYWORD2
+Swap						KEYWORD2
+Union						KEYWORD2
+Unique						KEYWORD2
+WeightedAverage				KEYWORD2
+
+CustomAllocatorArray		LITERAL1
+
 DereferencedIteration		LITERAL1
 defaulted					KEYWORD3
 
 DynamicArray				LITERAL1
-SetCapacity					KEYWORD2
-SetLength					KEYWORD2
 
 DynamicCollection			LITERAL1
 Capacity					KEYWORD2
@@ -49,6 +107,8 @@ Join						KEYWORD2
 Pop							KEYWORD2
 Push						KEYWORD2
 Remove						KEYWORD2
+SetCapacity					KEYWORD2
+SetLength					KEYWORD2
 Shift						KEYWORD2
 Unshift						KEYWORD2
 
@@ -75,12 +135,3 @@ ZipIterator					LITERAL1
 Zipping						LITERAL1
 value1						KEYWORD3
 value2						KEYWORD3
-
-CastCollection				KEYWORD2
-CollectionLength			KEYWORD2
-CStyleToArray				KEYWORD2
-Enumerate					KEYWORD2
-FillCStyleArray				KEYWORD2
-Iterate						KEYWORD2
-SafeIndex					KEYWORD2
-Zip							KEYWORD2
