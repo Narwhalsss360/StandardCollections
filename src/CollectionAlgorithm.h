@@ -46,7 +46,7 @@ namespace CollectionAlgorithm
 	}
 
 	template <typename CollectableType>
-	DynamicArray<CollectableType> unique(const Collection<CollectableType>& collection)
+	DynamicArray<CollectableType> Unique(const Collection<CollectableType>& collection)
 	{
 		DynamicArray<CollectableType> uniqueItems = DynamicArray<CollectableType>();
 

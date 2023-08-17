@@ -14,7 +14,7 @@ test_function(unique)
 {
 	Array<int, 10> intArray = { 1, 1, 2, 3, 4, 4, 4, 5, 6, 6 };
 	Array<int, 6> uniqueItemsExpected = { 1, 2, 3, 4, 5, 6 };
-	auto uniqueItems = CollectionAlgorithm::unique(intArray);
+	auto uniqueItems = CollectionAlgorithm::Unique(intArray);
 	test_expect(uniqueItems, uniqueItemsExpected);
 }
 
