@@ -25,14 +25,14 @@ Array<CollectableType, TemplateLength>::Array(const CollectableType& fill)
 }
 
 template <typename CollectableType, index_t TemplateLength>
-Array<CollectableType, TemplateLength>::Array(const Array& other)
+Array<CollectableType, TemplateLength>::Array(const Collection<CollectableType>& other)
 	: Collection<CollectableType>(), m_Array{ CollectableType() }
 {
 	operator=(other);
 }
 
 template <typename CollectableType, index_t TemplateLength>
-Array<CollectableType, TemplateLength>::Array(const Array&& other)
+Array<CollectableType, TemplateLength>::Array(const Collection<CollectableType>&& other)
 	: Collection<CollectableType>(), m_Array{ CollectableType() }
 {
 	operator=(other);
