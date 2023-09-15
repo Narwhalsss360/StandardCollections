@@ -343,7 +343,7 @@ public:
 
 	Array(const Collection<CollectableType>& other);
 
-	Array(const Collection<CollectableType>&& other);
+	Array(const Array<CollectableType>& other);
 
 	Array(CollectableType(&array)[TemplateLength]);
 
@@ -376,9 +376,9 @@ public:
 
 	inline DynamicArray();
 
-	inline DynamicArray(Collection<CollectableType>& other);
+	inline DynamicArray(const Collection<CollectableType>& other);
 
-	inline DynamicArray(Collection<CollectableType>&& other);
+	inline DynamicArray(const DynamicArray<CollectableType>& other);
 
 #ifdef initializer_list_supported
 	inline DynamicArray(const std::initializer_list<CollectableType>& initializers);

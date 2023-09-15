@@ -13,14 +13,14 @@ DynamicArray<CollectableType>::DynamicArray()
 }
 
 template <typename CollectableType>
-DynamicArray<CollectableType>::DynamicArray(Collection<CollectableType>& other)
+DynamicArray<CollectableType>::DynamicArray(const Collection<CollectableType>& other)
 	: m_Array(nullptr), m_Capacity(0), m_Length(0)
 {
 	operator=(other);
 }
 
 template <typename CollectableType>
-DynamicArray<CollectableType>::DynamicArray(Collection<CollectableType>&& other)
+DynamicArray<CollectableType>::DynamicArray(const DynamicArray<CollectableType>& other)
 	: m_Array(nullptr), m_Capacity(0), m_Length(0)
 {
 	this->operator=(other);

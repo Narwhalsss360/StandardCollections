@@ -24,12 +24,12 @@ public:
 	{
 	}
 
-	CustomAllocatorArray(CustomAllocatorArray<CollectableType, Allocator, Freer>& other)
+	CustomAllocatorArray(const CustomAllocatorArray<CollectableType, Allocator, Freer>& other)
 		: DynamicArray<CollectableType>(other)
 	{
 	}
 
-	CustomAllocatorArray(CustomAllocatorArray<CollectableType, Allocator, Freer>&& other)
+	CustomAllocatorArray(const Collection<CollectableType>& other)
 		: DynamicArray<CollectableType>(other)
 	{
 	}

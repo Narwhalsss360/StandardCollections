@@ -32,7 +32,7 @@ Array<CollectableType, TemplateLength>::Array(const Collection<CollectableType>&
 }
 
 template <typename CollectableType, index_t TemplateLength>
-Array<CollectableType, TemplateLength>::Array(const Collection<CollectableType>&& other)
+Array<CollectableType, TemplateLength>::Array(const Array<CollectableType>& other)
 	: Collection<CollectableType>(), m_Array{ CollectableType() }
 {
 	operator=(other);
